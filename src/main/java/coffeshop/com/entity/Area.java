@@ -7,7 +7,7 @@ import java.util.Set;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "bill", catalog = "cafeshop")
+@Table(name = "area", catalog = "coffeshop")
 public class Area {
 
     @Id

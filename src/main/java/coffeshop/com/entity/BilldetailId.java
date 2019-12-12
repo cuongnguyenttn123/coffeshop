@@ -10,23 +10,23 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class BilldetailId implements java.io.Serializable {
 
-	private String productid;
+	private int productid;
 	private int billid;
 
 	public BilldetailId() {
 	}
 
-	public BilldetailId(String productid, int billid) {
+	public BilldetailId(int productid, int billid) {
 		this.productid = productid;
 		this.billid = billid;
 	}
 
 	@Column(name = "PRODUCTID", nullable = false, length = 7)
-	public String getProductid() {
+	public int getProductid() {
 		return this.productid;
 	}
 
-	public void setProductid(String productid) {
+	public void setProductid(int productid) {
 		this.productid = productid;
 	}
 
@@ -39,26 +39,6 @@ public class BilldetailId implements java.io.Serializable {
 		this.billid = billid;
 	}
 
-	public boolean equals(Object other) {
-		if ((this == other))
-			return true;
-		if ((other == null))
-			return false;
-		if (!(other instanceof BilldetailId))
-			return false;
-		BilldetailId castOther = (BilldetailId) other;
 
-		return ((this.getProductid() == castOther.getProductid()) || (this.getProductid() != null
-				&& castOther.getProductid() != null && this.getProductid().equals(castOther.getProductid())))
-				&& (this.getBillid() == castOther.getBillid());
-	}
-
-	public int hashCode() {
-		int result = 17;
-
-		result = 37 * result + (getProductid() == null ? 0 : this.getProductid().hashCode());
-		result = 37 * result + this.getBillid();
-		return result;
-	}
 
 }

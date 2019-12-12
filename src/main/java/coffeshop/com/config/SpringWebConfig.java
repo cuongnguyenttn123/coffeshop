@@ -20,12 +20,12 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/resouces/**")
-                .addResourceLocations("/resouces/");
+        if (!registry.hasMappingForPattern("/resources/**")) {
+            registry.addResourceHandler("/resources/**").addResourceLocations(
+                    "classpath:/static/");
+        }
     }
 
 }
