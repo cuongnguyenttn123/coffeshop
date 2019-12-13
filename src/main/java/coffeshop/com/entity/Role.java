@@ -5,10 +5,10 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Data
-@Table(name = "billstatus")
+@Table(name = "role")
 @Entity
-public class Billstatus implements Serializable {
+@Data
+public class Role implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id

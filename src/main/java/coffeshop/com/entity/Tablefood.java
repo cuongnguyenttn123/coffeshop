@@ -9,10 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Table(name = "khuvuc")
+@Table(name = "tablefood")
 @Entity
 @Data
-public class Area implements Serializable {
+public class Tablefood implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
@@ -23,8 +23,16 @@ public class Area implements Serializable {
   @Column(name = "name")
   private String name;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "area")
-  private List<Tablefood> tablefoods = new ArrayList<>();
+
+  @ManyToOne
+  @JoinColumn(name = "id_Area", nullable = false)
+  private Area area;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "tablefood")
+  private List<Bill> billHashSet = new ArrayList<>();
+
+  @Column(name = "status")
+  private Integer status;
 
   
 }
