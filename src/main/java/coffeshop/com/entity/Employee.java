@@ -1,13 +1,17 @@
 package coffeshop.com.entity;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.Data;
 
-import javax.persistence.*;
-import java.io.Serializable;
-
-@Table(name = "employee")
-@Entity
 @Data
+@Entity
+@Table(name = "account")
 public class Employee implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -16,17 +20,14 @@ public class Employee implements Serializable {
   @Column(name = "id", insertable = false, nullable = false)
   private Integer id;
 
-  @Column(name = "username")
-  private String username;
+  @Column(name = "user_name")
+  private String userName;
 
-  @Column(name = "password")
-  private String password;
+  @Column(name = "pass_word")
+  private String passWord;
 
   @Column(name = "name")
   private String name;
-
-  @Column(name = "avt")
-  private String avt;
 
   @Column(name = "email")
   private String email;
@@ -36,6 +37,9 @@ public class Employee implements Serializable {
 
   @Column(name = "phone")
   private String phone;
+
+  @Column(name = "id_role")
+  private Integer idRole;
 
   
 }

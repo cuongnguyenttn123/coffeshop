@@ -1,14 +1,13 @@
 package coffeshop.com.entity;
 
+import java.io.Serializable;
+import javax.persistence.*;
+
 import lombok.Data;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.math.BigDecimal;
-
+@Table(name = "food")
 @Entity
 @Data
-@Table(name = "food")
 public class Food implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -20,22 +19,17 @@ public class Food implements Serializable {
   @Column(name = "name")
   private String name;
 
-  @Column(name = "image")
-  private String image;
-
   @Column(name = "price")
-  private BigDecimal price;
+  private Integer price;
 
-  @Column(name = "id_DVT")
-  private Integer idDVT;
+  @ManyToOne
+  @JoinColumn(name = "id_DVT")
+  private Dvt dvt;
 
 
   @ManyToOne
-  @JoinColumn(name = "id_category", nullable = false)
+  @JoinColumn(name = "id_Category")
   private Foodcategory foodcategory;
-
-  @Column(name = "description")
-  private String description;
 
   @Column(name = "status")
   private Integer status;

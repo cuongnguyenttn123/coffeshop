@@ -1,10 +1,12 @@
 package coffeshop.com.entity;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+
+import lombok.Data;
 
 @Data
 @Table(name = "bill")
@@ -17,11 +19,11 @@ public class Bill implements Serializable {
   @Column(name = "id", insertable = false, nullable = false)
   private Integer id;
 
-  @Column(name = "date_checkin")
-  private Date dateCheckin;
+  @Column(name = "date_check_in")
+  private Date dateCheckIn;
 
-  @Column(name = "date_checkout")
-  private Date dateCheckout;
+  @Column(name = "date_check_out")
+  private Date dateCheckOut;
 
   @ManyToOne
   @JoinColumn(name = "id_Table", nullable = false)
@@ -38,5 +40,10 @@ public class Bill implements Serializable {
   @Column(name = "id_Status")
   private Integer idStatus;
 
+  @Column(name = "status")
+  private Integer status;
+
+  @OneToMany(mappedBy = "bill")
+  List<Billinfo> billinfos = new ArrayList<>();
   
 }

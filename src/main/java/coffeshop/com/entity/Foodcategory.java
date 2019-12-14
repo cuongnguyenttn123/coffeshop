@@ -1,14 +1,14 @@
 package coffeshop.com.entity;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.*;
 
-@Entity
-@Table(name = "foodcategory")
+import lombok.Data;
+
 @Data
+@Table(name = "foodcategary")
+@Entity
 public class Foodcategory implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -25,9 +25,7 @@ public class Foodcategory implements Serializable {
 
   @Column(name = "status")
   private Integer status;
-
   @OneToMany(mappedBy = "foodcategory")
   List<Food> foodList;
-
   
 }

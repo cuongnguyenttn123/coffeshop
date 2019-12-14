@@ -1,17 +1,15 @@
 package coffeshop.com.entity;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import javax.persistence.*;
 
-@Table(name = "khuvuc")
+import lombok.Data;
+
 @Entity
 @Data
+@Table(name = "area")
 public class Area implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -22,9 +20,7 @@ public class Area implements Serializable {
 
   @Column(name = "name")
   private String name;
-
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "area")
   private List<Tablefood> tablefoods = new ArrayList<>();
-
   
 }
