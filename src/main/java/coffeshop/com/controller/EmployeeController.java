@@ -131,25 +131,18 @@ public class EmployeeController {
     }
 
     private int isCheckIdBillinfo(BilldetailRequest billdetail, List<Billinfo> billdetailList) {
-        int count = -1;
         boolean bb = false;
-        for (Billinfo billinfo: billdetailList) {
-            count +=1;
+        for (int i = 0 ;  i< billdetailList.size(); i++){
 
-            Integer a = billinfo.getFood().getId();
+            Integer a = billdetailList.get(i).getFood().getId();
             Integer b = billdetail.getIdFood();
             if (b.equals(a)){
                 bb =  true;
-                System.out.println(billinfo.getFood().getId());
-                System.out.println(billdetail.getIdFood());
+                return i;
             }
 
         }
-        if (bb){
-            return count;
-        }else {
-            return -1;
-        }
+        return -1;
 
     }
 
