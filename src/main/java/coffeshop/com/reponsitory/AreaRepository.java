@@ -3,8 +3,10 @@ package coffeshop.com.reponsitory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import coffeshop.com.entity.Area;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,8 +14,12 @@ import java.util.Optional;
 public interface AreaRepository extends JpaRepository<Area, Integer>, JpaSpecificationExecutor<Area> {
     @Query("from Area f where f.id = ?1")
     Optional<Area> findById(Integer id);
+
+
     List<Area> findAll();
 
-    @Override
-    void deleteById(Integer integer);
+    @Transactional
+    @Modifying
+    @Query("delete from Area a where a.id = ?1")
+    void deleteById(Integer id);
 }

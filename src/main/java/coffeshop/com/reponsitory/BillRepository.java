@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface BillRepository extends JpaRepository<Bill, Integer>, JpaSpecificationExecutor<Bill> {
     @Query("from Bill b where b.id = ?1")
     Optional<Bill> findById(Integer id);
+
     @Transactional
     @Modifying
     @Query("delete from Bill b where b.id = ?1")

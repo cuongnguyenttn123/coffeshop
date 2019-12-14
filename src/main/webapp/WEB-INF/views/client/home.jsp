@@ -38,10 +38,10 @@
                         Quang t&#224;i
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="margin-right:-14px">
-                        <a class="dropdown-item" href="/resouces/Admin/Home/Index">
+                        <a class="dropdown-item" href="/admin/generality">
                             <i class="fa fa-home"></i>&nbsp;&nbsp;Màn hình quản lí
                         </a>
-                        <a class="dropdown-item" href="/resouces/Admin/Login/Index">
+                        <a class="dropdown-item" href="/logout">
                             <i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;Đăng xuất
                         </a>
 
