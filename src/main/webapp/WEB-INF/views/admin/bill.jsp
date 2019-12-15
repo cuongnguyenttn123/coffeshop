@@ -117,24 +117,24 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr id="row_115">
-                                        <th scope="col">1</th>
-                                        <td scope="col">115</td>
-                                        <td scope="col">Quang Hưng</td>
-                                        <td scope="col">14/12/2019</td>
-                                        <td scope="col">20:29</td>
-                                        <td scope="col">
-                                            20:29
-                                        </td>
-                                        <td>
-                                            b&#224;n 201
-                                        </td>
+                                    <c:forEach items="${bills}" var="bill">
+                                        <tr id="row_${bill.getId()}">
+                                            <th scope="col">1</th>
+                                            <td scope="col">${bill.getId()}</td>
+                                            <td scope="col">${bill.getEmployee()}</td>
+                                            <td scope="col">${bill.getDate()}</td>
+                                            <td scope="col">${bill.getCheckIn()}</td>
+                                            <td scope="col">${bill.getCheckOut()}</td>
+                                            <td>
+                                                201
+                                            </td>
 
-                                        <td>
-                                            <a class="btn btn-success btn-sm" data-id="115" id="115" onclick="ViewCTHD(115)" style="color:white;padding:0px 8px"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr id="row_114">
+                                            <td>
+                                                <a class="btn btn-success btn-sm" data-id="115" id="115" onclick="ViewCTHD(${bill.getId()})" style="color:white;padding:0px 8px"><i class="fas fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    <%--<tr id="row_114">
                                         <th scope="col">2</th>
                                         <td scope="col">114</td>
                                         <td scope="col">Nguyễn Văn Cường</td>
@@ -151,108 +151,7 @@
                                             <a class="btn btn-success btn-sm" data-id="114" id="114" onclick="ViewCTHD(114)" style="color:white;padding:0px 8px"><i class="fas fa-eye"></i></a>
                                         </td>
                                     </tr>
-                                    <tr id="row_113">
-                                        <th scope="col">3</th>
-                                        <td scope="col">113</td>
-                                        <td scope="col">Nguyễn Văn Cường</td>
-                                        <td scope="col">13/12/2019</td>
-                                        <td scope="col">10:17</td>
-                                        <td scope="col">
-                                            10:17
-                                        </td>
-                                        <td>
-                                            b&#224;n 202
-                                        </td>
-
-                                        <td>
-                                            <a class="btn btn-success btn-sm" data-id="113" id="113" onclick="ViewCTHD(113)" style="color:white;padding:0px 8px"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr id="row_112">
-                                        <th scope="col">4</th>
-                                        <td scope="col">112</td>
-                                        <td scope="col">Nguyễn Văn Cường</td>
-                                        <td scope="col">12/12/2019</td>
-                                        <td scope="col">22:52</td>
-                                        <td scope="col">
-                                            10:16
-                                        </td>
-                                        <td>
-                                            b&#224;n 101
-                                        </td>
-
-                                        <td>
-                                            <a class="btn btn-success btn-sm" data-id="112" id="112" onclick="ViewCTHD(112)" style="color:white;padding:0px 8px"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr id="row_111">
-                                        <th scope="col">5</th>
-                                        <td scope="col">111</td>
-                                        <td scope="col">Nguyễn Văn Cường</td>
-                                        <td scope="col">12/12/2019</td>
-                                        <td scope="col">16:17</td>
-                                        <td scope="col">
-                                            21:46
-                                        </td>
-                                        <td>
-                                            b&#224;n 101
-                                        </td>
-
-                                        <td>
-                                            <a class="btn btn-success btn-sm" data-id="111" id="111" onclick="ViewCTHD(111)" style="color:white;padding:0px 8px"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr id="row_110">
-                                        <th scope="col">6</th>
-                                        <td scope="col">110</td>
-                                        <td scope="col">Nguyễn Văn Cường</td>
-                                        <td scope="col">12/12/2019</td>
-                                        <td scope="col">16:9</td>
-                                        <td scope="col">
-                                            16:10
-                                        </td>
-                                        <td>
-                                            b&#224;n 102
-                                        </td>
-
-                                        <td>
-                                            <a class="btn btn-success btn-sm" data-id="110" id="110" onclick="ViewCTHD(110)" style="color:white;padding:0px 8px"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr id="row_109">
-                                        <th scope="col">7</th>
-                                        <td scope="col">109</td>
-                                        <td scope="col">Nguyễn Văn Cường</td>
-                                        <td scope="col">11/05/2019</td>
-                                        <td scope="col">8:40</td>
-                                        <td scope="col">
-                                            8:40
-                                        </td>
-                                        <td>
-                                            b&#224;n 110
-                                        </td>
-
-                                        <td>
-                                            <a class="btn btn-success btn-sm" data-id="109" id="109" onclick="ViewCTHD(109)" style="color:white;padding:0px 8px"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr id="row_108">
-                                        <th scope="col">8</th>
-                                        <td scope="col">108</td>
-                                        <td scope="col">Nguyễn Văn Cường</td>
-                                        <td scope="col">11/05/2019</td>
-                                        <td scope="col">8:27</td>
-                                        <td scope="col">
-                                            8:36
-                                        </td>
-                                        <td>
-                                            b&#224;n 103
-                                        </td>
-
-                                        <td>
-                                            <a class="btn btn-success btn-sm" data-id="108" id="108" onclick="ViewCTHD(108)" style="color:white;padding:0px 8px"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
+                                    sh--%>
 
                                     </tbody>
                                 </table>
@@ -273,7 +172,7 @@
                     }
                     function showBill(id) {
                         $.ajax({
-                            url: '/Admin/CTHD/GetBillinfo',
+                            url: '/admin/bill/info',
                             type:'POST',
                             data: {
                                 id : id

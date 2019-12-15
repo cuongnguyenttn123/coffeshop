@@ -82,7 +82,8 @@
                         <div class="card">
                             <h5 class="card-header fas fa-coffee">&nbsp; Tạo nhóm nguyên liệu</h5>
                             <div class="card-body">
-                                <form action="/Admin/DVT/Create" method="post">                        <div class="row">
+                                <form action="/admin/dvt" method="post">
+                                    <div class="row">
                                     <div class="col-4">
                                         <div class="form-group row">
                                             <label for="inputEmail2" class="col-4 col-form-label text-left">Tên nhóm<span>*</span></label>
@@ -147,21 +148,26 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr id="row_2">
-                                    <th>1</th>
-                                    <td>Cốc</td>
-                                    <td></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="2">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success btn-sm Update col-6" onclick="UpdateMC(2)" data-id="2" style="color:#fff;"><i class="fas fa-edit"></i>Cập nhật</a>
-                                        <strong>|</strong>
-                                        <a class="btn btn-warning btn-sm col-4" id="2" onclick="DeleteMate(2)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
-                                    </td>
+                                <%! int i = 0; %>
+                                <c:forEach items="${dvts}" var="dvt">
 
-                                </tr>
-                                <tr id="row_3">
+                                    <tr id="row_${dvt.getId()}">
+                                        <th><% i ++; %> ${i}</th>
+                                        <td>${dvt.getName()}</td>
+                                        <td>${dvt.getDescription()}</td>
+                                        <td>
+                                            <a href="#" class="btn-active" data-id="2">K&#237;ch hoạt</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success btn-sm Update col-6" onclick="UpdateMC(${dvt.getId()})" data-id="${dvt.getId()}" style="color:#fff;"><i class="fas fa-edit"></i>Cập nhật</a>
+                                            <strong>|</strong>
+                                            <a class="btn btn-warning btn-sm col-4" id="2" onclick="DeleteMate(${dvt.getId()})" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
+                                        </td>
+
+                                    </tr>
+                                </c:forEach>
+
+                                <%--<tr id="row_3">
                                     <th>2</th>
                                     <td>Chai</td>
                                     <td></td>
@@ -175,62 +181,7 @@
                                     </td>
 
                                 </tr>
-                                <tr id="row_5">
-                                    <th>3</th>
-                                    <td>Đĩa</td>
-                                    <td></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="5">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success btn-sm Update col-6" onclick="UpdateMC(5)" data-id="5" style="color:#fff;"><i class="fas fa-edit"></i>Cập nhật</a>
-                                        <strong>|</strong>
-                                        <a class="btn btn-warning btn-sm col-4" id="5" onclick="DeleteMate(5)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
-                                    </td>
-
-                                </tr>
-                                <tr id="row_6">
-                                    <th>4</th>
-                                    <td>Lon</td>
-                                    <td></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="6">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success btn-sm Update col-6" onclick="UpdateMC(6)" data-id="6" style="color:#fff;"><i class="fas fa-edit"></i>Cập nhật</a>
-                                        <strong>|</strong>
-                                        <a class="btn btn-warning btn-sm col-4" id="6" onclick="DeleteMate(6)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
-                                    </td>
-
-                                </tr>
-                                <tr id="row_7">
-                                    <th>5</th>
-                                    <td>G&#243;i</td>
-                                    <td></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="7">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success btn-sm Update col-6" onclick="UpdateMC(7)" data-id="7" style="color:#fff;"><i class="fas fa-edit"></i>Cập nhật</a>
-                                        <strong>|</strong>
-                                        <a class="btn btn-warning btn-sm col-4" id="7" onclick="DeleteMate(7)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
-                                    </td>
-
-                                </tr>
-                                <tr id="row_8">
-                                    <th>6</th>
-                                    <td>Gram</td>
-                                    <td></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="8">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success btn-sm Update col-6" onclick="UpdateMC(8)" data-id="8" style="color:#fff;"><i class="fas fa-edit"></i>Cập nhật</a>
-                                        <strong>|</strong>
-                                        <a class="btn btn-warning btn-sm col-4" id="8" onclick="DeleteMate(8)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
-                                    </td>
-
-                                </tr>
+                                dslkjiodf--%>
 
 
                                 </tbody>
@@ -241,7 +192,8 @@
                         </div>
                     </div>
                     <div id="modal-wrapper" class="modal">
-                        <form action="/Admin/DVT/Update" class="modal-content animate" method="post"><input name="__RequestVerificationToken" type="hidden" value="RsP70RuCRK4cmb6wveuIJfyGUsJIs7tp1XP7myU99ihK1H-_ZziXVi_NV1i_UA-j9jfZw6cY8OHH9KIVGMiS5jvUUo8O0-arX95BSohRZZw1" />            <div class="imgcontainer">
+                        <form action="/admin/dvt/edit" class="modal-content animate" method="post">
+                            <div class="imgcontainer">
                             <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
                             <h1 style="text-align:center;color:#007bff">Cập nhật món ăn</h1>
                         </div>
@@ -268,7 +220,7 @@
                             </div>
                         </form>    </div>
                     <div id="modal-wrapper-Del" class="modal">
-                        <form action="/Admin/DVT/Delete" class="modal-contentDel animateDel" method="get"><input name="__RequestVerificationToken" type="hidden" value="Vtya0FcPFbZJtBZ7dXIiqw3NxFhiELCUWmsJPTdDGbouGvD6MG7qAr7IhJAa5KLN33Sh_PL6zXCmvI1YFuRkK8oqaSGiDzZSqyC40kl4Jhs1" />            <div class="container-confirm">
+                        <form action="/admin/dvt/delete" class="modal-contentDel animateDel" method="get">
                             <div class="title-main">Xác nhận xóa</div>
                             <div class="title-content">
                                 <div class="content-titlt">Bạn có đồng ý xóa ?</div>
@@ -291,17 +243,16 @@
                     function UpdateMC(id) {
                         document.getElementById('modal-wrapper').style.display = 'block';
                         $.ajax({
-                            url: '/Admin/DVT/Edit',
+                            url: '/admin/dvt/edit',
                             data:
                                 { id: id },
                             type: 'GET',
                             dataType: 'json',
                             success: function (response) {
-                                var data = response.data;
-                                $('#DVTName').val(data.DVT_Name);
-                                $('#ckStatus').prop('checked', data.status);
-                                $('.DVT_Des').val(data.Descreption);
-                                DvtID = id;
+                                $('#DVTName').val(response.DVT_Name);
+                                $('#ckStatus').prop('checked', response.status);
+                                $('.DVT_Des').val(response.Descreption);
+                                DvtID = response.id;
                             },
                             error: function () {
                                 alert('Lỗi rồi');
@@ -322,7 +273,7 @@
                             status: stt,
                         }
                         $.ajax({
-                            url: '/Admin/DVT/Update',
+                            url: '/admin/dvt/edit',
                             type: 'POST',
                             data: dvt,
                             success: function () {
@@ -352,7 +303,7 @@
                                     id: id
                                 }
                             $.ajax({
-                                url: '/Admin/DVT/Delete',
+                                url: '/admin/dvt/delete',
                                 type: 'GET',
                                 data: iddelete,
                                 OnComplete: function () {

@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-info active btn-sm col-3"><i class="fas fa-search"></i>&nbsp;Tìm kiếm</button> &nbsp;&nbsp;
-                                    <a href="/Admin/FoodCategory/Create" class="btn btn-primary active btn-sm col-3"><i class="fas fa-plus"></i>&nbsp;Thêm mới</a>
+                                    <a href="/admin/category/add" class="btn btn-primary active btn-sm col-3"><i class="fas fa-plus"></i>&nbsp;Thêm mới</a>
                                 </div>
                             </div>
                             </form>            <div class="card-body">
@@ -102,20 +102,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr id="row_1">
-                                    <th >1</th>
-                                    <td >CAFE</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="1">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td >
-                                        <a href="/Admin/FoodCategory/Edit/1" class="btn btn-success btn-sm col-5"><i class="fas fa-edit"></i>&nbsp;Cập nhật</a>
-                                        <Strong>|</Strong>
-                                        <a class="btn btn-warning btn-sm col-5" id="1" onclick="clik(1)" style="color:white;"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr id="row_2">
+
+                                <c:forEach items="${foodcategories}" var="foodcategory">
+                                    <tr id="row_${foodcategory.getId()}">
+                                        <th >1</th>
+                                        <td >${foodcategory.getName()}</td>
+                                        <td >${foodcategory.getDescription()}</td>
+                                        <td>
+                                            <a href="#" class="btn-active" data-id="1">K&#237;ch hoạt</a>
+                                        </td>
+                                        <td >
+                                            <a href="/admin/category/edit/${foodcategory.getId()}" class="btn btn-success btn-sm col-5"><i class="fas fa-edit"></i>&nbsp;Cập nhật</a>
+                                            <Strong>|</Strong>
+                                            <a class="btn btn-warning btn-sm col-5" id="1" onclick="clik(${foodcategory.getId()})" style="color:white;"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+
+
+                                <%--<tr id="row_2">
                                     <th >2</th>
                                     <td >SINH TỐ</td>
                                     <td ></td>
@@ -128,45 +133,7 @@
                                         <a class="btn btn-warning btn-sm col-5" id="2" onclick="clik(2)" style="color:white;"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
                                     </td>
                                 </tr>
-                                <tr id="row_3">
-                                    <th >3</th>
-                                    <td >TR&#192; SỮA</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="3">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td >
-                                        <a href="/Admin/FoodCategory/Edit/3" class="btn btn-success btn-sm col-5"><i class="fas fa-edit"></i>&nbsp;Cập nhật</a>
-                                        <Strong>|</Strong>
-                                        <a class="btn btn-warning btn-sm col-5" id="3" onclick="clik(3)" style="color:white;"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr id="row_5">
-                                    <th >4</th>
-                                    <td >TR&#192; XANH NHẬT BẢN</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="5">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td >
-                                        <a href="/Admin/FoodCategory/Edit/5" class="btn btn-success btn-sm col-5"><i class="fas fa-edit"></i>&nbsp;Cập nhật</a>
-                                        <Strong>|</Strong>
-                                        <a class="btn btn-warning btn-sm col-5" id="5" onclick="clik(5)" style="color:white;"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr id="row_6">
-                                    <th >5</th>
-                                    <td >THỨC UỐNG KEM SỮA</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="6">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td >
-                                        <a href="/Admin/FoodCategory/Edit/6" class="btn btn-success btn-sm col-5"><i class="fas fa-edit"></i>&nbsp;Cập nhật</a>
-                                        <Strong>|</Strong>
-                                        <a class="btn btn-warning btn-sm col-5" id="6" onclick="clik(6)" style="color:white;"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                    </td>
-                                </tr>
+                                --%>
 
 
                                 </tbody>
@@ -178,7 +145,7 @@
                     </div>
                 </div>
                 <div id="modal-wrapper-Del" class="modal">
-                    <form action="/Admin/FoodCategory/Delete" class="modal-contentDel animateDel" method="post"><input name="__RequestVerificationToken" type="hidden" value="icz2SQE98VWMkU1tG7qp8X5xre9bGMggExEWy_kKsikHASlMN0yU6JLA3hG_V38NmKLq6aXgGqUOG-ImBj7W5snPwrYzSfN1OXg8bQBSnF81" />        <div class="container-confirm">
+                    <form action="/admin/category/delete" class="modal-contentDel animateDel" method="post"><input name="__RequestVerificationToken" type="hidden" value="icz2SQE98VWMkU1tG7qp8X5xre9bGMggExEWy_kKsikHASlMN0yU6JLA3hG_V38NmKLq6aXgGqUOG-ImBj7W5snPwrYzSfN1OXg8bQBSnF81" />        <div class="container-confirm">
                         <div class="title-main">Xác nhận xóa</div>
                         <div class="title-content">
                             <div class="content-titlt">Bạn có đồng ý xóa ?</div>
@@ -200,7 +167,7 @@
                                     id: id
                                 }
                             $.ajax({
-                                url: '/Admin/FoodCategory/Delete',
+                                url: '/admin/category/delete',
                                 type: 'POST',
                                 data: iddelete,
                                 OnComplete: function () {

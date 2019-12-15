@@ -94,12 +94,13 @@
                 </thead>
                 <tbody class="bodyMon ">
 
-                <%! int countstt = 0; %>
-                <%! int tong = 0; %>
+                <%  int i = 0; %>
+                <% int tong = 0; %>
                 <c:forEach items="${bill.getBillinfos()}" var="billdetail">
                 <tr id="row_${billdetail.getId()}">
-                    <td>1</td>
-                    <td data-id="${bill.getId()}"> ${billdetail.getFood().getName()} </td>
+
+                    <td>${ i = i+ 1}</td>
+                    <td data-id="${billdetail.getId()}"> ${billdetail.getFood().getName()} </td>
                     <td style="text-align:center">
                         <button class="downCount" data-id="${billdetail.getId()}" data-role="${bill.getId()}" onclick="Giam(${billdetail.getId()})">
                             <i class="fas fa-minus"></i>
@@ -111,7 +112,8 @@
                     </td>
                     <td style="text-align:center"> ${billdetail.getFood().getDvt().getName()}</td>
                     <td>${billdetail.getPrice()}</td>
-                    <td>${billdetail.getPrice()}></td>
+                    <td>${sum = sum + billdetail.getPrice()*billdetail.getCount() }</td>
+
                     <td style="text-align:center">
                         <a href="#" style="text-decoration:none;color:#fff" onclick="Xoamon(${billdetail.getId()})" data-role=${bill.getId()}><i class="fas fa-trash-alt"></i></a>
                     </td>
@@ -157,7 +159,7 @@
                 </tr>--%>
                 <tr>
                     <td colspan="5"><b>Tổng</b></td>
-                    <td>125.000</td>
+                    <td>${sum}</td>
                 </tr>
 
                 </tbody>

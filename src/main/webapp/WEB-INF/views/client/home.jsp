@@ -366,14 +366,10 @@
             type: 'POST',
             dataType: 'json',
             data: { model: JSON.stringify(data) },
-            success: function (response) {
-                if (response.status) {
-                    //alert('update thành công');
-                    showBill(idbill);
-                }
-                else {
-                    alert('thất bại');
-                }
+            success: function () {
+                var a = 3;
+                showBill(idbill);
+                console.log(a);
             }
         });
     }

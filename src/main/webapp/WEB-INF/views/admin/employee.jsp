@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: cuong
@@ -90,7 +91,7 @@
                                     </div>
                                     <div class="col-md-5">
                                         <button type="submit" class="btn btn-info active btn-sm"><i class="fas fa-search"></i>&nbsp;Tìm kiếm</button>
-                                        <a href="/Admin/User/Create" type="submit" class="btn btn-primary active btn-sm"><i class="fas fa-plus"></i>&nbsp;Thêm mới</a>
+                                        <a href="/admin/employee/add" type="submit" class="btn btn-primary active btn-sm"><i class="fas fa-plus"></i>&nbsp;Thêm mới</a>
 
                                     </div>
                                 </div>
@@ -109,54 +110,26 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr id="row_1">
-                                        <td>1</td>
-                                        <td>cuongnguyen</td>
-                                        <td>Nguyễn Văn Cường</td>
-                                        <td>BN</td>
-                                        <td>doquangtaia3@gmail.com</td>
-                                        <td>Quản l&#237;</td>
+                                            <%! int i = 0; %>
+                                    <c:forEach items="${emp}" var="emp">
+                                        <tr id="row_${emp.getId()}">
+                                            <td>${i = i +1 }</td>
+                                        <td>${emp.getUserName()}</td>
+                                        <td>${emp.getName()}</td>
+                                        <td>${emp.getAddress()}</td>
+                                        <td>${emp.getEmail()}</td>
+                                        <td>${emp.getIdRole()}</td>
                                         <td>
                                             <a href="#" class="btn-active" data-id="1">K&#237;ch hoạt</a>
                                         </td>
                                         <td>
-                                            <a href="/Admin/User/Edit/1" name="Food_id" class="btn btn-success btn-sm col-sm-6"><i class="fas fa-edit"></i>Cập nhập</a>
+                                            <a href="/admin/employee/edit/1" name="Food_id" class="btn btn-success btn-sm col-sm-6"><i class="fas fa-edit"></i>Cập nhập</a>
                                             &nbsp;|&nbsp;
-                                            <a class="btn btn-warning btn-sm col-4" id="1" onclick="clik(1)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
+                                            <a class="btn btn-warning btn-sm col-4" id="1" onclick="clik(${emp.getId()})" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
                                         </td>
                                     </tr>
-                                    <tr id="row_2">
-                                        <td>2</td>
-                                        <td>luhanbc</td>
-                                        <td>Phan đăng</td>
-                                        <td>BN</td>
-                                        <td>doquangtai</td>
-                                        <td>Phục vụ</td>
-                                        <td>
-                                            <a href="#" class="btn-active" data-id="2">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td>
-                                            <a href="/Admin/User/Edit/2" name="Food_id" class="btn btn-success btn-sm col-sm-6"><i class="fas fa-edit"></i>Cập nhập</a>
-                                            &nbsp;|&nbsp;
-                                            <a class="btn btn-warning btn-sm col-4" id="2" onclick="clik(2)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
-                                        </td>
-                                    </tr>
-                                    <tr id="row_3">
-                                        <td>3</td>
-                                        <td>quangtai</td>
-                                        <td>&#193;nh Dương</td>
-                                        <td>BN</td>
-                                        <td>dotaihaui@gmail.com</td>
-                                        <td>Thu ng&#226;n</td>
-                                        <td>
-                                            <a href="#" class="btn-active" data-id="3">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td>
-                                            <a href="/Admin/User/Edit/3" name="Food_id" class="btn btn-success btn-sm col-sm-6"><i class="fas fa-edit"></i>Cập nhập</a>
-                                            &nbsp;|&nbsp;
-                                            <a class="btn btn-warning btn-sm col-4" id="3" onclick="clik(3)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
-                                        </td>
-                                    </tr>
+                                    </c:forEach>
+                                    <%--
                                     <tr id="row_6">
                                         <td>4</td>
                                         <td>Hung</td>
@@ -172,7 +145,7 @@
                                             &nbsp;|&nbsp;
                                             <a class="btn btn-warning btn-sm col-4" id="6" onclick="clik(6)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
                                         </td>
-                                    </tr>
+                                    </tr>--%>
 
                                     </tbody>
                                 </table>
@@ -190,7 +163,7 @@
                         var x = confirm("Bạn có muốn xóa bản ghi?");
                         if (x) {
                             $.ajax({
-                                url: '/Admin/User/Delete',
+                                url: '/admin/employee/delete',
                                 type: 'POST',
                                 data: iddelete,
                                 conform: "Bạn có muốn xóa bản ghi",

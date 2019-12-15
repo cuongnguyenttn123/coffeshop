@@ -126,7 +126,6 @@ public class EmployeeController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println("ucong");
         return null;
     }
 
@@ -174,16 +173,20 @@ public class EmployeeController {
     }
 
     @PostMapping(value = "EditBill")
+    @ResponseBody
     public StatusFunction editBill(@RequestParam("model") String model){
         ObjectMapper objectMapper = new ObjectMapper();
         StatusFunction statusFunction = new StatusFunction();
         try{
             JsonNode jsonNode = objectMapper.readTree(model);
-            Billinfo billdetail = billdetailRepository.findById(jsonNode.get("BillInfo_id").asInt()).get();
+            Integer a = jsonNode.get("BillInfo_id").asInt();
+            System.out.println(a);
+            Billinfo billdetail = billdetailRepository.findById(a).get();
             billdetail.setCount(jsonNode.get("count").asInt());
             billdetailRepository.save(billdetail);
             statusFunction.setStatus(true);
         }catch (Exception e){
+            e.printStackTrace();
             statusFunction.setStatus(false);
         }
         return statusFunction;
@@ -213,6 +216,8 @@ public class EmployeeController {
         try{
             Bill bill = billRepository.findById(id_bill).get();
             bill.setStatus(1);
+            Date date = new Date();
+            bill.setDateCheckOut(date);
             billRepository.save(bill);
             Tablefood tablefood = bill.getTablefood();
             tablefood.setIdBill(0);
