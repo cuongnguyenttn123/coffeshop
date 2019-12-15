@@ -81,7 +81,8 @@
                         <div class="card">
                             <h4 class="card-header fas fa-coffee">&nbsp; Thêm Đồ Uống/Món ăn</h4>
                             <div class="card-body">
-                                <form action="/Admin/Food/Create" method="post">                        <div class="row">
+                                <form action="/admin/food" method="post">
+                                    <div class="row">
                                     <div class="col-4">
                                         <div class="form-group row">
                                             <label for="inputEmail2" class="col-4 col-form-label text-left">Tên món*</label>
@@ -94,19 +95,15 @@
                                         <div class="form-group row">
                                             <label for="inputWebSite" class="col-4 col-form-label text-left">Danh mục *</label>
                                             <div class="col-8">
-                                                <select class="nav-link dropdown-toggle col" id="cate" name="idCategory" style="border-radius:0.2em"><option value="">--Nh&#243;m đồ uống--</option>
-                                                    <option value="1">CAFE</option>
-                                                    <option value="2">SINH TỐ</option>
-                                                    <option value="3">TR&#192; SỮA</option>
-                                                    <option value="5">TR&#192; XANH NHẬT BẢN</option>
-                                                    <option value="6">THỨC UỐNG KEM SỮA</option>
-                                                    <option value="7">SOCOLA Đ&#193; XAY</option>
-                                                    <option value="8">HOA QUẢ Đ&#193; XAY</option>
-                                                    <option value="9">ĐỒ UỐNG VỊ B&#193;NH</option>
-                                                    <option value="10">KEM CHANH</option>
-                                                    <option value="11">ĐỒ ĂN NHANH</option>
-                                                    <option value="12">SỮA CHUA HOA QUẢ </option>
+                                                <select class="nav-link dropdown-toggle" id="DanhMuc" name="idCategory" style="padding: 0.3em 5.4em 0.3em 1em;">
+                                                    <option value="">--Chọn danh mục--</option>
+                                                    <c:forEach items="${foodcategories}" var="foodcategori">
+                                                        <option value="${foodcategori.getId()}">${foodcategori.getName()}</option>
+                                                    </c:forEach>
                                                 </select>
+                                                <%--<select class="nav-link dropdown-toggle col" id="cate" name="idCategory" style="border-radius:0.2em"><option value="">--Nh&#243;m đồ uống--</option>
+
+                                                </select>--%>
                                             </div>
                                         </div>
                                     </div>
@@ -115,16 +112,9 @@
                                             <label for="" class="col-4 col-form-label text-left">Đơn vị tính*</label>
                                             <div class="col-8">
                                                 <select class="nav-link dropdown-toggle col" id="iddvt" name="idDVT" style="border-radius:0.2em"><option value="">--Đơn vị t&#237;nh--</option>
-                                                    <option value="2">Cốc</option>
-                                                    <option value="3">Chai</option>
-                                                    <option value="5">Đĩa</option>
-                                                    <option value="6">Lon</option>
-                                                    <option value="7">G&#243;i</option>
-                                                    <option value="8">Gram</option>
-                                                    <option value="9">K&#233;t</option>
-                                                    <option value="10">kg</option>
-                                                    <option value="11">L&#237;t</option>
-                                                    <option value="15">Quả</option>
+                                                    <c:forEach items="${dvts}" var="dvt">
+                                                        <option value="${dvt.getId()}">${dvt.getName()}</option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>
                                         </div>
@@ -157,7 +147,8 @@
                                             </p>
                                         </div>
                                     </div>
-                                </form>                </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -172,8 +163,13 @@
                                     <div class="col-md-3 ">
                                         <div class="col">
                                             <select class="nav-link dropdown-toggle col" id="idCategory" name="idCategory" style="border-radius:0.2em"><option value="">--Nh&#243;m đồ uống--</option>
-                                                <option value="1">CAFE</option>
-                                                <option value="2">SINH TỐ</option>
+                                                <c:forEach items="${foodcategories}" var="foodcategori">
+                                                    <option value="${foodcategori.getId()}">${foodcategori.getName()}</option>
+                                                </c:forEach>
+
+
+
+                                                <%--<option value="2">SINH TỐ</option>
                                                 <option value="3">TR&#192; SỮA</option>
                                                 <option value="5">TR&#192; XANH NHẬT BẢN</option>
                                                 <option value="6">THỨC UỐNG KEM SỮA</option>
@@ -182,23 +178,17 @@
                                                 <option value="9">ĐỒ UỐNG VỊ B&#193;NH</option>
                                                 <option value="10">KEM CHANH</option>
                                                 <option value="11">ĐỒ ĂN NHANH</option>
-                                                <option value="12">SỮA CHUA HOA QUẢ </option>
+                                                <option value="12">SỮA CHUA HOA QUẢ </option>--%>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-3 ">
                                         <div class="col">
                                             <select class="nav-link dropdown-toggle col" id="idDVT" name="idDVT" style="border-radius:0.2em"><option value="">--đơn vị t&#237;nh--</option>
-                                                <option value="2">Cốc</option>
-                                                <option value="3">Chai</option>
-                                                <option value="5">Đĩa</option>
-                                                <option value="6">Lon</option>
-                                                <option value="7">G&#243;i</option>
-                                                <option value="8">Gram</option>
-                                                <option value="9">K&#233;t</option>
-                                                <option value="10">kg</option>
-                                                <option value="11">L&#237;t</option>
-                                                <option value="15">Quả</option>
+                                                <c:forEach items="${dvts}" var="dvt">
+                                                    <option value="${dvt.getId()}">${dvt.getName()}</option>
+                                                </c:forEach>
+
                                             </select>
                                         </div>
                                     </div>
@@ -221,25 +211,38 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr id="row_1">
-                                        <th scope="col">1</th>
-                                        <td scope="col">Bạc xỉu</td>
-                                        <td scope="col">CAFE</td>
-                                        <td scope="col">Cốc</td>
-                                        <td scope="col">25.000</td>
-                                        <td scope="col">
-                                            <a href="#" class="btn-active" data-id="1">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(1)" style="color:white;border-radius:0.2em" data-id="1">
-                                                <i class="fas fa-edit"></i>&nbsp;Cập nhập
-                                            </a>
-                                            <strong>|</strong>
-                                            <a class="btn btn-warning btn-sm Delete col-4" data-id="1" id="1" onclick="DeleteFood(this,1)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                        </td>
+                                    <c:forEach items="${foods}" var="food">
+                                        <tr id="row_${food.getId()}">
+                                            <th scope="col">${food.getId()}</th>
+                                            <td scope="col">${food.getName()}</td>
+                                            <td scope="col">${food.getFoodcategory().getName()}</td>
+                                            <td scope="col">${food.getDvt().getName()}</td>
+                                            <td scope="col">${food.getPrice()}</td>
+                                            <td scope="col">
+                                                <a href="#" class="btn-active" data-id="${food.getId()}">
+                                                    <c:choose>
+                                                        <c:when test="${table.getStatus() ==0}">
+                                                            Kích Hoạt
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            Khóa
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </a>
+                                            </td>
+                                            <td scope="col">
+                                                <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(${food.getId()})" style="color:white;border-radius:0.2em" data-id="1">
+                                                    <i class="fas fa-edit"></i>&nbsp;Cập nhập
+                                                </a>
+                                                <strong>|</strong>
+                                                <a class="btn btn-warning btn-sm Delete col-4" data-id="1" id="1" onclick="DeleteFood(this,${food.getId()})" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
+                                            </td>
 
-                                    </tr>
-                                    <tr id="row_4">
+                                        </tr>
+                                    </c:forEach>
+
+
+                                    <%--<tr id="row_4">
                                         <th scope="col">2</th>
                                         <td scope="col">C&#224; ph&#234; sữa </td>
                                         <td scope="col">CAFE</td>
@@ -400,7 +403,7 @@
                                             <a class="btn btn-warning btn-sm Delete col-4" data-id="24" id="24" onclick="DeleteFood(this,24)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
                                         </td>
 
-                                    </tr>
+                                    </tr>--%>
 
                                     </tbody>
                                 </table>
@@ -409,7 +412,7 @@
                         </div>
                     </div>
                     <div id="modal-wrapper" class="modal">
-                        <form action="/Admin/Food/Update" class="modal-content animate" method="post"><input name="__RequestVerificationToken" type="hidden" value="TuVUNApYPaxA54Z0Lur3wjg3ayNFMeM5-1GP8-UnMTf50uHnwudTWZrua7dQ5JVCz5VJmG1o2QnOT2FSkVAFIHalOfQZcGGxbJe5oGMG4Cg1" />            <div class="imgcontainer">
+                        <form action="/Admin/Food/Update" class="modal-content animate" method="post"><input name="__RequestVerificationToken" type="hidden" value="av5NmiTC10J9mZlDoFKtFuOZd6O-Pjrh_NiVl96IH87Q5FA_Z4uq8FpqxtwIx9IH9oSj5y9enSIzS9WXj2YG41SDkM0QZW31XffT5KGgvpk1" />            <div class="imgcontainer">
                             <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
                             <h1 style="text-align:center;color:#007bff">Cập nhật món ăn</h1>
                         </div>
@@ -435,18 +438,12 @@
                                         <div class="form-group row">
                                             <label for="inputEmail2" class="col-3 col-form-label text-right">Nhóm đồ uống:</label>
                                             <div class="col-7">
-                                                <select class="nav-link dropdown-toggle" id="DanhMuc" name="idCategory" style="padding: 0.3em 5.4em 0.3em 1em;"><option value="">--Chọn danh mục--</option>
+                                                <select class="nav-link dropdown-toggle" id="DanhMuc1" name="idCategory" style="padding: 0.3em 5.4em 0.3em 1em;">
+                                                    <option value="">--Chọn danh mục--</option>
                                                     <option value="1">CAFE</option>
                                                     <option value="2">SINH TỐ</option>
                                                     <option value="3">TR&#192; SỮA</option>
-                                                    <option value="5">TR&#192; XANH NHẬT BẢN</option>
-                                                    <option value="6">THỨC UỐNG KEM SỮA</option>
-                                                    <option value="7">SOCOLA Đ&#193; XAY</option>
-                                                    <option value="8">HOA QUẢ Đ&#193; XAY</option>
-                                                    <option value="9">ĐỒ UỐNG VỊ B&#193;NH</option>
-                                                    <option value="10">KEM CHANH</option>
-                                                    <option value="11">ĐỒ ĂN NHANH</option>
-                                                    <option value="12">SỮA CHUA HOA QUẢ </option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -455,17 +452,11 @@
                                         <div class="form-group row">
                                             <label for="inputEmail2" class="col-3 col-form-label text-right">DVT:</label>
                                             <div class="col-7">
-                                                <select class="nav-link dropdown-toggle" id="DVT" name="idDVT" style="padding: 0.3em 7.1em 0.3em 1em; "><option value="">--Chọn danh mục--</option>
-                                                    <option value="2">Cốc</option>
-                                                    <option value="3">Chai</option>
-                                                    <option value="5">Đĩa</option>
-                                                    <option value="6">Lon</option>
-                                                    <option value="7">G&#243;i</option>
-                                                    <option value="8">Gram</option>
-                                                    <option value="9">K&#233;t</option>
-                                                    <option value="10">kg</option>
-                                                    <option value="11">L&#237;t</option>
-                                                    <option value="15">Quả</option>
+                                                <select class="nav-link dropdown-toggle" id="DVT" name="idDVT" style="padding: 0.3em 7.1em 0.3em 1em; ">
+                                                    <option value="">--Chọn danh mục--</option>
+                                                    <c:forEach items="${dvts}" var="dvt">
+                                                        <option value="${dvt.getId()}">${dvt.getName()}</option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>
                                         </div>
@@ -483,9 +474,10 @@
 
                                 <button type="submit" class="button" id="submit">Save</button>
                             </div>
-                        </form>    </div>
+                        </form>
+                    </div>
                     <div id="modal-wrapper-Del" class="modal">
-                        <form action="/Admin/Food/Delete" class="modal-contentDel animateDel" method="post"><input name="__RequestVerificationToken" type="hidden" value="nLuzw8kgUA_iBD_19MGPeb80PEdZQp-w7N3LRYL4U006fyw1A6wK2Y6r_de1uamkGXSEAFLnRQKKGs8fpBh71zfyuC1Gzbu2PKM-ljRSKMo1" />            <div class="container-confirm">
+                        <form action="/admin/food/delete" class="modal-contentDel animateDel" method="post"><input name="__RequestVerificationToken" type="hidden" value="nLuzw8kgUA_iBD_19MGPeb80PEdZQp-w7N3LRYL4U006fyw1A6wK2Y6r_de1uamkGXSEAFLnRQKKGs8fpBh71zfyuC1Gzbu2PKM-ljRSKMo1" />            <div class="container-confirm">
                             <div class="title-main">Xác nhận xóa</div>
                             <div class="title-content">
                                 <div class="content-titlt">Bạn có đồng ý xóa ?</div>
@@ -544,7 +536,7 @@
                                     id: id
                                 }
                             $.ajax({
-                                url: '/Admin/Food/Delete',
+                                url: '/admin/food/delete',
                                 type: 'POST',
                                 data: iddelete,
                                 OnComplete: function () {
@@ -564,7 +556,7 @@
 
 
                     // If user clicks anywhere outside of the modal, Modal will close
-
+                    // modal-wrapper
                     var modal = document.getElementById('modal-wrapper');
                     window.onclick = function (event) {
                         if (event.target == modal) {
@@ -575,19 +567,17 @@
                     function UpdateFood(id) {
                         document.getElementById('modal-wrapper').style.display = 'block';
                         $.ajax({
-                            url: '/Admin/Food/Edit',
+                            url: '/admin/food/edit',
                             data:
                                 { id: id },
                             type: 'GET',
                             dataType: 'json',
                             success: function (response) {
-                                var data = response.data;
-                                $('#FoodName').val(data.Food_name);
-                                $('#Price').val(data.price);
-                                $('#ckStatus').prop('checked', data.status);
-                                $('#DanhMuc').val(data.idCategory);
-                                $('#DVT').val(data.idDVT);
-                                foodId = id;
+
+                                $('#FoodName').val(response.name);
+                                $('#Price').val(response.price);
+                                $('#ckStatus').prop('checked', response.status);
+                                foodId = response.id;
                             },
                             error: function () {
                                 alert('Lỗi rồi');
@@ -600,10 +590,9 @@
                         var foodName = $('#FoodName').val();
                         var price = $('#Price').val();
                         var stt = $('#ckStatus').prop('checked');
-                        var danhmuc = $('#DanhMuc').val();
+                        var danhmuc = $('#DanhMuc1').val();
                         var dvt = $('#DVT').val();
                         var food_id = foodId;
-                        var url = 'Admin/Food/Index';
                         var Food = {
                             Food_id: food_id,
                             Food_name: foodName,
@@ -613,7 +602,7 @@
                             idDVT: dvt
                         }
                         $.ajax({
-                            url: '/Admin/Food/Update',
+                            url: '/admin/food/edit',
                             type: 'POST',
                             data: Food,
                             success: function () {
@@ -647,7 +636,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    Copyright © 2019 T-COFFEE by <a href="#">Luhanbc</a>.
+                    Copyright © 2019 C-COFFEE by <a href="#">Luhanbc</a>.
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="text-md-right footer-links d-none d-sm-block">

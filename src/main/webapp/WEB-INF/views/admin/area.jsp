@@ -122,7 +122,8 @@
                                     <c:forEach items="${areas}" var="area">
                                         <tr id="row_${area.getId()}">
                                             <th scope="row">1</th>
-                                            <form action="/admin/area/edit" method="post">                                        <td>
+                                            <form action="/admin/area/edit" method="post">
+                                                <td>
                                                 <input type="hidden" name="Area_id" value="${area.getId()}" />
                                                 <input type="text" value="${area.getName()}" name="AreaName" class="col-lg-8" />
                                             </td>
