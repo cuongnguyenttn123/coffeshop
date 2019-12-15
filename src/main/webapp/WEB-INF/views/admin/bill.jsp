@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
@@ -134,28 +135,23 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
-                                    <%--<tr id="row_114">
-                                        <th scope="col">2</th>
-                                        <td scope="col">114</td>
-                                        <td scope="col">Nguyễn Văn Cường</td>
-                                        <td scope="col">13/12/2019</td>
-                                        <td scope="col">10:19</td>
-                                        <td scope="col">
-                                            10:19
-                                        </td>
-                                        <td>
-                                            b&#224;n 101
-                                        </td>
 
-                                        <td>
-                                            <a class="btn btn-success btn-sm" data-id="114" id="114" onclick="ViewCTHD(114)" style="color:white;padding:0px 8px"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                    sh--%>
 
                                     </tbody>
                                 </table>
-                                <div class="pagination-container"><ul class="pagination"><li class="active"><a>1</a></li><li><a href="/Admin/CTHD?page=2">2</a></li><li><a href="/Admin/CTHD?page=3">3</a></li><li><a href="/Admin/CTHD?page=4">4</a></li><li><a href="/Admin/CTHD?page=5">5</a></li><li><a href="/Admin/CTHD?page=6">6</a></li><li><a href="/Admin/CTHD?page=7">7</a></li><li><a href="/Admin/CTHD?page=8">8</a></li><li><a href="/Admin/CTHD?page=9">9</a></li><li><a href="/Admin/CTHD?page=10">10</a></li><li class="disabled PagedList-ellipses"><a>&#8230;</a></li><li class="PagedList-skipToNext"><a href="/Admin/CTHD?page=2" rel="next">»</a></li><li class="PagedList-skipToLast"><a href="/Admin/CTHD?page=11">»»</a></li></ul></div>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                        </li>
+                                        <c:forEach var="i" begin="1" end="${count}">
+                                            <li class="page-item"><a class="page-link" href="/admin/bill?page=${i}">${i}</a></li>
+                                        </c:forEach>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>

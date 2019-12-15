@@ -5,11 +5,13 @@ import coffeshop.com.DTO.request.area.Area;
 import coffeshop.com.entity.Bill;
 import coffeshop.com.reponsitory.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -23,9 +25,16 @@ public class BillController {
     @Autowired
     BillRepository billRepository;
 
+
     @GetMapping
-    public String getHome(ModelMap modelMap){
-        List<Bill> bills = billRepository.findAll();
+    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page-1, 10);
+        Page<Bill> bills1 = billRepository.getAllBy(pageable);
+        int a = bills1.getTotalPages();
+        modelMap.addAttribute("count", a);
+        List<Bill> bills = bills1.getContent();
         List<Bill2Reponse> reponses = new ArrayList<>();
         SimpleDateFormat localTimeFormat = new SimpleDateFormat("HH:mm");
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
