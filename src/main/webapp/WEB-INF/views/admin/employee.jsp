@@ -149,8 +149,20 @@
 
                                     </tbody>
                                 </table>
-                                <div class="pagination-container"><ul class="pagination"><li class="active"><a>1</a></li></ul></div>
-                            </div>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                        </li>
+                                        <c:forEach var="i" begin="1" end="${count}">
+                                            <li class="page-item"><a class="page-link" href="/admin/employee?page=${i}">${i}</a></li>
+                                        </c:forEach>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div></div>
                         </div>
                     </div>
                 </div>

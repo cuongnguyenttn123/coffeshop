@@ -14,6 +14,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import jdk.nashorn.internal.ir.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +41,18 @@ public class FoodController {
 
 
     @GetMapping
-    public String getHome(ModelMap modelMap){
-        List<Food> foods = foodRepository.findAll();
+    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+        if(page != 0 ){
+            page = page -1;
+        }
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 10, sort);
+        Page<Food> page1 = foodRepository.getAllBy(pageable);
+        int a = page1.getTotalPages();
+        modelMap.addAttribute("count", a);
+
+
+        List<Food> foods = page1.getContent();
         List<Foodcategory> foodcategories = foodcategaryRepository.findAll();
         List<Dvt> dvts = dvtRepository.findAll();
         modelMap.addAttribute("dvts", dvts);

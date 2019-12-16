@@ -1,5 +1,7 @@
 package coffeshop.com.reponsitory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import coffeshop.com.entity.Billinfo;
@@ -12,4 +14,7 @@ import java.util.Optional;
 public interface BillinfoRepository extends JpaRepository<Billinfo, Integer>, JpaSpecificationExecutor<Billinfo> {
     @Query("from Billinfo f where f.id = ?1")
     Optional<Billinfo> findById(Integer id);
+
+    @Query("SELECT b FROM Billinfo b")
+    Page<Billinfo> getAllBy(Pageable pageable);
 }

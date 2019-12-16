@@ -5,6 +5,10 @@ import coffeshop.com.entity.Tablefood;
 import coffeshop.com.reponsitory.AreaRepository;
 import coffeshop.com.reponsitory.TablefoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +25,18 @@ public class TableFoodController {
     TablefoodRepository tablefoodRepository;
 
     @GetMapping
-    public String getHome(ModelMap modelMap){
+    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+        if(page != 0 ){
+            page = page -1;
+        }
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 10, sort);
+        Page<Tablefood> page1 = tablefoodRepository.getAllBy(pageable);
+        int a = page1.getTotalPages();
+        modelMap.addAttribute("count", a);
         List<Area> areas = areaRepository.findAll();
         modelMap.addAttribute("areas", areas);
-
-        List<Tablefood> tables = tablefoodRepository.findAll();
-        /*Tablefood tablefood = tables.get(1);
-        tablefood.*/
+        List<Tablefood> tables = page1.getContent();
         modelMap.addAttribute("tables", tables);
         return "admin/table";
     }

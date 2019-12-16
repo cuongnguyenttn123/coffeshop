@@ -35,7 +35,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" data-id="1" aria-haspopup="true" aria-expanded="false" style="color: #000;border-left:1px solid hsla(0, 0%, 4%, 0.37); padding:9px 21px">
-                        Quang t&#224;i
+                        Cuong nguyen
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="margin-right:-14px">
                         <a class="dropdown-item" href="/admin/generality">

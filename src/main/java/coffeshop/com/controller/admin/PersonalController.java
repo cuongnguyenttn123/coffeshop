@@ -6,6 +6,10 @@ import coffeshop.com.entity.Role;
 import coffeshop.com.reponsitory.EmployeeRepository;
 import coffeshop.com.reponsitory.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +26,18 @@ public class PersonalController {
     @Autowired
     RoleRepository roleRepository;
     @GetMapping
-    public String getHome(ModelMap modelMap){
-        List<Employee> employees = employeeRepository.findAll();
+    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+
+        if(page != 0 ){
+            page = page -1;
+        }
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 10, sort);
+        Page<Employee> page1 = employeeRepository.getAllBy(pageable);
+        int a = page1.getTotalPages();
+        modelMap.addAttribute("count", a);
+
+        List<Employee> employees = page1.getContent();
         modelMap.addAttribute("emp", employees);
         return "admin/employee";
     }

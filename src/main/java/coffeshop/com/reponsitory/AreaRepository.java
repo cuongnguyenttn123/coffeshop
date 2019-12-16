@@ -1,5 +1,7 @@
 package coffeshop.com.reponsitory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import coffeshop.com.entity.Area;
@@ -15,6 +17,8 @@ public interface AreaRepository extends JpaRepository<Area, Integer>, JpaSpecifi
     @Query("from Area f where f.id = ?1")
     Optional<Area> findById(Integer id);
 
+    @Query("SELECT b FROM Area b")
+    Page<Area> getAllBy(Pageable pageable);
 
     List<Area> findAll();
 

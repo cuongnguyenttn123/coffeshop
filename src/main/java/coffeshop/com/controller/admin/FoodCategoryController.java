@@ -4,6 +4,10 @@ import coffeshop.com.DTO.request.area.Area;
 import coffeshop.com.entity.Foodcategory;
 import coffeshop.com.reponsitory.FoodcategaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +22,18 @@ public class FoodCategoryController {
 
 
     @GetMapping
-    public String getHome(ModelMap modelMap){
-        List<Foodcategory> foodcategories = foodcategaryRepository.findAll();
+    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+        if(page != 0 ){
+            page = page -1;
+        }
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 10, sort);
+        Page<Foodcategory> page1 = foodcategaryRepository.getAllBy(pageable);
+        int a = page1.getTotalPages();
+        modelMap.addAttribute("count", a);
+
+
+        List<Foodcategory> foodcategories = page1.getContent();
         modelMap.addAttribute(("foodcategories"), foodcategories);
         return "admin/category";
     }

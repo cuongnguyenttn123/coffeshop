@@ -29,8 +29,11 @@ public class BillController {
     @GetMapping
     public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
 
+        if(page != 0 ){
+            page = page -1;
+        }
         Sort sort = Sort.by("id").descending();
-        Pageable pageable = PageRequest.of(page-1, 10);
+        Pageable pageable = PageRequest.of(page, 10, sort);
         Page<Bill> bills1 = billRepository.getAllBy(pageable);
         int a = bills1.getTotalPages();
         modelMap.addAttribute("count", a);

@@ -7,6 +7,10 @@ import coffeshop.com.entity.Dvt;
 import coffeshop.com.reponsitory.DvtRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +24,16 @@ public class DvtController {
     DvtRepository dvtRepository;
 
     @GetMapping
-    public String getHome(ModelMap modelMap){
-        List<Dvt> dvts = dvtRepository.findAll();
+    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+        if(page != 0 ){
+            page = page -1;
+        }
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 10, sort);
+        Page<Dvt> page1 = dvtRepository.getAllBy(pageable);
+        int a = page1.getTotalPages();
+        modelMap.addAttribute("count", a);
+        List<Dvt> dvts = page1.getContent();
         modelMap.addAttribute("dvts", dvts);
         return "admin/dvt";
     }
