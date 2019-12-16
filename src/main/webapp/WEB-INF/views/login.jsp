@@ -48,23 +48,27 @@
                 <div class="logo" id="logo" style="height: 25;width: 300px;">
                     <img src="/Assets/Client/Image/logocafe.png" style="width: 76px;">
                 </div>
-            </a><span class="splash-description">Hãy điền thông tin của bạn !</span>
+            </a>
+            <span class="splash-description">Hãy điền thông tin của bạn !</span>
+            <span class="splash-description">${mes}</span>
         </div>
         <div class="card-body">
-            <form action="/Admin/Login/Login" method="post">                    <div class="form-group">
-                <input autocomplete="off" class="form-control form-control-lg" id="UserName" name="UserName" placeholder="Tên đăng nhập" type="text" value="" />
+            <form action="/login" method="post">
+                <div class="form-group">
+                <input autocomplete="off" class="form-control form-control-lg" id="UserName" name="username" placeholder="Tên đăng nhập" type="text" value="" />
 
             </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" id="PassWord" name="PassWord" placeholder="Mật khẩu" type="Password" value="" />
+                    <input class="form-control form-control-lg" id="PassWord" name="password" placeholder="Mật khẩu" type="Password" value="" />
 
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
-            </form>            </div>
+            </form>
+        </div>
         <div class="card-footer bg-white p-0  ">
 
             <div class="card-footer-item card-footer-item-bordered col">
-                <a href="/Admin/ForgetPassword/Index" class="footer-link">Quên mật khẩu</a>
+                <a href="#" class="footer-link">Quên mật khẩu</a>
             </div>
         </div>
     </div>

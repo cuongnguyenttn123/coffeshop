@@ -166,19 +166,6 @@
                                                 <c:forEach items="${foodcategories}" var="foodcategori">
                                                     <option value="${foodcategori.getId()}">${foodcategori.getName()}</option>
                                                 </c:forEach>
-
-
-
-                                                <%--<option value="2">SINH TỐ</option>
-                                                <option value="3">TR&#192; SỮA</option>
-                                                <option value="5">TR&#192; XANH NHẬT BẢN</option>
-                                                <option value="6">THỨC UỐNG KEM SỮA</option>
-                                                <option value="7">SOCOLA Đ&#193; XAY</option>
-                                                <option value="8">HOA QUẢ Đ&#193; XAY</option>
-                                                <option value="9">ĐỒ UỐNG VỊ B&#193;NH</option>
-                                                <option value="10">KEM CHANH</option>
-                                                <option value="11">ĐỒ ĂN NHANH</option>
-                                                <option value="12">SỮA CHUA HOA QUẢ </option>--%>
                                             </select>
                                         </div>
                                     </div>
@@ -211,9 +198,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <%  int i = 0; %>
+                                    <% int tong = 0; %>
                                     <c:forEach items="${foods}" var="food">
                                         <tr id="row_${food.getId()}">
-                                            <th scope="col">${food.getId()}</th>
+                                            <th scope="col">${ i = i+ 1}</th>
                                             <td scope="col">${food.getName()}</td>
                                             <td scope="col">${food.getFoodcategory().getName()}</td>
                                             <td scope="col">${food.getDvt().getName()}</td>
@@ -240,170 +229,6 @@
 
                                         </tr>
                                     </c:forEach>
-
-
-                                    <%--<tr id="row_4">
-                                        <th scope="col">2</th>
-                                        <td scope="col">C&#224; ph&#234; sữa </td>
-                                        <td scope="col">CAFE</td>
-                                        <td scope="col">Cốc</td>
-                                        <td scope="col">20.000</td>
-                                        <td scope="col">
-                                            <a href="#" class="btn-active" data-id="4">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(4)" style="color:white;border-radius:0.2em" data-id="4">
-                                                <i class="fas fa-edit"></i>&nbsp;Cập nhập
-                                            </a>
-                                            <strong>|</strong>
-                                            <a class="btn btn-warning btn-sm Delete col-4" data-id="4" id="4" onclick="DeleteFood(this,4)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_5">
-                                        <th scope="col">3</th>
-                                        <td scope="col">C&#224; ph&#234;n đen</td>
-                                        <td scope="col">CAFE</td>
-                                        <td scope="col">Cốc</td>
-                                        <td scope="col">20.000</td>
-                                        <td scope="col">
-                                            <a href="#" class="btn-active" data-id="5">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(5)" style="color:white;border-radius:0.2em" data-id="5">
-                                                <i class="fas fa-edit"></i>&nbsp;Cập nhập
-                                            </a>
-                                            <strong>|</strong>
-                                            <a class="btn btn-warning btn-sm Delete col-4" data-id="5" id="5" onclick="DeleteFood(this,5)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_6">
-                                        <th scope="col">4</th>
-                                        <td scope="col">C&#224; ph&#234; đ&#225; xay</td>
-                                        <td scope="col">CAFE</td>
-                                        <td scope="col">Cốc</td>
-                                        <td scope="col">25.000</td>
-                                        <td scope="col">
-                                            <a href="#" class="btn-active" data-id="6">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(6)" style="color:white;border-radius:0.2em" data-id="6">
-                                                <i class="fas fa-edit"></i>&nbsp;Cập nhập
-                                            </a>
-                                            <strong>|</strong>
-                                            <a class="btn btn-warning btn-sm Delete col-4" data-id="6" id="6" onclick="DeleteFood(this,6)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_7">
-                                        <th scope="col">5</th>
-                                        <td scope="col">C&#224; Ph&#234; Socola Đ&#225; Xay</td>
-                                        <td scope="col">CAFE</td>
-                                        <td scope="col">Cốc</td>
-                                        <td scope="col">25.000</td>
-                                        <td scope="col">
-                                            <a href="#" class="btn-active" data-id="7">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(7)" style="color:white;border-radius:0.2em" data-id="7">
-                                                <i class="fas fa-edit"></i>&nbsp;Cập nhập
-                                            </a>
-                                            <strong>|</strong>
-                                            <a class="btn btn-warning btn-sm Delete col-4" data-id="7" id="7" onclick="DeleteFood(this,7)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_8">
-                                        <th scope="col">6</th>
-                                        <td scope="col">C&#224; Ph&#234; Sinh Tố Dừa</td>
-                                        <td scope="col">CAFE</td>
-                                        <td scope="col">Cốc</td>
-                                        <td scope="col">25.000</td>
-                                        <td scope="col">
-                                            <a href="#" class="btn-active" data-id="8">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(8)" style="color:white;border-radius:0.2em" data-id="8">
-                                                <i class="fas fa-edit"></i>&nbsp;Cập nhập
-                                            </a>
-                                            <strong>|</strong>
-                                            <a class="btn btn-warning btn-sm Delete col-4" data-id="8" id="8" onclick="DeleteFood(this,8)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_21">
-                                        <th scope="col">7</th>
-                                        <td scope="col">Sinh Tố Xo&#224;i</td>
-                                        <td scope="col">SINH TỐ</td>
-                                        <td scope="col">Cốc</td>
-                                        <td scope="col">25.000</td>
-                                        <td scope="col">
-                                            <a href="#" class="btn-active" data-id="21">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(21)" style="color:white;border-radius:0.2em" data-id="21">
-                                                <i class="fas fa-edit"></i>&nbsp;Cập nhập
-                                            </a>
-                                            <strong>|</strong>
-                                            <a class="btn btn-warning btn-sm Delete col-4" data-id="21" id="21" onclick="DeleteFood(this,21)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_22">
-                                        <th scope="col">8</th>
-                                        <td scope="col">Sinh Tố Dưa Hấu</td>
-                                        <td scope="col">SINH TỐ</td>
-                                        <td scope="col">Cốc</td>
-                                        <td scope="col">25.000</td>
-                                        <td scope="col">
-                                            <a href="#" class="btn-active" data-id="22">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(22)" style="color:white;border-radius:0.2em" data-id="22">
-                                                <i class="fas fa-edit"></i>&nbsp;Cập nhập
-                                            </a>
-                                            <strong>|</strong>
-                                            <a class="btn btn-warning btn-sm Delete col-4" data-id="22" id="22" onclick="DeleteFood(this,22)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_23">
-                                        <th scope="col">9</th>
-                                        <td scope="col">Sinh Tố Bơ</td>
-                                        <td scope="col">SINH TỐ</td>
-                                        <td scope="col">Cốc</td>
-                                        <td scope="col">30.000</td>
-                                        <td scope="col">
-                                            <a href="#" class="btn-active" data-id="23">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(23)" style="color:white;border-radius:0.2em" data-id="23">
-                                                <i class="fas fa-edit"></i>&nbsp;Cập nhập
-                                            </a>
-                                            <strong>|</strong>
-                                            <a class="btn btn-warning btn-sm Delete col-4" data-id="23" id="23" onclick="DeleteFood(this,23)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_24">
-                                        <th scope="col">10</th>
-                                        <td scope="col">Sinh Tố M&#227;ng Cầu</td>
-                                        <td scope="col">SINH TỐ</td>
-                                        <td scope="col">Cốc</td>
-                                        <td scope="col">30.000</td>
-                                        <td scope="col">
-                                            <a href="#" class="btn-active" data-id="24">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update col-5" onclick="UpdateFood(24)" style="color:white;border-radius:0.2em" data-id="24">
-                                                <i class="fas fa-edit"></i>&nbsp;Cập nhập
-                                            </a>
-                                            <strong>|</strong>
-                                            <a class="btn btn-warning btn-sm Delete col-4" data-id="24" id="24" onclick="DeleteFood(this,24)" style="color:white;border-radius:0.2em"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                        </td>
-
-                                    </tr>--%>
 
                                     </tbody>
                                 </table>

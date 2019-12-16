@@ -1,8 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: cuong
   Date: 16/12/2019
-  Time: 08:00 SA
+  Time: 07:58 SA
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -22,6 +23,8 @@
     <title>TL Admin</title>
 </head>
 <body>
+
+
 <!-- ============================================================== -->
 <!-- main wrapper -->
 <!-- ============================================================== -->
@@ -45,12 +48,12 @@
 
                     <li class="nav-item dropdown nav-user">
                         <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-left:1px solid #e6e6f2; padding:6px 21px" >
-                            Quang Hưng
+                            Cuong Nguyen
                         </a>
                         <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                            <a class="dropdown-item" href="/HomeClient/Index"><i class="fas fa-user mr-2"></i>Bán hàng</a>
-                            <a class="dropdown-item" href="/Admin/User/Edit/6"><i class="fas fa-cog mr-2"></i>Cập nhật tài khoản</a>
-                            <a class="dropdown-item" href="/Admin/Login/index"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
+                            <a class="dropdown-item" href="/sell"><i class="fas fa-user mr-2"></i>Bán hàng</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Cập nhật tài khoản</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
                         </div>
                     </li>
                 </ul>
@@ -93,54 +96,33 @@
                             Menu
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link active" href="/HomeClient/Index" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-paper-plane"></i>Bán hàng <span class="badge badge-success">6</span></a>
+                            <a class="nav-link active" href="/sell" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-paper-plane"></i>Bán hàng <span class="badge badge-success">6</span></a>
 
                         </li>
                         <li class="nav-item" id="showTongQuan">
-                            <a class="nav-link" href="/Admin/Home/index" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-home"></i>Tổng quan</a>
+                            <a class="nav-link" href="/user/generality" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-home"></i>Tổng quan</a>
                         </li>
-                        <li class="nav-item " id="showTongQuan">
-                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-4"><i class="fas fa-table"></i>Sơ đồ phòng,bàn</a>
-                            <div id="submenu-8" class="collapse submenu" style="">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/Area/index">Khu vực</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/TableFood/index">Bàn</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+
                         <li class="nav-item " id="showthucdon">
                             <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-coffee"></i>Đồ uống, món ăn</a>
                             <div id="submenu-4" class="collapse submenu" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/Food/index">Đồ uống - Món ăn</a>
+                                        <a class="nav-link" href="/user/food">Đồ uống - Món ăn</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/FoodCategory/index">Nhóm thực đơn</a>
+                                        <a class="nav-link" href="/user/category">Nhóm thực đơn</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/DVT/index">Đơn vị tính</a>
+                                        <a class="nav-link" href="/user/dvt">Đơn vị tính</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li class="nav-item" id="showthucdon">
-                            <a class="nav-link" href="/Admin/QLBepBar/index" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-diagnoses"></i>Quản lí bếp/bar</a>
-                        </li>
-                        <li class="nav-item" id="showTongQuan">
-                            <a class="nav-link" href="/Admin/TKDT/index" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="far fa-chart-bar"></i>Thống kê doanh thu</a>
+                            <a class="nav-link" href="/user/bar" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-diagnoses"></i>Quản lí bếp/bar</a>
                         </li>
 
-                        <li class="nav-item" id="showTongQuan">
-                            <a href="/Admin/CTHD/index" class="nav-link" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-database"></i>Quản lý hóa đơn</a>
-                        </li>
-                        <li class="nav-item" id="showTongQuan">
-                            <a  href="/Admin/User/index" class="nav-link" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fa fa-fw fa-user-circle"></i>Quản lý nhân viên</a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -166,7 +148,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h1 class="pageheader-title">
-
+                                Đồ uống/ Món ăn
                             </h1>
                         </div>
                     </div>
@@ -174,17 +156,51 @@
                 <!-- ============================================================== -->
                 <!-- end pageheader  -->
                 <!-- ============================================================== -->
-
+                `
 
 
                 <div class="row">
-                    <div class="col-12">
+
+                    <div class="col-lg-12">
                         <div class="card">
-                            <h4 class="card-header fas fa-coffee">&nbsp; DANH SÁCH MÓN THEO ORDER</h4>
+                            <h4 class="card-header fas fa-coffee">&nbsp; Danh sách đồ uống/ món ăn</h4>
                             <div class="card-body">
-                                <form action="/Admin/QLBepBar" method="get">                    <div class="row">
+                                <form action="/Admin/Food" method="get">                    <div class="row">
                                     <div class="col-md-3">
                                         <input type="text" placeholder="Tìm kiếm theo tên" class="form-control" name="seaching" style="border-radius:0.2em" />
+                                    </div>
+                                    <div class="col-md-3 ">
+                                        <div class="col">
+                                            <select class="nav-link dropdown-toggle col" id="idCategory" name="idCategory" style="border-radius:0.2em"><option value="">--Nh&#243;m đồ uống--</option>
+                                                <option value="1">CAFE</option>
+                                                <option value="2">SINH TỐ</option>
+                                                <option value="3">TR&#192; SỮA</option>
+                                                <option value="5">TR&#192; XANH NHẬT BẢN</option>
+                                                <option value="6">THỨC UỐNG KEM SỮA</option>
+                                                <option value="7">SOCOLA Đ&#193; XAY</option>
+                                                <option value="8">HOA QUẢ Đ&#193; XAY</option>
+                                                <option value="9">ĐỒ UỐNG VỊ B&#193;NH</option>
+                                                <option value="10">KEM CHANH</option>
+                                                <option value="11">ĐỒ ĂN NHANH</option>
+                                                <option value="12">SỮA CHUA HOA QUẢ </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 ">
+                                        <div class="col">
+                                            <select class="nav-link dropdown-toggle col" id="idDVT" name="idDVT" style="border-radius:0.2em"><option value="">--đơn vị t&#237;nh--</option>
+                                                <option value="2">Cốc</option>
+                                                <option value="3">Chai</option>
+                                                <option value="5">Đĩa</option>
+                                                <option value="6">Lon</option>
+                                                <option value="7">G&#243;i</option>
+                                                <option value="8">Gram</option>
+                                                <option value="9">K&#233;t</option>
+                                                <option value="10">kg</option>
+                                                <option value="11">L&#237;t</option>
+                                                <option value="15">Quả</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
                                         <button type="submit" class="btn btn-info active btn-sm" style="border-radius:0.2em"><i class="fas fa-search"></i>&nbsp;Tìm kiếm</button>
@@ -194,93 +210,47 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th scope="col">Bàn</th>
-                                        <th scope="col">Tên món</th>
-                                        <th scope="col">Số lượng</th>
-                                        <th scope="col">Giờ vào</th>
-                                        <th scope="col">Chế biến</th>
-                                        <th scope="col">Trả món</th>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Tên đồ</th>
+                                        <th scope="col">Danh mục</th>
+                                        <th scope="col">Đơn vị tính</th>
+                                        <th scope="col">Giá</th>
+                                        <th scope="col">Tình trạng</th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr id="row_0">
-                                        <td scope="col">b&#224;n 101</td>
-                                        <td scope="col">C&#224; ph&#234; đ&#225; xay</td>
-                                        <td scope="col">4</td>
-                                        <td scope="col">10:19</td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update" href="#" style="color:white;border-radius:0.2em" data-id="0">Chế biến</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a class="btn btn-warning btn-sm Delete" onclick="tramon(326)" id="326" style="color:white;border-radius:0.2em">Trả món</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_0">
-                                        <td scope="col">b&#224;n 102</td>
-                                        <td scope="col">C&#224; Ph&#234; Socola Đ&#225; Xay</td>
-                                        <td scope="col">1</td>
-                                        <td scope="col">21:18</td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update" href="#" style="color:white;border-radius:0.2em" data-id="0">Chế biến</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a class="btn btn-warning btn-sm Delete" onclick="tramon(327)" id="327" style="color:white;border-radius:0.2em">Trả món</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_0">
-                                        <td scope="col">b&#224;n 102</td>
-                                        <td scope="col">C&#224; Ph&#234; Socola Đ&#225; Xay</td>
-                                        <td scope="col">7</td>
-                                        <td scope="col">21:18</td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update" href="#" style="color:white;border-radius:0.2em" data-id="0">Chế biến</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a class="btn btn-warning btn-sm Delete" onclick="tramon(328)" id="328" style="color:white;border-radius:0.2em">Trả món</a>
-                                        </td>
-
-                                    </tr>
+                                    <%  int i = 0; %>
+                                    <c:forEach items="${foods}" var="food">
+                                        <tr id="row_${food.getId()}">
+                                            <th scope="col">${ i = i+ 1}</th>
+                                            <td scope="col">${food.getName()}</td>
+                                            <td scope="col">${food.getFoodcategory().getName()}</td>
+                                            <td scope="col">${food.getDvt().getName()}</td>
+                                            <td scope="col">${food.getPrice()}</td>
+                                            <td scope="col"></td>
+                                        </tr>
+                                    </c:forEach>
 
                                     </tbody>
                                 </table>
-                                <div class="pagination-container"><ul class="pagination"><li class="active"><a>1</a></li></ul></div>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                        </li>
+                                        <c:forEach var="i" begin="1" end="${count}">
+                                            <li class="page-item"><a class="page-link" href="/admin/food?page=${i}">${i}</a></li>
+                                        </c:forEach>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
-                <script>
-                    function tramon(id)
-                    {
-
-                        $.ajax({
-                            url: '/Admin/QLBepBar/tramon',
-                            data: { idbill: id },
-                            type: 'POST',
-                            dataType: 'json',
-                            success: function (response) {
-                                var data = response.idbill;
-                                var idbill = '#' + data;
-                                $(idbill).text("Đã trả");
-                                $(idbill).css({ "background": "red", "color": "white" });
-                            },
-                            error: function () {
-                                alert('Lỗi rồi');
-                            }
-
-                        })
-                    }
-                    //$('.Delete').click(function(){
-                    //    $(this).text("Đã trả");
-                    //    $(this).css({ "background": "red", "color": "white" });
-                    //})
-                </script>
-
             </div>
         </div>
         <!-- ============================================================== -->
@@ -317,9 +287,10 @@
 <!-- Optional JavaScript -->
 <!-- jquery 3.3.1 -->
 <!-- bootstap bundle js -->
-<jsp:include page="../common/jsLibrary.jsp"/>
+<jsp:include page="../../common/jsLibrary.jsp"/>
+
+
 </body>
 
 </html>
-
 

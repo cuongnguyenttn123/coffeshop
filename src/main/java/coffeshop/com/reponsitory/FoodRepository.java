@@ -15,6 +15,6 @@ public interface FoodRepository extends JpaRepository<Food, Integer>, JpaSpecifi
     @Query("from Food f where f.id = ?1")
     Optional<Food> findById(Integer id);
 
-    @Query("SELECT b FROM Billinfo b")
+    @Query("SELECT b FROM Food b")
     Page<Food> getAllBy(Pageable pageable);
 }

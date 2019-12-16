@@ -2,6 +2,7 @@ package coffeshop.com.config;
 
 import javax.sql.DataSource;
 
+import coffeshop.com.service.impl.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +24,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsService customUserDetailsService;
+    private MyUserDetailsService userDetailsService;
 
     @Autowired
     private DataSource dataSource;
@@ -36,25 +37,42 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(customUserDetailsService)
+                .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/admin1/**").authorizeRequests().antMatchers("/admin1/**").hasRole("ADMIN").and().formLogin()//
-                .loginProcessingUrl("/admin1/j_spring_security_login")//
-                .loginPage("/login1")//
-                .defaultSuccessUrl("/admin1/index")//
-                .failureUrl("/login1?message=error")//
-                .usernameParameter("username")//
-                .passwordParameter("password")
-                .and().csrf().disable()
-                .exceptionHandling().accessDeniedPage("/403")
+        http.headers()
+                .frameOptions().sameOrigin()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/upload/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/user")
+                .failureUrl("/login?error")
+                .permitAll()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login1?logout");
+                .logoutSuccessUrl("/login?logout")
+                .deleteCookies("my-remember-me-cookie")
+                .permitAll()
+                .and()
+                .rememberMe()
+                //.key("my-secure-key")
+                .rememberMeCookieName("my-remember-me-cookie")
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(24 * 60 * 60)
+                .and()
+                .csrf().disable()
+                .exceptionHandling();
     }
 
     PersistentTokenRepository persistentTokenRepository(){

@@ -1,12 +1,10 @@
 package coffeshop.com.entity;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
+
 import lombok.Data;
 
 @Entity
@@ -23,5 +21,12 @@ public class Role implements Serializable {
   @Column(name = "name")
   private String name;
 
+  @ManyToMany
+  @JoinTable(
+          name = "role_user",
+          joinColumns = @JoinColumn(name = "role_id"),
+          inverseJoinColumns = @JoinColumn(name = "user_id"))
+
+  private List<Employee> employees = new ArrayList<>();
   
 }

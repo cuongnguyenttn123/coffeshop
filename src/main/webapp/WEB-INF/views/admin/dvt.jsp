@@ -136,7 +136,8 @@
                                         <button type="submit" class="btn btn-info active btn-sm"><i class="fas fa-search"></i>&nbsp;Tìm kiếm</button> &nbsp;&nbsp;
                                     </div>
                                 </div><br />
-                                </form>                <table class="table table-bordered">
+                                </form>
+                                <table class="table table-bordered">
                                 <thead>
                                 <tr>
                                     <th scope="col" style="width:1em">STT</th>
@@ -167,21 +168,7 @@
                                     </tr>
                                 </c:forEach>
 
-                                <%--<tr id="row_3">
-                                    <th>2</th>
-                                    <td>Chai</td>
-                                    <td></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="3">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success btn-sm Update col-6" onclick="UpdateMC(3)" data-id="3" style="color:#fff;"><i class="fas fa-edit"></i>Cập nhật</a>
-                                        <strong>|</strong>
-                                        <a class="btn btn-warning btn-sm col-4" id="3" onclick="DeleteMate(3)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
-                                    </td>
 
-                                </tr>
-                                dslkjiodf--%>
 
 
                                 </tbody>
@@ -200,7 +187,8 @@
                                         </li>
                                     </ul>
                                 </nav>
-                            </div> </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                     <div id="modal-wrapper" class="modal">

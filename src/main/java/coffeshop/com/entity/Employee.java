@@ -1,17 +1,17 @@
 package coffeshop.com.entity;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
+
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Data
 @Entity
-@Table(name = "account")
+@Table(name = "employee")
 public class Employee implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -38,8 +38,21 @@ public class Employee implements Serializable {
   @Column(name = "phone")
   private String phone;
 
-  @Column(name = "id_role")
-  private Integer idRole;
+  @ManyToMany
+  @JoinTable(
+          name = "role_user",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "role_id"))
+  List<Role> roles = new ArrayList<>();
 
+
+  @Transient
+  public List<GrantedAuthority> getAuthorities() {
+    List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+    for (Role position: this.roles) {
+      authorities.add(new SimpleGrantedAuthority(position.getName()));
+    }
+    return authorities;
+  }
   
 }

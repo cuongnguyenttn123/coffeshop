@@ -8,6 +8,7 @@ import coffeshop.com.entity.Employee;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -17,4 +18,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>, Jp
 
     @Query("SELECT b FROM Employee b")
     Page<Employee> getAllBy(Pageable pageable);
+
+    @Query("from Employee f where f.userName = ?1 and f.passWord = ?2")
+    Employee login(String username, String password);
+
+    @Query("from Employee e where e.userName = ?1")
+    Employee findByUserName(String username);
 }

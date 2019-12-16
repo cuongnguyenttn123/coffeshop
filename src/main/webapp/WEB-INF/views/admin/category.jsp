@@ -118,24 +118,6 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
-
-
-                                <%--<tr id="row_2">
-                                    <th >2</th>
-                                    <td >SINH TỐ</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="2">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td >
-                                        <a href="/Admin/FoodCategory/Edit/2" class="btn btn-success btn-sm col-5"><i class="fas fa-edit"></i>&nbsp;Cập nhật</a>
-                                        <Strong>|</Strong>
-                                        <a class="btn btn-warning btn-sm col-5" id="2" onclick="clik(2)" style="color:white;"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                    </td>
-                                </tr>
-                                --%>
-
-
                                 </tbody>
                             </table>
                             <nav aria-label="Page navigation example">
