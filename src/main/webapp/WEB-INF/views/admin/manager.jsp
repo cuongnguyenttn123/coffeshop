@@ -96,33 +96,38 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th scope="col">Bàn</th>
                                         <th scope="col">Tên món</th>
                                         <th scope="col">Số lượng</th>
-                                        <th scope="col">Giờ vào</th>
-                                        <th scope="col">Chế biến</th>
                                         <th scope="col">Trả món</th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr id="row_0">
-                                        <td scope="col">b&#224;n 101</td>
-                                        <td scope="col">C&#224; ph&#234;n đen</td>
-                                        <td scope="col">2</td>
-                                        <td scope="col">10:19</td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update" href="#" style="color:white;border-radius:0.2em" data-id="0">Chế biến</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a class="btn btn-warning btn-sm Delete" onclick="tramon(321)" id="321" style="color:white;border-radius:0.2em">Trả món</a>
-                                        </td>
+                                    <c:forEach items="${billinfos}" var="billinfo">
+                                        <tr id="row_${billinfo.getId()}">
+                                            <td scope="col">${billinfo.getFood().getName()}</td>
+                                            <td scope="col">${billinfo.getCount()}</td>
+                                            <td scope="col">
+                                                <a class="btn btn-warning btn-sm Delete" onclick="tramon(${billinfo.getId()})" id="${billinfo.getId()}" style="color:white;border-radius:0.2em">Trả món</a>
+                                            </td>
 
-                                    </tr>
-
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
-                                <div class="pagination-container"><ul class="pagination"><li class="active"><a>1</a></li></ul></div>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                        </li>
+                                        <c:forEach var="i" begin="1" end="${count}">
+                                            <li class="page-item"><a class="page-link" href="/admin/manager?page=${i}">${i}</a></li>
+                                        </c:forEach>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
 
 
@@ -135,12 +140,12 @@
                     {
 
                         $.ajax({
-                            url: '/Admin/QLBepBar/tramon',
+                            url: '/admin/manager/tramon',
                             data: { idbill: id },
                             type: 'POST',
                             dataType: 'json',
                             success: function (response) {
-                                var data = response.idbill;
+                                var data = response.idBill;
                                 var idbill = '#' + data;
                                 $(idbill).text("Đã trả");
                                 $(idbill).css({ "background": "red", "color": "white" });
@@ -151,10 +156,6 @@
 
                         })
                     }
-                    //$('.Delete').click(function(){
-                    //    $(this).text("Đã trả");
-                    //    $(this).css({ "background": "red", "color": "white" });
-                    //})
                 </script>
 
             </div>
@@ -167,7 +168,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    Copyright © 2019 T-COFFEE by <a href="#">Luhanbc</a>.
+                    Copyright © 2019 C-COFFEE by <a href="#"></a>.
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="text-md-right footer-links d-none d-sm-block">

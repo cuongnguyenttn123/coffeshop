@@ -118,7 +118,7 @@
                                         <td>${emp.getName()}</td>
                                         <td>${emp.getAddress()}</td>
                                         <td>${emp.getEmail()}</td>
-                                        <td>${emp.getIdRole()}</td>
+                                        <td></td>
                                         <td>
                                             <a href="#" class="btn-active" data-id="1">K&#237;ch hoạt</a>
                                         </td>

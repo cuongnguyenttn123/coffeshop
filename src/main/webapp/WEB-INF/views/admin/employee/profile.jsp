@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: cuong
-  Date: 16/12/2019
-  Time: 08:00 SA
+  Date: 17/12/2019
+  Time: 09:28 CH
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -48,9 +48,9 @@
                             Quang Hưng
                         </a>
                         <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                            <a class="dropdown-item" href="/HomeClient/Index"><i class="fas fa-user mr-2"></i>Bán hàng</a>
-                            <a class="dropdown-item" href="/Admin/User/Edit/6"><i class="fas fa-cog mr-2"></i>Cập nhật tài khoản</a>
-                            <a class="dropdown-item" href="/Admin/Login/index"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
+                            <a class="dropdown-item" href="/sell"><i class="fas fa-user mr-2"></i>Bán hàng</a>
+                            <a class="dropdown-item" href="/user/profile"><i class="fas fa-cog mr-2"></i>Cập nhật tài khoản</a>
+                            <a class="dropdown-item" href="/j_spring_security_logout"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
                         </div>
                     </li>
                 </ul>
@@ -166,7 +166,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h1 class="pageheader-title">
-
+                                Cập nhập tài khoản
                             </h1>
                         </div>
                     </div>
@@ -175,111 +175,70 @@
                 <!-- end pageheader  -->
                 <!-- ============================================================== -->
 
-
-
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-10">
                         <div class="card">
-                            <h4 class="card-header fas fa-coffee">&nbsp; DANH SÁCH MÓN THEO ORDER</h4>
+                            <h4 class="card-header">Thông tin cập nhật</h4>
                             <div class="card-body">
-                                <form action="/Admin/QLBepBar" method="get">                    <div class="row">
-                                    <div class="col-md-3">
-                                        <input type="text" placeholder="Tìm kiếm theo tên" class="form-control" name="seaching" style="border-radius:0.2em" />
+                                <form action="/user/profile" method="post">
+                                    <input data-val="true" data-val-number="The field id must be a number." data-val-required="The id field is required." id="id" name="id" type="hidden" value="6" />
+                                    <input data-val="true" data-val-number="The field Quyền must be a number." data-val-required="The Quyền field is required." id="idRole" name="idRole" type="hidden" value="4" />
+
+                                    <div class="form-group">
+                                        <label class="control-label col-3" for="UserName">T&#224;i khoản</label>
+                                        <input data-val="true" data-val-length="The field Tài khoản must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Tài khoản field is required." htmlAttributes="{ class = col-5 }" id="UserName" name="UserName" style="border-radius:5px;outline:none;padding:5px" type="text" value="${emp.getUserName()}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+
                                     </div>
-                                    <div class="col-md-3">
-                                        <button type="submit" class="btn btn-info active btn-sm" style="border-radius:0.2em"><i class="fas fa-search"></i>&nbsp;Tìm kiếm</button>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-3" for="PassWord">Mật khẩu</label>
+                                        <input data-val="true" data-val-length="The field Mật khẩu must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Mật khẩu field is required." htmlAttributes="{ class = col-5 }" id="PassWord" name="PassWord" style="border-radius:5px;outline:none;padding:5px" type="text" value="" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="PassWord" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-3" for="Name">Họ t&#234;n</label>
+                                        <input data-val="true" data-val-length="The field Họ tên must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Họ tên field is required." htmlAttributes="{ class = col-5 }" id="Name" name="Name" style="border-radius:5px;outline:none;padding:5px" type="text" value="${emp.getName()}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-3" for="Email">Email</label>
+                                        <input data-val="true" data-val-length="The field Email must be a string with a maximum length of 100." data-val-length-max="100" data-val-required="The Email field is required." htmlAttributes="{ class = col-5 }" id="Email" name="Email" style="border-radius:5px;outline:none;padding:5px" type="text" value="${emp.getEmail()}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-3" for="Address">Địa chỉ</label>
+                                        <input data-val="true" data-val-length="The field Địa chỉ must be a string with a maximum length of 150." data-val-length-max="150" data-val-required="The Địa chỉ field is required." htmlAttributes="{ class = col-5 }" id="Address" name="Address" style="border-radius:5px;outline:none;padding:5px" type="text" value="${emp.getAddress()}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="Address" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-3" for="Phone">SDT</label>
+                                        <input data-val="true" data-val-length="The field SDT must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The SDT field is required." htmlAttributes="{ class = col-5 }" id="Phone" name="Phone" style="border-radius:5px;outline:none;padding:5px" type="text" value="${emp.getPhone()}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="Phone" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-3" for="status">Trạng th&#225;i</label>
+                                        <input checked="checked" data-val="true" data-val-required="The Trạng thái field is required." id="status" name="status" type="checkbox" value="true" /><input name="status" type="hidden" value="false" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="status" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Lưu dữ liệu" class="btn btn-success" style="padding:5px 16px;" />
+                                            <a href="/user/home" class="btn btn-dark btn-sm">Hủy thao tác</a>
+
+                                        </div>
                                     </div>
                                 </div>
-                                </form>                <br />
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Bàn</th>
-                                        <th scope="col">Tên món</th>
-                                        <th scope="col">Số lượng</th>
-                                        <th scope="col">Giờ vào</th>
-                                        <th scope="col">Chế biến</th>
-                                        <th scope="col">Trả món</th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr id="row_0">
-                                        <td scope="col">b&#224;n 101</td>
-                                        <td scope="col">C&#224; ph&#234; đ&#225; xay</td>
-                                        <td scope="col">4</td>
-                                        <td scope="col">10:19</td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update" href="#" style="color:white;border-radius:0.2em" data-id="0">Chế biến</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a class="btn btn-warning btn-sm Delete" onclick="tramon(326)" id="326" style="color:white;border-radius:0.2em">Trả món</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_0">
-                                        <td scope="col">b&#224;n 102</td>
-                                        <td scope="col">C&#224; Ph&#234; Socola Đ&#225; Xay</td>
-                                        <td scope="col">1</td>
-                                        <td scope="col">21:18</td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update" href="#" style="color:white;border-radius:0.2em" data-id="0">Chế biến</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a class="btn btn-warning btn-sm Delete" onclick="tramon(327)" id="327" style="color:white;border-radius:0.2em">Trả món</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_0">
-                                        <td scope="col">b&#224;n 102</td>
-                                        <td scope="col">C&#224; Ph&#234; Socola Đ&#225; Xay</td>
-                                        <td scope="col">7</td>
-                                        <td scope="col">21:18</td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update" href="#" style="color:white;border-radius:0.2em" data-id="0">Chế biến</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a class="btn btn-warning btn-sm Delete" onclick="tramon(328)" id="328" style="color:white;border-radius:0.2em">Trả món</a>
-                                        </td>
-
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                                <div class="pagination-container"><ul class="pagination"><li class="active"><a>1</a></li></ul></div>
+                                </form>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
-                <script>
-                    function tramon(id)
-                    {
-
-                        $.ajax({
-                            url: '/Admin/QLBepBar/tramon',
-                            data: { idbill: id },
-                            type: 'POST',
-                            dataType: 'json',
-                            success: function (response) {
-                                var data = response.idbill;
-                                var idbill = '#' + data;
-                                $(idbill).text("Đã trả");
-                                $(idbill).css({ "background": "red", "color": "white" });
-                            },
-                            error: function () {
-                                alert('Lỗi rồi');
-                            }
-
-                        })
-                    }
-                    //$('.Delete').click(function(){
-                    //    $(this).text("Đã trả");
-                    //    $(this).css({ "background": "red", "color": "white" });
-                    //})
-                </script>
 
             </div>
         </div>
@@ -318,6 +277,7 @@
 <!-- jquery 3.3.1 -->
 <!-- bootstap bundle js -->
 <jsp:include page="../common/jsLibrary.jsp"/>
+
 </body>
 
 </html>

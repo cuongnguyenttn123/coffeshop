@@ -8,6 +8,7 @@ import coffeshop.com.entity.Tablefood;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -17,4 +18,7 @@ public interface TablefoodRepository extends JpaRepository<Tablefood, Integer>, 
 
     @Query("SELECT b FROM Tablefood b")
     Page<Tablefood> getAllBy(Pageable pageable);
+
+    @Query(value = "select * from tablefood f where f.id_bill != ?1", nativeQuery = true)
+    List<Tablefood> tableBills(Integer id_bill);
 }

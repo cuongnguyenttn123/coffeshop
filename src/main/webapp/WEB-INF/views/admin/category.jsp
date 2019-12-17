@@ -81,7 +81,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <h5 class="card-header fas fa-coffee">&nbsp; Quản lí thực đơn</h5><br/>
-                            <form action="/Admin/FoodCategory" method="get">                <div class="row">
+                            <form action="/admin/category" method="get">                <div class="row">
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" style="margin-left:1.5em;" name="seaching" placeholder="Tìm kiếm theo tên" />
                                 </div>
@@ -118,24 +118,6 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
-
-
-                                <%--<tr id="row_2">
-                                    <th >2</th>
-                                    <td >SINH TỐ</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="2">K&#237;ch hoạt</a>
-                                    </td>
-                                    <td >
-                                        <a href="/Admin/FoodCategory/Edit/2" class="btn btn-success btn-sm col-5"><i class="fas fa-edit"></i>&nbsp;Cập nhật</a>
-                                        <Strong>|</Strong>
-                                        <a class="btn btn-warning btn-sm col-5" id="2" onclick="clik(2)" style="color:white;"><i class="fas fa-trash-alt"></i>&nbsp;Xóa</a>
-                                    </td>
-                                </tr>
-                                --%>
-
-
                                 </tbody>
                             </table>
                             <nav aria-label="Page navigation example">

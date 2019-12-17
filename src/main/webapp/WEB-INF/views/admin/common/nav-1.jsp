@@ -25,9 +25,9 @@
                         Nguyễn Văn Cường
                     </a>
                     <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                        <a class="dropdown-item" href="/HomeClient/Index"><i class="fas fa-user mr-2"></i>Bán hàng</a>
+                        <a class="dropdown-item" href="/sell"><i class="fas fa-user mr-2"></i>Bán hàng</a>
                         <a class="dropdown-item" href="/Admin/User/Edit/1"><i class="fas fa-cog mr-2"></i>Cập nhật tài khoản</a>
-                        <a class="dropdown-item" href="/Admin/Login/index"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
+                        <a class="dropdown-item" href="/j_spring_security_logout"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
                     </div>
                 </li>
             </ul>

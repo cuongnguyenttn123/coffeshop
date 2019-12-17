@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: cuong
@@ -45,12 +46,12 @@
 
                     <li class="nav-item dropdown nav-user">
                         <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-left:1px solid #e6e6f2; padding:6px 21px" >
-                            Quang Hưng
+                            Cuong Nguyen
                         </a>
                         <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                            <a class="dropdown-item" href="/HomeClient/Index"><i class="fas fa-user mr-2"></i>Bán hàng</a>
-                            <a class="dropdown-item" href="/Admin/User/Edit/6"><i class="fas fa-cog mr-2"></i>Cập nhật tài khoản</a>
-                            <a class="dropdown-item" href="/Admin/Login/index"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
+                            <a class="dropdown-item" href="/sell"><i class="fas fa-user mr-2"></i>Bán hàng</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Cập nhật tài khoản</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
                         </div>
                     </li>
                 </ul>
@@ -93,54 +94,33 @@
                             Menu
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link active" href="/HomeClient/Index" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-paper-plane"></i>Bán hàng <span class="badge badge-success">6</span></a>
+                            <a class="nav-link active" href="/sell" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-paper-plane"></i>Bán hàng <span class="badge badge-success">6</span></a>
 
                         </li>
                         <li class="nav-item" id="showTongQuan">
-                            <a class="nav-link" href="/Admin/Home/index" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-home"></i>Tổng quan</a>
+                            <a class="nav-link" href="/user/generality" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-home"></i>Tổng quan</a>
                         </li>
-                        <li class="nav-item " id="showTongQuan">
-                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-4"><i class="fas fa-table"></i>Sơ đồ phòng,bàn</a>
-                            <div id="submenu-8" class="collapse submenu" style="">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/Area/index">Khu vực</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/TableFood/index">Bàn</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+
                         <li class="nav-item " id="showthucdon">
                             <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-coffee"></i>Đồ uống, món ăn</a>
                             <div id="submenu-4" class="collapse submenu" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/Food/index">Đồ uống - Món ăn</a>
+                                        <a class="nav-link" href="/user/food">Đồ uống - Món ăn</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/FoodCategory/index">Nhóm thực đơn</a>
+                                        <a class="nav-link" href="/user/category">Nhóm thực đơn</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/DVT/index">Đơn vị tính</a>
+                                        <a class="nav-link" href="/user/dvt">Đơn vị tính</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li class="nav-item" id="showthucdon">
-                            <a class="nav-link" href="/Admin/QLBepBar/index" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-diagnoses"></i>Quản lí bếp/bar</a>
-                        </li>
-                        <li class="nav-item" id="showTongQuan">
-                            <a class="nav-link" href="/Admin/TKDT/index" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="far fa-chart-bar"></i>Thống kê doanh thu</a>
+                            <a class="nav-link" href="/user/bar" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-diagnoses"></i>Quản lí bếp/bar</a>
                         </li>
 
-                        <li class="nav-item" id="showTongQuan">
-                            <a href="/Admin/CTHD/index" class="nav-link" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-database"></i>Quản lý hóa đơn</a>
-                        </li>
-                        <li class="nav-item" id="showTongQuan">
-                            <a  href="/Admin/User/index" class="nav-link" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fa fa-fw fa-user-circle"></i>Quản lý nhân viên</a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -180,7 +160,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <h5 class="card-header fas fa-coffee">&nbsp; Quản lí thực đơn</h5><br/>
-                            <form action="/Admin/FoodCategory" method="get">                <div class="row">
+                            <form action="/user/category" method="get">                <div class="row">
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" style="margin-left:1.5em;" name="seaching" placeholder="Tìm kiếm theo tên" />
                                 </div>
@@ -200,57 +180,32 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr id="row_1">
-                                    <th >1</th>
-                                    <td >CAFE</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="1">K&#237;ch hoạt</a>
-                                    </td>
-
-                                </tr>
-                                <tr id="row_2">
-                                    <th >2</th>
-                                    <td >SINH TỐ</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="2">K&#237;ch hoạt</a>
-                                    </td>
-
-                                </tr>
-                                <tr id="row_3">
-                                    <th >3</th>
-                                    <td >TR&#192; SỮA</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="3">K&#237;ch hoạt</a>
-                                    </td>
-
-                                </tr>
-                                <tr id="row_5">
-                                    <th >4</th>
-                                    <td >TR&#192; XANH NHẬT BẢN</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="5">K&#237;ch hoạt</a>
-                                    </td>
-
-                                </tr>
-                                <tr id="row_6">
-                                    <th >5</th>
-                                    <td >THỨC UỐNG KEM SỮA</td>
-                                    <td ></td>
-                                    <td>
-                                        <a href="#" class="btn-active" data-id="6">K&#237;ch hoạt</a>
-                                    </td>
-
-                                </tr>
-
-
+                                <%  int i = 0; %>
+                                <c:forEach items="${foodcategories}" var="foodcategory">
+                                    <tr id="row_${foodcategory.getId()}">
+                                        <th >1</th>
+                                        <td >${foodcategory.getName()}</td>
+                                        <td >${foodcategory.getDescription()}</td>
+                                        <td>
+                                            <a href="#" class="btn-active" data-id="1">K&#237;ch hoạt</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
-                            <div class="pagination-container"><ul class="pagination"><li class="active"><a>1</a></li><li><a href="/Admin/FoodCategory?page=2">2</a></li><li><a href="/Admin/FoodCategory?page=3">3</a></li><li class="PagedList-skipToNext"><a href="/Admin/FoodCategory?page=2" rel="next">»</a></li></ul></div>
-
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                    </li>
+                                    <c:forEach var="i" begin="1" end="${count}">
+                                        <li class="page-item"><a class="page-link" href="/admin/category?page=${i}">${i}</a></li>
+                                    </c:forEach>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                         </div>
                     </div>

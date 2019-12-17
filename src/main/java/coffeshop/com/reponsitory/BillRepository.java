@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,4 +26,21 @@ public interface BillRepository extends JpaRepository<Bill, Integer>, JpaSpecifi
     @Modifying
     @Query("delete from Bill b where b.id = ?1")
     void deleteById(Integer id);
+
+
+    @Query("FROM Bill b WHERE b.dateCheckOut = ?1")
+    List<Bill> thongKeTheoNgay(Date date);
+
+    @Query(value = "select * from bill b where month (b.date_check_out) = ?1", nativeQuery = true)
+    List<Bill> thongKeTheoThang(int moth);
+
+    @Query(value = "select * from bill b where year(b.date_check_out) = ?1", nativeQuery = true)
+    List<Bill> thongKeTheoNam(int year);
+
+    @Query(value = "select * from bill b where b.date_check_out >= ?1 and b.date_check_out <= ?2", nativeQuery = true)
+    List<Bill> thongKeTuyChon(Date from, Date to);
+
+    @Query("FROM Bill b WHERE b.status = ?1")
+    List<Bill> billNotPay(Integer status);
+
 }

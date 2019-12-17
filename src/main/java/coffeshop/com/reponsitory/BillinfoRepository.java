@@ -17,4 +17,8 @@ public interface BillinfoRepository extends JpaRepository<Billinfo, Integer>, Jp
 
     @Query("SELECT b FROM Billinfo b")
     Page<Billinfo> getAllBy(Pageable pageable);
+
+    @Query("SELECT b FROM Billinfo b where b.status = ?1")
+    Page<Billinfo> getBillinfos(Pageable pageable, Integer status);
+
 }

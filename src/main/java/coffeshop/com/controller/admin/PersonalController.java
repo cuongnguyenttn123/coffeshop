@@ -10,10 +10,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -66,10 +68,13 @@ public class PersonalController {
                                @RequestParam("Address") String Address,@RequestParam("Phone") String Phone,
                                @RequestParam("status") Boolean status,@RequestParam("idRole") Integer idRole){
         Employee employee = new Employee();
+        List<Role> roles = new ArrayList<>();
+        Role role = roleRepository.findById(idRole).get();
+        roles.add(role);
         employee.setAddress(Address);
         employee.setEmail(Email);
         employee.setName(Name);
-        employee.setIdRole(idRole);
+        employee.setRoles(roles);
         employee.setUserName(userName);
         employeeRepository.save(employee);
 
@@ -86,7 +91,11 @@ public class PersonalController {
         employee.setEmail(Email);
         employee.setName(Name);
         employee.setUserName(userName);
-        employee.setIdRole(idRole);
+        List<Role> roles = new ArrayList<>();
+        Role role = roleRepository.findById(idRole).get();
+        roles.add(role);
+        employee.setRoles(roles);
+        employee.setPhone(Phone);
         employeeRepository.save(employee);
         return "redirect:/admin/employee";
     }

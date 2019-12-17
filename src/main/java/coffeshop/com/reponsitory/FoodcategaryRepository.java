@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import coffeshop.com.entity.Foodcategory;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -17,4 +18,8 @@ public interface FoodcategaryRepository extends JpaRepository<Foodcategory, Inte
 
     @Query("SELECT b FROM Foodcategory b")
     Page<Foodcategory> getAllBy(Pageable pageable);
+
+    @Query(value = "SELECT * FROM foodcategary f where f.name LIKE %:searching% ",
+            nativeQuery = true)
+    Page<Foodcategory> getSearch(Pageable pageable, @Param("searching") String searching);
 }

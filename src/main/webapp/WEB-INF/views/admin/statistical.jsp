@@ -141,11 +141,12 @@
                         <div class="card" >
                             <h4 class="card-header fas fa-coffee">&nbsp; Chi tiết Thống kê</h4>
                             <div class="card-body">
-                                <form action="/Admin/TKDT" method="get">                    <div class="row">
+                                <form action="/admin/statistical/search" method="get">
+                                    <div class="row">
                                     <select class="doanhthu1 col-3" id="ChonTime" name="ChonTime"><option value="">--Lựa chọn thời gian--</option>
                                         <option value="1">Trong Ng&#224;y</option>
-                                        <option value="3">Trong Th&#225;ng</option>
-                                        <option value="4">Trong Năm</option>
+                                        <option value="2">Trong Th&#225;ng</option>
+                                        <option value="3">Trong Năm</option>
                                     </select>
                                     <div class="col-3">
                                         Từ ngày: <input type="date" name="date" id="date" class="col"/>
@@ -3735,7 +3736,7 @@
                                             DOANH THU
                                         </div>
                                         <div class="valuedanhthu">
-                                            10.625.000 đ
+                                            ${sum}
                                         </div>
                                     </div>
                                 </div>
