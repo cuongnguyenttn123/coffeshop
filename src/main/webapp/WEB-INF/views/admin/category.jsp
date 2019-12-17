@@ -81,7 +81,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <h5 class="card-header fas fa-coffee">&nbsp; Quản lí thực đơn</h5><br/>
-                            <form action="/Admin/FoodCategory" method="get">                <div class="row">
+                            <form action="/admin/category" method="get">                <div class="row">
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" style="margin-left:1.5em;" name="seaching" placeholder="Tìm kiếm theo tên" />
                                 </div>

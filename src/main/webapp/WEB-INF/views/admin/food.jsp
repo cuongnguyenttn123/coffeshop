@@ -156,7 +156,7 @@
                         <div class="card">
                             <h4 class="card-header fas fa-coffee">&nbsp; Danh sách đồ uống/ món ăn</h4>
                             <div class="card-body">
-                                <form action="/Admin/Food" method="get">                    <div class="row">
+                                <form action="/admin/food" method="get">                    <div class="row">
                                     <div class="col-md-3">
                                         <input type="text" placeholder="Tìm kiếm theo tên" class="form-control" name="seaching" style="border-radius:0.2em" />
                                     </div>

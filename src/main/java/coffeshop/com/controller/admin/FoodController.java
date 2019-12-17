@@ -41,13 +41,16 @@ public class FoodController {
 
 
     @GetMapping
-    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
+                          @RequestParam(name = "seaching", required = false, defaultValue = "") String search,
+                          @RequestParam(name = "idCategory", required = false, defaultValue = "") Integer idCategory,
+                          @RequestParam(name = "idDVT", required = false, defaultValue = "") Integer idDVT){
         if(page != 0 ){
             page = page -1;
         }
         Sort sort = Sort.by("id").descending();
         Pageable pageable = PageRequest.of(page, 10, sort);
-        Page<Food> page1 = foodRepository.getAllBy(pageable);
+        Page<Food> page1 = foodRepository.getSearch(pageable, search,idCategory, idDVT );
         int a = page1.getTotalPages();
         modelMap.addAttribute("count", a);
 

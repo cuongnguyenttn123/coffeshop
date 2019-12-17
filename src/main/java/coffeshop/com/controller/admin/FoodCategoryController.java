@@ -22,13 +22,14 @@ public class FoodCategoryController {
 
 
     @GetMapping
-    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
+                          @RequestParam(name = "seaching", required = false, defaultValue = "") String search){
         if(page != 0 ){
             page = page -1;
         }
         Sort sort = Sort.by("id").descending();
         Pageable pageable = PageRequest.of(page, 10, sort);
-        Page<Foodcategory> page1 = foodcategaryRepository.getAllBy(pageable);
+        Page<Foodcategory> page1 = foodcategaryRepository.getSearch(pageable, search);
         int a = page1.getTotalPages();
         modelMap.addAttribute("count", a);
 

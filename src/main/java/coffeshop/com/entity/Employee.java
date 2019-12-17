@@ -35,6 +35,9 @@ public class Employee implements Serializable {
   @Column(name = "address")
   private String address;
 
+  @Column(name = "avt")
+  private String avt;
+
   @Column(name = "phone")
   private String phone;
 

@@ -165,40 +165,26 @@
                         <div class="card">
                             <h4 class="card-header fas fa-coffee">&nbsp; Danh sách đồ uống/ món ăn</h4>
                             <div class="card-body">
-                                <form action="/Admin/Food" method="get">                    <div class="row">
+                                <form action="/user/search" method="get">                    <div class="row">
                                     <div class="col-md-3">
                                         <input type="text" placeholder="Tìm kiếm theo tên" class="form-control" name="seaching" style="border-radius:0.2em" />
                                     </div>
                                     <div class="col-md-3 ">
                                         <div class="col">
                                             <select class="nav-link dropdown-toggle col" id="idCategory" name="idCategory" style="border-radius:0.2em"><option value="">--Nh&#243;m đồ uống--</option>
-                                                <option value="1">CAFE</option>
-                                                <option value="2">SINH TỐ</option>
-                                                <option value="3">TR&#192; SỮA</option>
-                                                <option value="5">TR&#192; XANH NHẬT BẢN</option>
-                                                <option value="6">THỨC UỐNG KEM SỮA</option>
-                                                <option value="7">SOCOLA Đ&#193; XAY</option>
-                                                <option value="8">HOA QUẢ Đ&#193; XAY</option>
-                                                <option value="9">ĐỒ UỐNG VỊ B&#193;NH</option>
-                                                <option value="10">KEM CHANH</option>
-                                                <option value="11">ĐỒ ĂN NHANH</option>
-                                                <option value="12">SỮA CHUA HOA QUẢ </option>
+                                                <c:forEach items="${foodcategories}" var="foodcategori">
+                                                    <option value="${foodcategori.getId()}">${foodcategori.getName()}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-3 ">
                                         <div class="col">
                                             <select class="nav-link dropdown-toggle col" id="idDVT" name="idDVT" style="border-radius:0.2em"><option value="">--đơn vị t&#237;nh--</option>
-                                                <option value="2">Cốc</option>
-                                                <option value="3">Chai</option>
-                                                <option value="5">Đĩa</option>
-                                                <option value="6">Lon</option>
-                                                <option value="7">G&#243;i</option>
-                                                <option value="8">Gram</option>
-                                                <option value="9">K&#233;t</option>
-                                                <option value="10">kg</option>
-                                                <option value="11">L&#237;t</option>
-                                                <option value="15">Quả</option>
+                                                <c:forEach items="${dvts}" var="dvt">
+                                                    <option value="${dvt.getId()}">${dvt.getName()}</option>
+                                                </c:forEach>
+
                                             </select>
                                         </div>
                                     </div>

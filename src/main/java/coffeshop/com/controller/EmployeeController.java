@@ -96,6 +96,7 @@ public class EmployeeController {
                     billdetail.setFood(food);
                     billdetail.setPrice(billdetailRequest.getPrice());
                     billdetail.setBill(bill);
+                    billdetail.setTablefood(bill.getTablefood());
                     billdetailRepository.save(billdetail);
                 }else {
                     int i = isCheckIdBillinfo(billdetailRequest, billdetailList);

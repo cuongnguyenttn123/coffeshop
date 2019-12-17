@@ -1947,7 +1947,7 @@ Container / Wrapper
     position: relative;
     left: 0;
     margin-left: 264px;
-    min-height: 870px !important;
+    min-height: 600px !important;
 }
 
 .dashboard-content {

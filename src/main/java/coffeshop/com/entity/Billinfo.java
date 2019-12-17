@@ -30,6 +30,10 @@ public class Billinfo implements Serializable {
 
   @Column(name = "price")
   private Integer price;
+
+  @Column(name = "status")
+  private Integer status;
+
   @ManyToOne
   @JoinColumn(name = "id_table")
   private Tablefood tablefood;
