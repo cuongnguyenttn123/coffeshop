@@ -76,7 +76,7 @@
 
                             <c:forEach items="${cate.getFoodList()}" var="food">
 
-                                <a href="#" class="chonmon" onclick="chonmon(${food.getId()})" data-id="1" name="Bạc xỉu" data-content="${food.getPrice()}">
+                                <a href="#" class="chonmon" onclick="chonmon(${food.getId()})" data-id="1" name="${food.getName()}" data-content="${food.getPrice()}">
                                     <div>
                                             ${food.getName()}  <br /> ${food.getPrice()} đ
                                     </div>
@@ -106,9 +106,6 @@
                                     <a class="nav-link ng-binding" data-toggle="tab" href="#${area.getId()}">${area.getName()}</a>
                                 </li>
                             </c:forEach>
-                            <%--<li class="nav-item">
-                                <a class="nav-link ng-binding" data-toggle="tab" href="#7">tầng 4</a>
-                            </li>--%>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
@@ -146,7 +143,8 @@
     </div>
 </div>
 <div id="modal-wrapper-Del" class="modal">
-    <form action="/HomeClient/Delete" class="modal-contentDel animateDel" method="post"><input name="__RequestVerificationToken" type="hidden" value="d1ib1TZtZDpPmRNrV970R8IU9-9TISgcOE3SsTGXagfbxEGm5dIidcXp2SFfEeEWaXSV_nYEQYCAFsJ_Gpl1WwrZNUzwqgUwxTIp-OJoEYM1" />            <div class="container-confirm">
+    <form action="/HomeClient/Delete" class="modal-contentDel animateDel" method="post">
+        <div class="container-confirm">
         <div class="title-main">Xác nhận xóa</div>
         <div class="title-content">
             <div class="content-titlt">Bạn có đồng ý xóa ?</div>
@@ -164,13 +162,13 @@
     var idTableSelect = "";
     //Chọn bàn và tạo Bill
     function Bill(element, id, bill_id, idtable) {
-        //Đổi màu khi trạng thái bàn thay đổi
+
         if (idTableSelect) {
             if (id_bill > 0) {
-                //Có hóa đơn
+
                 $(idTableSelect).css({ 'background-color': '#68e458', 'border-color': '#68e458' });
             } else {
-                //Không có háo đơn
+
                 $(idTableSelect).css({ 'background-color': '#fff', 'border-color': '#130d28' });
             }
         }
@@ -180,7 +178,7 @@
         //Đang chờ
         $(idTableSelect).css({ 'background-color': '#97FFFF', 'border-color': '#97FFFF' });
 
-        //hiện thị danh mục và ẩn hóa đơn
+
         $('#Contenleft_danhmuc').show();
         $('.danhMuc a:first-child').click();
         $('#Nohoadon').hide();
@@ -198,7 +196,6 @@
             month = "0" + month;
         }
         var today_date = day + "/" + month + "/" + year;
-        //Show bill khi bàn có hóa đơn
 
         if (id_bill > 0) {
             showBill(id_bill);

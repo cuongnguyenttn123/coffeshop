@@ -46,7 +46,7 @@
 
                     <li class="nav-item dropdown nav-user">
                         <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-left:1px solid #e6e6f2; padding:6px 21px" >
-                            Quang Hưng
+                            ${pageContext.request.userPrincipal.name}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                             <a class="dropdown-item" href="/sell"><i class="fas fa-user mr-2"></i>Bán hàng</a>
@@ -94,54 +94,33 @@
                             Menu
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link active" href="/HomeClient/Index" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-paper-plane"></i>Bán hàng <span class="badge badge-success">6</span></a>
+                            <a class="nav-link active" href="/sell" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-paper-plane"></i>Bán hàng <span class="badge badge-success">6</span></a>
 
                         </li>
                         <li class="nav-item" id="showTongQuan">
-                            <a class="nav-link" href="/Admin/Home/index" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-home"></i>Tổng quan</a>
+                            <a class="nav-link" href="/user/generality" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-home"></i>Tổng quan</a>
                         </li>
-                        <li class="nav-item " id="showTongQuan">
-                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-4"><i class="fas fa-table"></i>Sơ đồ phòng,bàn</a>
-                            <div id="submenu-8" class="collapse submenu" style="">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/Area/index">Khu vực</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/TableFood/index">Bàn</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+
                         <li class="nav-item " id="showthucdon">
                             <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-coffee"></i>Đồ uống, món ăn</a>
                             <div id="submenu-4" class="collapse submenu" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/Food/index">Đồ uống - Món ăn</a>
+                                        <a class="nav-link" href="/user/food">Đồ uống - Món ăn</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/FoodCategory/index">Nhóm thực đơn</a>
+                                        <a class="nav-link" href="/user/category">Nhóm thực đơn</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/DVT/index">Đơn vị tính</a>
+                                        <a class="nav-link" href="/user/dvt">Đơn vị tính</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li class="nav-item" id="showthucdon">
-                            <a class="nav-link" href="/Admin/QLBepBar/index" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-diagnoses"></i>Quản lí bếp/bar</a>
-                        </li>
-                        <li class="nav-item" id="showTongQuan">
-                            <a class="nav-link" href="/Admin/TKDT/index" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="far fa-chart-bar"></i>Thống kê doanh thu</a>
+                            <a class="nav-link" href="/user/bar" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-diagnoses"></i>Quản lí bếp/bar</a>
                         </li>
 
-                        <li class="nav-item" id="showTongQuan">
-                            <a href="/Admin/CTHD/index" class="nav-link" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-database"></i>Quản lý hóa đơn</a>
-                        </li>
-                        <li class="nav-item" id="showTongQuan">
-                            <a  href="/Admin/User/index" class="nav-link" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fa fa-fw fa-user-circle"></i>Quản lý nhân viên</a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -258,7 +237,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    Copyright © 2019 T-COFFEE by <a href="#">Luhanbc</a>.
+                    Copyright © 2019 C-COFFEE by <a href="#">Cường Nguyễn</a>.
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="text-md-right footer-links d-none d-sm-block">

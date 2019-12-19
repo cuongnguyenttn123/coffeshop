@@ -35,8 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
         // Chỉ cho phép user có quyền ADMIN hoặc USER truy cập đường dẫn
         // /user/**
-        http.authorizeRequests().antMatchers("/user/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
-        http.authorizeRequests().antMatchers("/sell/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
+        http.authorizeRequests().antMatchers("/user/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_PHACHE') or hasRole('ROLE_BOIBAN') or hasRole('ROLE_THUNGAN')  ");
+        http.authorizeRequests().antMatchers("/sell/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_PHACHE') or hasRole('ROLE_BOIBAN') or hasRole('ROLE_THUNGAN')  ");
+
         // Khi người dùng đã login, với vai trò USER, Nhưng truy cập vào trang
         // yêu cầu vai trò ADMIN, sẽ chuyển hướng tới trang /403
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");

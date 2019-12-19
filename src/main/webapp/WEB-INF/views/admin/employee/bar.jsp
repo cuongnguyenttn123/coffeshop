@@ -46,7 +46,7 @@
 
                     <li class="nav-item dropdown nav-user">
                         <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-left:1px solid #e6e6f2; padding:6px 21px" >
-                            Cuong Nguyen
+                            ${pageContext.request.userPrincipal.name}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                             <a class="dropdown-item" href="/sell"><i class="fas fa-user mr-2"></i>Bán hàng</a>
@@ -162,7 +162,7 @@
                         <div class="card">
                             <h4 class="card-header fas fa-coffee">&nbsp; DANH SÁCH MÓN THEO ORDER</h4>
                             <div class="card-body">
-                                <form action="/Admin/QLBepBar" method="get">                    <div class="row">
+                                <form action="#" method="get">                    <div class="row">
                                     <div class="col-md-3">
                                         <input type="text" placeholder="Tìm kiếm theo tên" class="form-control" name="seaching" style="border-radius:0.2em" />
                                     </div>
@@ -174,59 +174,38 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th scope="col">Bàn</th>
                                         <th scope="col">Tên món</th>
                                         <th scope="col">Số lượng</th>
-                                        <th scope="col">Giờ vào</th>
-                                        <th scope="col">Chế biến</th>
                                         <th scope="col">Trả món</th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr id="row_0">
-                                        <td scope="col">b&#224;n 101</td>
-                                        <td scope="col">C&#224; ph&#234; đ&#225; xay</td>
-                                        <td scope="col">4</td>
-                                        <td scope="col">10:19</td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update" href="#" style="color:white;border-radius:0.2em" data-id="0">Chế biến</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a class="btn btn-warning btn-sm Delete" onclick="tramon(326)" id="326" style="color:white;border-radius:0.2em">Trả món</a>
-                                        </td>
+                                    <c:forEach items="${billinfos}" var="billinfo">
+                                        <tr id="row_${billinfo.getId()}">
+                                            <td scope="col">${billinfo.getFood().getName()}</td>
+                                            <td scope="col">${billinfo.getCount()}</td>
+                                            <td scope="col">
+                                                <a class="btn btn-warning btn-sm Delete" onclick="tramon(${billinfo.getId()})" id="${billinfo.getId()}" style="color:white;border-radius:0.2em">Trả món</a>
+                                            </td>
 
-                                    </tr>
-                                    <tr id="row_0">
-                                        <td scope="col">b&#224;n 102</td>
-                                        <td scope="col">C&#224; Ph&#234; Socola Đ&#225; Xay</td>
-                                        <td scope="col">1</td>
-                                        <td scope="col">21:18</td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update" href="#" style="color:white;border-radius:0.2em" data-id="0">Chế biến</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a class="btn btn-warning btn-sm Delete" onclick="tramon(327)" id="327" style="color:white;border-radius:0.2em">Trả món</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr id="row_0">
-                                        <td scope="col">b&#224;n 102</td>
-                                        <td scope="col">C&#224; Ph&#234; Socola Đ&#225; Xay</td>
-                                        <td scope="col">7</td>
-                                        <td scope="col">21:18</td>
-                                        <td scope="col">
-                                            <a name="CapNhat" class="btn btn-success btn-sm update" href="#" style="color:white;border-radius:0.2em" data-id="0">Chế biến</a>
-                                        </td>
-                                        <td scope="col">
-                                            <a class="btn btn-warning btn-sm Delete" onclick="tramon(328)" id="328" style="color:white;border-radius:0.2em">Trả món</a>
-                                        </td>
-
-                                    </tr>
-
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
-                                <div class="pagination-container"><ul class="pagination"><li class="active"><a>1</a></li></ul></div>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                        </li>
+                                        <c:forEach var="i" begin="1" end="${count}">
+                                            <li class="page-item"><a class="page-link" href="/user/bar?page=${i}">${i}</a></li>
+                                        </c:forEach>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
 
 
@@ -239,12 +218,12 @@
                     {
 
                         $.ajax({
-                            url: '/Admin/QLBepBar/tramon',
+                            url: '/user/tramon',
                             data: { idbill: id },
                             type: 'POST',
                             dataType: 'json',
                             success: function (response) {
-                                var data = response.idbill;
+                                var data = response.idBill;
                                 var idbill = '#' + data;
                                 $(idbill).text("Đã trả");
                                 $(idbill).css({ "background": "red", "color": "white" });
@@ -255,10 +234,6 @@
 
                         })
                     }
-                    //$('.Delete').click(function(){
-                    //    $(this).text("Đã trả");
-                    //    $(this).css({ "background": "red", "color": "white" });
-                    //})
                 </script>
 
             </div>
@@ -271,7 +246,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    Copyright © 2019 T-COFFEE by <a href="#">Luhanbc</a>.
+                    Copyright © 2019 C-COFFEE by <a href="#">Cường Nguyễn</a>.
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="text-md-right footer-links d-none d-sm-block">

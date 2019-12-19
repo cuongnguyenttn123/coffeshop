@@ -93,6 +93,7 @@ public class EmployeeController {
                     billdetail.setCount(billdetailRequest.getCount());
                     Food food = foodRepository.findById(billdetailRequest.getIdFood()).get();
                     billdetail.setFood(food);
+                    billdetail.setStatus(0);
                     billdetail.setPrice(billdetailRequest.getPrice());
                     billdetail.setBill(bill);
                     billdetail.setTablefood(bill.getTablefood());
@@ -102,12 +103,14 @@ public class EmployeeController {
                     if (i != -1){
                         Billinfo billinfo = billdetailList.get(i);
                         billinfo.setCount(billinfo.getCount()+1);
+                        billinfo.setStatus(0);
                         billdetailRepository.save(billinfo);
                     }else {
                         Billinfo billdetail1 = new Billinfo();
                         billdetail1.setCount(billdetailRequest.getCount());
                         Food food = foodRepository.findById(billdetailRequest.getIdFood()).get();
                         billdetail1.setFood(food);
+                        billdetail1.setStatus(0);
                         billdetail1.setPrice(billdetailRequest.getPrice());
                         billdetail1.setBill(bill);
                         billdetailRepository.save(billdetail1);

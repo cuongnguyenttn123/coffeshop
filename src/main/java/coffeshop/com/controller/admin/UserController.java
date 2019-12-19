@@ -1,5 +1,6 @@
 package coffeshop.com.controller.admin;
 
+import coffeshop.com.DTO.reponse.BillReponse;
 import coffeshop.com.entity.*;
 import coffeshop.com.reponsitory.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class UserController {
     RoleRepository roleRepository;
 
     @Autowired
+    BillinfoRepository billinfoRepository;
+
+    @Autowired
     FoodcategaryRepository foodcategaryRepository;
 
     @Autowired
@@ -45,7 +49,7 @@ public class UserController {
 
     @GetMapping("profile")
     public String editProfile(ModelMap modelMap, Principal principal){
-        Employee employee = employeeRepository.findByUserName("cuongnguyen1");
+        Employee employee = employeeRepository.findByUserName(principal.getName());
 
         modelMap.addAttribute("emp", employee);
         return "admin/employee/profile";
@@ -147,8 +151,30 @@ public class UserController {
     }
 
     @GetMapping("bar")
-    public String getBar(){
+    public String getBar(ModelMap modelMap, @RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+        if(page != 0 ){
+            page = page -1;
+        }
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 5, sort);
+        Page<Billinfo> billinofs = billinfoRepository.getBillinfos(pageable,0);
+        int a = billinofs.getTotalPages();
+        modelMap.addAttribute("count", a);
+
+        List<Billinfo> billinfos = billinofs.getContent();
+        modelMap.addAttribute("billinfos", billinfos);
         return "admin/employee/bar";
+    }
+
+    @PostMapping("tramon")
+    @ResponseBody
+    public BillReponse traMon(@RequestParam("idbill")Integer idBillinfo){
+        Billinfo billinfo = billinfoRepository.findById(idBillinfo).get();
+        billinfo.setStatus(1);
+        billinfoRepository.save(billinfo);
+        BillReponse billReponse = new BillReponse();
+        billReponse.setIdBill(idBillinfo);
+        return billReponse;
     }
 
 }

@@ -85,7 +85,8 @@
                             <h3 class="card-header">Danh sách nhân viên</h3>
 
                             <div class="card-body">
-                                <form action="/Admin/User" method="get">                    <div class="row">
+                                <form action="#" method="get">
+                                    <div class="row">
                                     <div class="col-md-5">
                                         <input type="text" class="form-control" name="seaching" placeholder="Tìm kiếm theo tên" />
                                     </div>
@@ -187,7 +188,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    Copyright © 2019 T-COFFEE by <a href="#">Luhanbc</a>.
+                    Copyright © 2019 C-COFFEE by <a href="#">Cường Nguyễn</a>.
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="text-md-right footer-links d-none d-sm-block">
