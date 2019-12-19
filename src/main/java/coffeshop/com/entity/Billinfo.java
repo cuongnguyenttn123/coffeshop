@@ -16,7 +16,7 @@ public class Billinfo implements Serializable {
   @Column(name = "id", insertable = false, nullable = false)
   private Integer id;
 
-  @ManyToOne
+  @ManyToOne(fetch=FetchType.LAZY)
   @JoinColumn(name = "id_bill")
   private Bill bill;
 

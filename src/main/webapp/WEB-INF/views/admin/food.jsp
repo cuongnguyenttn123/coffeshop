@@ -277,10 +277,9 @@
                                             <div class="col-7">
                                                 <select class="nav-link dropdown-toggle" id="DanhMuc1" name="idCategory" style="padding: 0.3em 5.4em 0.3em 1em;">
                                                     <option value="">--Chọn danh mục--</option>
-                                                    <option value="1">CAFE</option>
-                                                    <option value="2">SINH TỐ</option>
-                                                    <option value="3">TR&#192; SỮA</option>
-
+                                                    <c:forEach items="${foodcategories}" var="foodcategori">
+                                                        <option value="${foodcategori.getId()}">${foodcategori.getName()}</option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>
                                         </div>

@@ -37,7 +37,7 @@ public class UserController {
 
     @GetMapping("home")
     public String getHome(Principal principal, ModelMap modelMap){
-        Employee employee = employeeRepository.findByUserName("cuongnguyen1");
+        Employee employee = employeeRepository.findByUserName(principal.getName());
 
         modelMap.addAttribute("emp", employee);
         return "admin/employee/home";
@@ -58,7 +58,8 @@ public class UserController {
                                @RequestParam("Address") String Address,@RequestParam("Phone") String Phone,
                                @RequestParam("status") Boolean status,
                                Principal principal){
-        Employee employee = employeeRepository.findByUserName("cuongnguyen1");
+
+        Employee employee = employeeRepository.findByUserName(principal.getName());
         employee.setAddress(Address);
         employee.setEmail(Email);
         employee.setName(Name);

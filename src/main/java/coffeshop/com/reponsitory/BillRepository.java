@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Transactional
 public interface BillRepository extends JpaRepository<Bill, Integer>, JpaSpecificationExecutor<Bill> {
     @Query("from Bill b where b.id = ?1")
     Optional<Bill> findById(Integer id);

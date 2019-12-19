@@ -9,6 +9,7 @@ import coffeshop.com.service.impl.BillServiceImpl;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -53,8 +54,9 @@ public class EmployeeController {
     @PostMapping(value = "Create")
     @ResponseBody
     public BillReponse create(@RequestParam("billin") String billin, @RequestParam("id_table") Integer id_table,
-                              @RequestParam("idAc") Integer idAc ){
+                              @RequestParam("idAc") Integer idAc , Principal principal ){
         ObjectMapper objectMapper = new ObjectMapper();
+        Employee employee = employeeRepository.findByUserName(principal.getName());
         Tablefood tablefood = tablefoodRepository.findById(id_table).get();
         try{
             BilldetailRequest billdetailRequest =new BilldetailRequest();
@@ -75,8 +77,7 @@ public class EmployeeController {
                 bill.setDateCheckOut(date);
                 bill.setDateCheckIn(date);
                 bill.setIdStatus(0);
-
-
+                bill.setAccount(employee);
                 bill.setTablefood(tablefood);
                 billRepository.save(bill);
                 billdetailRequest.setIdBill(bill.getId());
@@ -159,7 +160,9 @@ public class EmployeeController {
     public StatusFunction deleteBill(@RequestParam("idbill") Integer idbill, @RequestParam("idtable") Integer idtable ){
         StatusFunction statusFunction = new StatusFunction();
         try{
-            billRepository.deleteById(idbill);
+            Bill bill = billRepository.findById(idbill).get();
+            bill.setStatus(2);
+            billRepository.save(bill);
             Tablefood tablefood = tablefoodRepository.findById(idtable).get();
             tablefood.setIdBill(0);
             tablefoodRepository.save(tablefood);
@@ -236,16 +239,57 @@ public class EmployeeController {
     public void  exPortBill(HttpServletResponse response, @RequestParam("ReportType") String ReportType, @RequestParam("idbill") Integer idbill) throws IOException{
         Bill bill = billRepository.findById(idbill).get();
         XWPFDocument document = new XWPFDocument();
+
+        XWPFParagraph titleGraph = document.createParagraph();
+
+        titleGraph.setAlignment(ParagraphAlignment.CENTER);
+
+        String title = "Cafe High5";
+
+        XWPFRun titleRun = titleGraph.createRun();
+
+        titleRun.setBold(true);
+
+        titleRun.setText(title);
+
+
+
+        XWPFParagraph titleGraph1 = document.createParagraph();
+        titleGraph1.setAlignment(ParagraphAlignment.CENTER);
+        String title1 = "Địa chỉ: 104 Ngô Thì Nhậm, Liên Chiểu, TP Đà Nẵng";
+        XWPFRun titleRun1 = titleGraph1.createRun();
+        titleRun1.setText(title1);
+
+        XWPFParagraph titleGraph2 = document.createParagraph();
+        titleGraph2.setAlignment(ParagraphAlignment.CENTER);
+        String title2 = "Hóa Đơn Thanh Toán";
+        XWPFRun titleRun2 = titleGraph2.createRun();
+        titleRun2.setText(title2);
+
+        XWPFParagraph titleGraph3 = document.createParagraph();
+        titleGraph3.setAlignment(ParagraphAlignment.CENTER);
+        String title3 = "Thu ngân: "+ bill.getAccount().getName();
+        XWPFRun titleRun3 = titleGraph3.createRun();
+        titleRun3.setText(title3);
+
+        Double tong = 0d;
         for (Billinfo billinfo: bill.getBillinfos()
              ) {
             XWPFParagraph paragraph1 = document.createParagraph();
             XWPFRun run = paragraph1.createRun();
-            String a = "Mon: "+ billinfo.getFood().getName()+"             " + billinfo.getCount();
+            String a = "Món: "+ billinfo.getFood().getName()+"           S.l: " + billinfo.getCount()+"          T.Tiền: " + billinfo.getCount()*billinfo.getPrice();
             run.setText(a);
+            tong = tong + billinfo.getCount()*billinfo.getPrice();
         }
         XWPFParagraph paragraph2 = document.createParagraph();
         XWPFRun run = paragraph2.createRun();
-        run.setText("Tong bill:           15000 VND");
+        run.setText("Tổng tiền:    "+ tong+" VND");
+
+        XWPFParagraph titleGraph4 = document.createParagraph();
+        titleGraph4.setAlignment(ParagraphAlignment.CENTER);
+        String title4 = "Cảm ơn quý khách. Hẹn gặp lại";
+        XWPFRun titleRun4 = titleGraph4.createRun();
+        titleRun4.setText(title4);
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(new File("bill.docx"));
