@@ -94,17 +94,14 @@
 
                                     </div>
 
-                                    <div class="form-group">
-                                        <label class="control-label col-3" for="PassWord">Mật khẩu</label>
-                                        <input data-val="true" data-val-length="The field Mật khẩu must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Mật khẩu field is required." htmlAttributes="{ class = col-5 }" id="PassWord" name="PassWord" style="border-radius:5px;outline:none;padding:5px" type="text" value="" />
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="PassWord" data-valmsg-replace="true"></span>
-                                    </div>
+
 
                                     <div class="form-group">
                                         <label class="control-label col-3" for="Name">Họ t&#234;n</label>
                                         <input data-val="true" data-val-length="The field Họ tên must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Họ tên field is required." htmlAttributes="{ class = col-5 }" id="Name" name="Name" style="border-radius:5px;outline:none;padding:5px" type="text" value="${emp.getName()}" />
                                         <span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>
                                     </div>
+
 
                                     <div class="form-group">
                                         <label class="control-label col-3" for="Email">Email</label>

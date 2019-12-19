@@ -34,7 +34,7 @@
             align-items: center;
             padding-top: 40px;
             padding-bottom: 40px;
-
+            background-image:url(<c:out value="/resources/Client/Image/anhcasse.jpg"/>);
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -51,12 +51,6 @@
 <div class="splash-container">
     <div class="card ">
         <div class="card-header text-center">
-            <a href="../index.html">
-
-                <div class="logo" id="logo" style="height: 25px;width: 300px;">
-                    <%--<img src="/Assets/Client/Image/logocafe.png" style="width: 76px;">--%>
-                </div>
-            </a>
             <span class="splash-description">Hãy điền thông tin của bạn !</span>
             <span class="splash-description">${mes}</span>
         </div>

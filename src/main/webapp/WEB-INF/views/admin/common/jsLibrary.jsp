@@ -8,10 +8,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="<c:out value="/resources/Admin/vendor/bootstrap/js/bootstrap.bundle.js"/>"></script>
+
 <!-- slimscroll js -->
 <script src="<c:out value="/resources/Admin/vendor/slimscroll/jquery.slimscroll.js"/>"></script>
 <!-- main js -->
 <script src="<c:out value="/resources/Admin/libs/js/main-js.js"/>"></script>
+<script src="<c:out value="/resources/Admin/libs/js/uploadimage.js"/>"></script>
 <!-- chart chartist js -->
 <script src="<c:out value="/resources/Admin/vendor/charts/chartist-bundle/chartist.min.js"/>"></script>
 <!-- sparkline js -->

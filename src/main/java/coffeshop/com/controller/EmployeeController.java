@@ -3,14 +3,8 @@ package coffeshop.com.controller;
 import coffeshop.com.DTO.reponse.BillReponse;
 import coffeshop.com.DTO.reponse.StatusFunction;
 import coffeshop.com.DTO.request.BilldetailRequest;
-import coffeshop.com.entity.Bill;
-import coffeshop.com.entity.Billinfo;
-import coffeshop.com.entity.Food;
-import coffeshop.com.entity.Tablefood;
-import coffeshop.com.reponsitory.BillRepository;
-import coffeshop.com.reponsitory.BillinfoRepository;
-import coffeshop.com.reponsitory.FoodRepository;
-import coffeshop.com.reponsitory.TablefoodRepository;
+import coffeshop.com.entity.*;
+import coffeshop.com.reponsitory.*;
 import coffeshop.com.service.impl.BillServiceImpl;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.security.Principal;
 import java.util.List;
 
 import java.util.Date;
@@ -45,6 +40,9 @@ public class EmployeeController {
 
     @Autowired
     BillServiceImpl billService;
+
+    @Autowired
+    EmployeeRepository employeeRepository;
 
     @Autowired
     BillinfoRepository billdetailRepository;
@@ -212,12 +210,14 @@ public class EmployeeController {
 
     @PostMapping(value = "ThanhToan")
     @ResponseBody
-    public StatusFunction thanhToan(@RequestParam("id_bill") Integer id_bill){
+    public StatusFunction thanhToan(@RequestParam("id_bill") Integer id_bill, Principal principal){
         StatusFunction statusFunction = new StatusFunction();
         try{
+            Employee employee = employeeRepository.findByUserName(principal.getName());
             Bill bill = billRepository.findById(id_bill).get();
             bill.setStatus(1);
             Date date = new Date();
+            bill.setAccount(employee);
             bill.setDateCheckOut(date);
             billRepository.save(bill);
             Tablefood tablefood = bill.getTablefood();

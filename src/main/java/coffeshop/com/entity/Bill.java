@@ -43,7 +43,7 @@ public class Bill implements Serializable {
   @Column(name = "status")
   private Integer status;
 
-  @OneToMany(mappedBy = "bill")
+  @OneToMany(mappedBy = "bill", cascade = CascadeType.ALL)
   List<Billinfo> billinfos = new ArrayList<>();
   
 }

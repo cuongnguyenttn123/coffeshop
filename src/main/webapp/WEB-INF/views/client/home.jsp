@@ -28,20 +28,20 @@
 
 <div id="navigation" class="ng-scope">
     <div class="h3" id="logo">
-        T-COFFEE
+        <img src="<c:out value="/resources/Client/Image/logocafe.png"/>" style="width: 72px;">
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light float-right" style="padding-right: 15px;padding-bottom: 0;padding-top: 0;height: 46px;">
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" data-id="1" aria-haspopup="true" aria-expanded="false" style="color: #000;border-left:1px solid hsla(0, 0%, 4%, 0.37); padding:9px 21px">
-                        Cuong nguyen
+                        ${pageContext.request.userPrincipal.name}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="margin-right:-14px">
-                        <a class="dropdown-item" href="/admin/generality">
+                        <a class="dropdown-item" href="/user">
                             <i class="fa fa-home"></i>&nbsp;&nbsp;Màn hình quản lí
                         </a>
-                        <a class="dropdown-item" href="/logout">
+                        <a class="dropdown-item" href="/j_spring_security_logout">
                             <i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;Đăng xuất
                         </a>
 

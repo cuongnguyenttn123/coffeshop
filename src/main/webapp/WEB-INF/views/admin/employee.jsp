@@ -129,23 +129,7 @@
                                         </td>
                                     </tr>
                                     </c:forEach>
-                                    <%--
-                                    <tr id="row_6">
-                                        <td>4</td>
-                                        <td>Hung</td>
-                                        <td>Quang Hưng</td>
-                                        <td>Bn</td>
-                                        <td>hung@gmail.com</td>
-                                        <td>Chế biến</td>
-                                        <td>
-                                            <a href="#" class="btn-active" data-id="6">K&#237;ch hoạt</a>
-                                        </td>
-                                        <td>
-                                            <a href="/Admin/User/Edit/6" name="Food_id" class="btn btn-success btn-sm col-sm-6"><i class="fas fa-edit"></i>Cập nhập</a>
-                                            &nbsp;|&nbsp;
-                                            <a class="btn btn-warning btn-sm col-4" id="6" onclick="clik(6)" style="color:white;"><i class="fas fa-trash-alt"></i>Xóa</a>
-                                        </td>
-                                    </tr>--%>
+
 
                                     </tbody>
                                 </table>

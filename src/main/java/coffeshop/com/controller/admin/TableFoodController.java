@@ -51,6 +51,7 @@ public class TableFoodController {
             Area area = areaRepository.findById(Integer.parseInt(idArea)).get();
             tablefood.setArea(area);
             tablefood.setName(TableFood_name);
+            tablefood.setIdBill(0);
             Integer startus_templ;
             if (status){
                 startus_templ = 0;

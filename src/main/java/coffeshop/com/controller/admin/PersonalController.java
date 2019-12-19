@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.parameters.P;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -74,6 +75,9 @@ public class PersonalController {
         employee.setAddress(Address);
         employee.setEmail(Email);
         employee.setName(Name);
+        String hash = BCrypt.hashpw(PassWord, BCrypt.gensalt(12));
+        employee.setPassWord(hash);
+        employee.setPhone(Phone);
         employee.setRoles(roles);
         employee.setUserName(userName);
         employeeRepository.save(employee);
@@ -82,7 +86,7 @@ public class PersonalController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editEmployee(@PathVariable("id") Integer id, @RequestParam("UserName") String userName, @RequestParam("PassWord") String PassWord,
+    public String editEmployee(@PathVariable("id") Integer id, @RequestParam("UserName") String userName,
                                @RequestParam("Name") String Name,@RequestParam("Email") String Email,
                                @RequestParam("Address") String Address,@RequestParam("Phone") String Phone,
                                @RequestParam("status") Boolean status,@RequestParam("idRole") Integer idRole){

@@ -19,7 +19,7 @@
                         Menu
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link active" href="/" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-paper-plane"></i>Bán hàng <span class="badge badge-success">6</span></a>
+                        <a class="nav-link active" href="/sell" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-paper-plane"></i>Bán hàng <span class="badge badge-success">6</span></a>
 
                     </li>
                     <li class="nav-item" id="showTongQuan">

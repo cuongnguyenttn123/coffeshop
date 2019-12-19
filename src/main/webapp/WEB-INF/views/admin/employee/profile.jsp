@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: cuong
@@ -32,7 +33,7 @@
     <div class="dashboard-header">
         <nav class="navbar navbar-expand-lg bg-white fixed-top">
             <div class="logo" id="logo" style="text-align: center;height: 25;width: 240px;">
-                <img src="/Assets/Client/Image/logocafe.png" style="width: 76px;">
+                <img src="<c:out value="/resources/Client/Image/logocafe.png"/>" style="width: 72px;">
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -193,8 +194,15 @@
 
                                     <div class="form-group">
                                         <label class="control-label col-3" for="PassWord">Mật khẩu</label>
-                                        <input data-val="true" data-val-length="The field Mật khẩu must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Mật khẩu field is required." htmlAttributes="{ class = col-5 }" id="PassWord" name="PassWord" style="border-radius:5px;outline:none;padding:5px" type="text" value="" />
+                                        <input data-val="true" data-val-length="The field Mật khẩu must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Mật khẩu field is required." htmlAttributes="{ class = col-5 }" id="PassWord" name="PassWord" style="border-radius:5px;outline:none;padding:5px" type="password" value="" />
                                         <span class="field-validation-valid text-danger" data-valmsg-for="PassWord" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="image" class="col-sm-12 col-form-label">Ảnh đại diện</label>
+                                        <input id = "avt" name="avt" type="hidden">
+                                        <input id="image" type="file" value='" />'
+                                               class="form-control" placeholder="Ảnh đại diện" />
                                     </div>
 
                                     <div class="form-group">

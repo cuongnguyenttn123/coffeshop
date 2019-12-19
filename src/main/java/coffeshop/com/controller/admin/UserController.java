@@ -54,20 +54,18 @@ public class UserController {
     @PostMapping("profile")
     public String editEmployee(@RequestParam("UserName") String userName, @RequestParam("PassWord") String PassWord,
                                @RequestParam("Name") String Name,@RequestParam("Email") String Email,
+                               @RequestParam("avt") String avt,
                                @RequestParam("Address") String Address,@RequestParam("Phone") String Phone,
-                               @RequestParam("status") Boolean status,@RequestParam("idRole") Integer idRole,
+                               @RequestParam("status") Boolean status,
                                Principal principal){
         Employee employee = employeeRepository.findByUserName("cuongnguyen1");
         employee.setAddress(Address);
         employee.setEmail(Email);
         employee.setName(Name);
+        employee.setAvt(avt);
         String hash = BCrypt.hashpw(PassWord, BCrypt.gensalt(12));
         employee.setPassWord(hash);
         employee.setUserName(userName);
-        List<Role> roles = new ArrayList<>();
-        Role role = roleRepository.findById(idRole).get();
-        roles.add(role);
-        employee.setRoles(roles);
         employee.setPhone(Phone);
         employeeRepository.save(employee);
         return "redirect:/user/home";

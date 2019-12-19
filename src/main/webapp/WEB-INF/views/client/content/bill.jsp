@@ -112,54 +112,17 @@
                     </td>
                     <td style="text-align:center"> ${billdetail.getFood().getDvt().getName()}</td>
                     <td>${billdetail.getPrice()}</td>
-                    <td>${sum = sum + billdetail.getPrice()*billdetail.getCount() }</td>
-
+                    <td>${billdetail.getPrice()*billdetail.getCount() }</td>
+                    <input type="hidden" value="${tong = tong + billdetail.getPrice()*billdetail.getCount() }">
                     <td style="text-align:center">
                         <a href="#" style="text-decoration:none;color:#fff" onclick="Xoamon(${billdetail.getId()})" data-role=${bill.getId()}><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 </c:forEach>
-               <%-- <tr id="row_320">
-                    <td>2 </td>
-                    <td data-id="114"> Cà phê sữa  </td>
-                    <td style="text-align:center">
-                        <button class="downCount" data-id="320" data-role="114" onclick="Giam(320)">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="text" class="ChangValue" data-role="114" onkeypress="return isNumberKey(event);" name="count" id="320" data-id="320" value="3" style="text-align:center;width:24%;height: 25px;border: none;border-left: solid 1px #ccc;border-right: solid 1px #ccc;padding:0">
-                        <button class="upCount" data-id="320" data-role="114" onclick="Tang(320)">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </td>
-                    <td style="text-align:center"> Cốc</td>
-                    <td>20.000</td>
-                    <td>60.000</td>
-                    <td style="text-align:center">
-                        <a href="#" style="text-decoration:none;color:#fff" onclick="Xoamon(320)" data-role="114"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr id="row_321">
-                    <td>3 </td>
-                    <td data-id="114"> Cà phên đen </td>
-                    <td style="text-align:center">
-                        <button class="downCount" data-id="321" data-role="114" onclick="Giam(321)">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="text" class="ChangValue" data-role="114" onkeypress="return isNumberKey(event);" name="count" id="321" data-id="321" value="2" style="text-align:center;width:24%;height: 25px;border: none;border-left: solid 1px #ccc;border-right: solid 1px #ccc;padding:0">
-                        <button class="upCount" data-id="321" data-role="114" onclick="Tang(321)">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </td>
-                    <td style="text-align:center"> Cốc</td>
-                    <td>20.000</td>
-                    <td>40.000</td>
-                    <td style="text-align:center">
-                        <a href="#" style="text-decoration:none;color:#fff" onclick="Xoamon(321)" data-role="114"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                </tr>--%>
+
                 <tr>
                     <td colspan="5"><b>Tổng</b></td>
-                    <td>${sum}</td>
+                    <td>${tong}</td>
                 </tr>
 
                 </tbody>
