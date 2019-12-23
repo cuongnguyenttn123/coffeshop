@@ -1,8 +1,14 @@
 package coffeshop.com.controller.admin;
 
 import coffeshop.com.entity.Bill;
+import coffeshop.com.entity.Billinfo;
+import coffeshop.com.reponsitory.BillinfoRepository;
 import coffeshop.com.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +26,9 @@ import java.util.*;
 public class StatisticalController {
     @Autowired
     BillService billService;
+
+    @Autowired
+    BillinfoRepository billinfoRepository;
 
     @GetMapping
     public String getHome(ModelMap modelMap){
@@ -75,4 +84,13 @@ public class StatisticalController {
         modelMap.addAttribute("sum", numberFormat.format(sum));
         return "admin/statistical";
     }
+
+    @GetMapping("food")
+    public String getFood(ModelMap modelMap){
+        List<Billinfo> billinfos = billinfoRepository.getProductStatistic();
+        modelMap.addAttribute("billinfos", billinfos);
+        return "admin/countfood";
+    }
 }
+
+

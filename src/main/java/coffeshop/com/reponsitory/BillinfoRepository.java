@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,4 +24,7 @@ public interface BillinfoRepository extends JpaRepository<Billinfo, Integer>, Jp
     @Query("SELECT b FROM Billinfo b where b.status = ?1")
     Page<Billinfo> getBillinfos(Pageable pageable, Integer status);
 
+    @Query(value = "select id, id_bill, id_food, count(id_food) as count, price,id_table, status from billinfo group by billinfo.id_food order by count DESC limit 10 ",
+            nativeQuery = true)
+    List<Billinfo> getProductStatistic();
 }

@@ -69,14 +69,6 @@
                                     ${sum= sum + billinfo.getPrice()*billinfo.getCount()}
                     </tr>
                 </c:forEach>
-                <%--<tr id="row_318">
-                    <td>4 </td>
-                    <td data-id="113"> Socola</td>
-                    <td>1</td>
-                    <td style="text-align:center"> Cốc</td>
-                    <td>25.000</td>
-                    <td>25.000</td>
-                </tr>--%>
                 <tr>
                     <td colspan="5"><b>Tổng</b></td>
                     <td>${sum}</td>
