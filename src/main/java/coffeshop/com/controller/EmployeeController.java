@@ -58,6 +58,7 @@ public class EmployeeController {
         ObjectMapper objectMapper = new ObjectMapper();
         Employee employee = employeeRepository.findByUserName(principal.getName());
         Tablefood tablefood = tablefoodRepository.findById(id_table).get();
+
         try{
             BilldetailRequest billdetailRequest =new BilldetailRequest();
             JsonNode jsonNode = objectMapper.readTree(billin);
@@ -151,7 +152,7 @@ public class EmployeeController {
 
     @PostMapping(value = "GetBill")
     public String getBill(@RequestParam("id_bill") Integer id_bill, ModelMap modelMap){
-
+        List<Tablefood> tableNull = tablefoodRepository.getTablefoodByIdBill(0);
         Bill bill = billService.findById(id_bill);
 
         modelMap.addAttribute("bill", bill);
@@ -313,6 +314,35 @@ public class EmployeeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+
+
+    @PostMapping("/index-changeTable")
+    @ResponseBody
+    public StatusFunction changTableFood(ModelMap modelMap, @RequestParam String dinnertableid,
+                                         @RequestParam Integer dinnertableidOLD){
+        StatusFunction statusFunction = new StatusFunction();
+
+        Tablefood tablefoodNew = tablefoodRepository.findByName(dinnertableid);
+        Tablefood tablefoodOLD = tablefoodRepository.findById(dinnertableidOLD).get();
+
+        try {
+            tablefoodNew.setIdBill(tablefoodOLD.getIdBill());
+            tablefoodOLD.setIdBill(0);
+            tablefoodRepository.save(tablefoodNew);
+            tablefoodRepository.save(tablefoodOLD);
+            statusFunction.setBillId(tablefoodNew.getIdBill());
+            statusFunction.setTableidNew(tablefoodNew.getId());
+            statusFunction.setTableidOld(tablefoodOLD.getId());
+            statusFunction.setStatus(true);
+        }catch (Exception e){
+            e.printStackTrace();
+            statusFunction.setStatus(false);
+        }
+
+        return statusFunction;
 
     }
 

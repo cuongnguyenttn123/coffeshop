@@ -21,4 +21,7 @@ public interface TablefoodRepository extends JpaRepository<Tablefood, Integer>, 
 
     @Query(value = "select * from tablefood f where f.id_bill != ?1", nativeQuery = true)
     List<Tablefood> tableBills(Integer id_bill);
+
+    Tablefood findByName(String name);
+    List<Tablefood> getTablefoodByIdBill(Integer idBill);
 }

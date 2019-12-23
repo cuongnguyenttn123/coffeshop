@@ -134,6 +134,24 @@
                     <li class="nav-item">
                         <a class="nav-link active" id="home-tab-TT" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" value=""></a>
                     </li>
+                    <li class="nav-item" style="margin-left: 20px;">
+                        <div class="row">
+                            <div class="input-group">
+
+                                <select class="form-control" id="selectDINNERTABLEID">
+                                    <option>---Tùy chọn---</option>
+                                    <c:forEach items="${tableNull}" var="tableNull">
+                                        <option id='<c:out value="${tableNull.getId() }"></c:out>'><c:out
+                                                value="${tableNull.getName() }"></c:out></option>
+                                    </c:forEach>
+
+                                </select>
+
+                                <button id="btnDoiBan" type="button"
+                                        class="btn btn-inverse-dark btn-fw">Đổi bàn</button>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
                 <div class="tab-content col" id="TT_danhmuc">
 
@@ -160,6 +178,7 @@
     var id_bill = 0;
     var id_table = 0;
     var idTableSelect = "";
+
     //Chọn bàn và tạo Bill
     function Bill(element, id, bill_id, idtable) {
 
@@ -331,7 +350,8 @@
                     var id = "#ban_" + id_table;
                     alert("Xóa bill thành công!");
                     //var id = "#ban_" + id_table;
-                    $(id).attr("onclick", `Bill(this,${id_table},0,${id_table})`);
+                    var x = 'Bill(this,'+id_table+',0,'+id_table+')';
+                    $(id).attr("onclick", x);
                     $(id).css({ 'background-color': '#fff', 'border-color': '#130d28' });
                     $('#thanhToan').hide();
                 }
@@ -403,6 +423,36 @@
             }
         )
     }
+
+
+    $("#btnDoiBan").click(function() {
+
+        var dinnertableidOLD = id_table;
+        var dinnertableid = $("#selectDINNERTABLEID").val();
+
+        $.ajax({
+            url: '/HomeClient/index-changeTable',
+            type: 'POST',
+            data: {
+                dinnertableid : dinnertableid,
+                dinnertableidOLD :dinnertableidOLD
+            },
+            success: function (response) {
+                var id = "#ban_" + id_table;
+                var idnew = "#ban_" + response.tableidNew;
+
+                var x = "Bill(this,"+ response.tableidNew+","+response.billId+"," + response.tableidNew+")";
+                var y = 'Bill(this,'+ response.tableidOld+',0,'+response.tableidOld+')';
+                $(id).attr("onclick", y);
+                $(idnew).attr("onclick", x);
+
+                $(id).css({ 'background-color': '#fff', 'border-color': '#130d28' });
+                $('#thanhToan').hide();
+            }
+        });
+
+    });
+
 </script>
 <!-- End Content -->
 <jsp:include page="../common/jsLibrary.jsp"/>
