@@ -9,10 +9,10 @@ import coffeshop.com.service.impl.BillServiceImpl;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
-import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.apache.poi.xwpf.usermodel.*;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTJc;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblPr;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.math.BigInteger;
 import java.security.Principal;
 import java.util.List;
 
@@ -275,17 +276,26 @@ public class EmployeeController {
         String title3 = "Thu ngân: "+ bill.getAccount().getName();
         XWPFRun titleRun3 = titleGraph3.createRun();
         titleRun3.setText(title3);
-
+        XWPFTable table = document.createTable();
+        setTableAlign(table, ParagraphAlignment.CENTER);
+        XWPFTableRow tableRowOne = table.getRow(0);
+        tableRowOne.getCell(0).setText("Món");
+        tableRowOne.addNewTableCell().setText("Số lượng");
+        tableRowOne.addNewTableCell().setText("Thành tiền");
+        table.getCTTbl().addNewTblPr().addNewTblW().setW(BigInteger.valueOf(4000));
         Double tong = 0d;
         for (Billinfo billinfo: bill.getBillinfos()
              ) {
-            XWPFParagraph paragraph1 = document.createParagraph();
-            XWPFRun run = paragraph1.createRun();
-            String a = "Món: "+ billinfo.getFood().getName()+"           S.l: " + billinfo.getCount()+"          T.Tiền: " + billinfo.getCount()*billinfo.getPrice();
-            run.setText(a);
+            //create first row
+            XWPFTableRow tableRowTwo = table.createRow();
+            tableRowTwo.getCell(0).setText(billinfo.getFood().getName());
+            tableRowTwo.getCell(1).setText(billinfo.getCount().toString());
+            tableRowTwo.getCell(2).setText(""+(billinfo.getCount()*billinfo.getPrice()));
+
             tong = tong + billinfo.getCount()*billinfo.getPrice();
         }
         XWPFParagraph paragraph2 = document.createParagraph();
+        paragraph2.setAlignment(ParagraphAlignment.CENTER);
         XWPFRun run = paragraph2.createRun();
         run.setText("Tổng tiền:    "+ tong+" VND");
 
@@ -294,7 +304,7 @@ public class EmployeeController {
         String title4 = "Cảm ơn quý khách. Hẹn gặp lại";
         XWPFRun titleRun4 = titleGraph4.createRun();
         titleRun4.setText(title4);
-        FileOutputStream out = null;
+        FileOutputStream out;
         try {
             out = new FileOutputStream(new File("bill.docx"));
             document.write(out);
@@ -330,6 +340,8 @@ public class EmployeeController {
 
         try {
             tablefoodNew.setIdBill(tablefoodOLD.getIdBill());
+            Bill bill = billRepository.findById(tablefoodNew.getIdBill()).get();
+            bill.setTablefood(tablefoodNew);
             tablefoodOLD.setIdBill(0);
             tablefoodRepository.save(tablefoodNew);
             tablefoodRepository.save(tablefoodOLD);
@@ -344,6 +356,13 @@ public class EmployeeController {
 
         return statusFunction;
 
+    }
+
+    public void setTableAlign(XWPFTable table,ParagraphAlignment align) {
+        CTTblPr tblPr = table.getCTTbl().getTblPr();
+        CTJc jc = (tblPr.isSetJc() ? tblPr.getJc() : tblPr.addNewJc());
+        STJc.Enum en = STJc.Enum.forInt(align.getValue());
+        jc.setVal(en);
     }
 
 
