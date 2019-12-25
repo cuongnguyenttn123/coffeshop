@@ -8,5 +8,7 @@ public class FoodReponse {
     private String name;
     private Integer id;
     private Integer price;
-    private Boolean status;
+    private Integer status;
+    private String dvt;
+
 }

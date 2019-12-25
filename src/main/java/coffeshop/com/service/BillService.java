@@ -1,7 +1,11 @@
 package coffeshop.com.service;
 
+import coffeshop.com.DTO.reponse.BillReponse;
+import coffeshop.com.DTO.reponse.StatusFunction;
 import coffeshop.com.entity.Bill;
 
+import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -16,4 +20,15 @@ public interface BillService {
     List<Bill> thongkeTheoThang();
     List<Bill> thongkeTheoNam();
     List<Bill> thongkeTuyChon(Date date, Date date1);
+
+    BillReponse createBill(String billin, Integer id_table, Principal principal);
+
+    StatusFunction deleteBill(Integer idbill, Integer idtable);
+    StatusFunction editBill(String model);
+    StatusFunction deleteBillinfo(String model);
+    StatusFunction thanhToan(Integer id_bill, Principal principal);
+
+    StatusFunction changTableFood(String dinnertableid, Integer dinnertableidOLD);
+    void exPortBill(HttpServletResponse response, Integer idbill);
+
 }

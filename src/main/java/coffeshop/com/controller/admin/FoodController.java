@@ -98,13 +98,7 @@ public class FoodController {
         foodReponse.setId(food.getId());
         foodReponse.setName(food.getName());
         foodReponse.setPrice(food.getPrice());
-        Boolean a;
-        if (food.getStatus() == 0){
-            a = true;
-        }else {
-            a = false;
-        }
-        foodReponse.setStatus(a);
+        foodReponse.setStatus(food.getStatus());
         return foodReponse;
     }
 

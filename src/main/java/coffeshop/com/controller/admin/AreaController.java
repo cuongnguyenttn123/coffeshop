@@ -2,6 +2,7 @@ package coffeshop.com.controller.admin;
 
 import coffeshop.com.entity.Area;
 import coffeshop.com.reponsitory.AreaRepository;
+import coffeshop.com.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,14 +20,12 @@ public class AreaController {
     @Autowired
     AreaRepository areaRepository;
 
+    @Autowired
+    AreaService areaService;
+
     @GetMapping
     public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
-        if(page != 0 ){
-            page = page -1;
-        }
-        Sort sort = Sort.by("id").descending();
-        Pageable pageable = PageRequest.of(page, 10, sort);
-        Page<Area> page1 = areaRepository.getAllBy(pageable);
+        Page<Area> page1 = areaService.getHome(page);
         int a = page1.getTotalPages();
         modelMap.addAttribute("count", a);
         List<Area> areaList = page1.getContent();
@@ -39,7 +38,7 @@ public class AreaController {
         try {
             Area area = new Area();
             area.setName(AreaName);
-            areaRepository.save(area);
+            areaService.addArea(area);
         }catch (Exception e){
             e.printStackTrace();
         }

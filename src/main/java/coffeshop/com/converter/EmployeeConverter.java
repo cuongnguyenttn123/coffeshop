@@ -1,4 +1,4 @@
-package coffeshop.com.converter.employee;
+package coffeshop.com.converter;
 
 import org.springframework.stereotype.Component;
 

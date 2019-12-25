@@ -1,11 +1,17 @@
 package coffeshop.com.controller;
 
+import coffeshop.com.DTO.reponse.AreaReponseDto;
+import coffeshop.com.DTO.reponse.FoodCategoryReponseDto;
+import coffeshop.com.DTO.reponse.TableFoodReponseDto;
 import coffeshop.com.entity.*;
 import coffeshop.com.reponsitory.AreaRepository;
 import coffeshop.com.reponsitory.FoodRepository;
 import coffeshop.com.reponsitory.FoodcategaryRepository;
 import coffeshop.com.reponsitory.TablefoodRepository;
+import coffeshop.com.service.AreaService;
 import coffeshop.com.service.BillService;
+import coffeshop.com.service.FoodcategoryService;
+import coffeshop.com.service.TableFoodService;
 import coffeshop.com.service.impl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
@@ -21,28 +27,19 @@ import java.util.List;
 @RequestMapping("/")
 public class HomeController {
     @Autowired
-    EmployeeServiceImpl employeeService;
+    FoodcategoryService foodcategoryService;
 
     @Autowired
-    FoodRepository foodRepository;
+    AreaService areaService;
 
     @Autowired
-    BillService billService;
-
-    @Autowired
-    FoodcategaryRepository foodcategaryRepository;
-
-    @Autowired
-    AreaRepository areaRepository;
-
-    @Autowired
-    TablefoodRepository tablefoodRepository;
+    TableFoodService tableFoodService;
 
     @GetMapping("/sell")
     public String getHome(ModelMap modelMap){
-        List<Foodcategory> foodcategoryList = foodcategaryRepository.findAll();
-        List<Area> areaList = areaRepository.findAll();
-        List<Tablefood> tableNull = tablefoodRepository.getTablefoodByIdBill(0);
+        List<FoodCategoryReponseDto> foodcategoryList = foodcategoryService.findAll();
+        List<AreaReponseDto> areaList = areaService.findByAll();
+        List<TableFoodReponseDto> tableNull = tableFoodService.getTablefoodByIdBill(0);
         modelMap.addAttribute("tableNull", tableNull);
         modelMap.addAttribute("cate", foodcategoryList);
         modelMap.addAttribute("area", areaList);
