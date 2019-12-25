@@ -1,6 +1,6 @@
 package coffeshop.com.controller.admin;
 
-import coffeshop.com.DTO.request.area.Area;
+import coffeshop.com.DTO.request.area.CommonId;
 import coffeshop.com.entity.Employee;
 import coffeshop.com.entity.Role;
 import coffeshop.com.reponsitory.EmployeeRepository;
@@ -10,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -105,9 +104,9 @@ public class PersonalController {
     }
 
     @PostMapping("delete")
-    public String deleteArea( Area area){
+    public String deleteArea( CommonId personnalId){
         try {
-            employeeRepository.deleteById(area.getId());
+            employeeRepository.deleteById(personnalId.getId());
         }catch (Exception e){
             e.printStackTrace();
         }

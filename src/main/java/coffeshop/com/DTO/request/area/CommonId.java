@@ -3,6 +3,6 @@ package coffeshop.com.DTO.request.area;
 import lombok.Data;
 
 @Data
-public class Area {
+public class CommonId {
     private Integer id;
 }

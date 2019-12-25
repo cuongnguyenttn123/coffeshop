@@ -3,6 +3,8 @@ package coffeshop.com.service;
 import coffeshop.com.DTO.reponse.BillReponse;
 import coffeshop.com.DTO.reponse.StatusFunction;
 import coffeshop.com.entity.Bill;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
@@ -22,6 +24,8 @@ public interface BillService {
     List<Bill> thongkeTuyChon(Date date, Date date1);
 
     BillReponse createBill(String billin, Integer id_table, Principal principal);
+
+    Page<Bill> getAllBy(Pageable pageable);
 
     StatusFunction deleteBill(Integer idbill, Integer idtable);
     StatusFunction editBill(String model);

@@ -1,6 +1,6 @@
 package coffeshop.com.controller.admin;
 
-import coffeshop.com.DTO.request.area.Area;
+import coffeshop.com.DTO.request.area.CommonId;
 import coffeshop.com.entity.Foodcategory;
 import coffeshop.com.reponsitory.FoodcategaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +32,6 @@ public class FoodCategoryController {
         Page<Foodcategory> page1 = foodcategaryRepository.getSearch(pageable, search);
         int a = page1.getTotalPages();
         modelMap.addAttribute("count", a);
-
-
         List<Foodcategory> foodcategories = page1.getContent();
         modelMap.addAttribute(("foodcategories"), foodcategories);
         return "admin/category";
@@ -41,7 +39,6 @@ public class FoodCategoryController {
 
     @GetMapping("add")
     public String addCategory(){
-
         return "admin/content/categoryadd";
     }
 
@@ -93,9 +90,9 @@ public class FoodCategoryController {
     }
 
     @PostMapping("delete")
-    public String deleteFood(Area area){
+    public String deleteFood(CommonId foodCategoryId){
         try{
-            foodcategaryRepository.deleteById(area.getId());
+            foodcategaryRepository.deleteById(foodCategoryId.getId());
         }catch (Exception e){
             e.printStackTrace();
         }

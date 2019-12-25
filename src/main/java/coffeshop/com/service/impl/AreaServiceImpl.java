@@ -39,9 +39,31 @@ public class AreaServiceImpl implements AreaService {
     }
 
     @Override
-    public void addArea(Area area) {
+    public void addArea(String name) {
         try {
+            Area area = new Area();
+            area.setName(name);
             areaRepository.save(area);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void edit(Integer id, String name) {
+        try {
+            Area area = areaRepository.findById(id).get();
+            area.setName(name);
+            areaRepository.save(area);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteArea(Integer id) {
+        try {
+            areaRepository.deleteById(id);
         }catch (Exception e){
             e.printStackTrace();
         }

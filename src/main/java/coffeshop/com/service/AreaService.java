@@ -11,5 +11,9 @@ public interface AreaService {
 
     Page<Area> getHome(Integer page);
 
-    void addArea(Area area);
+    void addArea(String name);
+
+    void edit(Integer id, String name);
+
+    void deleteArea(Integer id);
 }

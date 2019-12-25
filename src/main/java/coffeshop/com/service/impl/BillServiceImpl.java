@@ -15,6 +15,8 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTJc;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
@@ -217,6 +219,11 @@ public class BillServiceImpl implements BillService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Page<Bill> getAllBy(Pageable pageable) {
+        return billRepository.getAllBy(pageable);
     }
 
     @Override

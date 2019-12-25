@@ -2,7 +2,7 @@ package coffeshop.com.controller.admin;
 
 import coffeshop.com.DTO.reponse.FoodReponse;
 import coffeshop.com.DTO.request.FoodRequest;
-import coffeshop.com.DTO.request.area.Area;
+import coffeshop.com.DTO.request.area.CommonId;
 import coffeshop.com.entity.Dvt;
 import coffeshop.com.entity.Food;
 import coffeshop.com.entity.Foodcategory;
@@ -10,9 +10,6 @@ import coffeshop.com.reponsitory.DvtRepository;
 import coffeshop.com.reponsitory.FoodRepository;
 import coffeshop.com.reponsitory.FoodcategaryRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import jdk.nashorn.internal.ir.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,9 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/food")
@@ -123,9 +118,9 @@ public class FoodController {
     }
 
     @PostMapping("delete")
-    public String deleteFood(Area area){
+    public String deleteFood(CommonId foodId){
         try{
-            foodRepository.deleteById(area.getId());
+            foodRepository.deleteById(foodId.getId());
         }catch (Exception e){
             e.printStackTrace();
         }

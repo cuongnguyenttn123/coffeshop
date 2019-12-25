@@ -1,5 +1,6 @@
 package coffeshop.com.controller.admin;
 
+import coffeshop.com.DTO.request.area.CommonId;
 import coffeshop.com.entity.Area;
 import coffeshop.com.entity.Tablefood;
 import coffeshop.com.reponsitory.AreaRepository;
@@ -104,10 +105,10 @@ public class TableFoodController {
     }
 
     @PostMapping("delete")
-    public String deleteTable(coffeshop.com.DTO.request.area.Area area){
+    public String deleteTable(CommonId tableFoodId){
         try {
 
-            tablefoodRepository.deleteById(area.getId());
+            tablefoodRepository.deleteById(tableFoodId.getId());
 
         }catch (Exception e){
             e.printStackTrace();

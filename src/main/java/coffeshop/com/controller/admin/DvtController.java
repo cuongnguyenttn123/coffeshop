@@ -2,7 +2,7 @@ package coffeshop.com.controller.admin;
 
 import coffeshop.com.DTO.reponse.DvtReponse;
 import coffeshop.com.DTO.request.DvtRequest;
-import coffeshop.com.DTO.request.area.Area;
+import coffeshop.com.DTO.request.area.CommonId;
 import coffeshop.com.entity.Dvt;
 import coffeshop.com.reponsitory.DvtRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -94,9 +94,9 @@ public class DvtController {
     }
 
     @PostMapping("delete")
-    public String deleteFood(Area area){
+    public String deleteFood(CommonId dvtId){
         try{
-            dvtRepository.deleteById(area.getId());
+            dvtRepository.deleteById(dvtId.getId());
         }catch (Exception e){
             e.printStackTrace();
         }
