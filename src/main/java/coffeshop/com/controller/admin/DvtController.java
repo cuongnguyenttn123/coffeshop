@@ -86,18 +86,24 @@ public class DvtController {
     }
 
     @PostMapping("edit")
-    public String editFood(DvtRequest dvtRequest){
-        Dvt dvt = dvtRepository.findById(dvtRequest.getDVT_id()).get();
-        dvt.setDescription(dvtRequest.getDescreption());
-        dvt.setName(dvtRequest.getDVT_Name());
-        Integer stt;
-        if (dvtRequest.getStatus()){
-            stt = 0;
-        }else {
-            stt = 1;
+    public String editFood(ModelMap modelMap, DvtRequest dvtRequest){
+        try {
+            Dvt dvt = dvtRepository.findById(dvtRequest.getDVT_id()).get();
+            dvt.setDescription(dvtRequest.getDescreption());
+            dvt.setName(dvtRequest.getDVT_Name());
+            Integer stt;
+            if (dvtRequest.getStatus()){
+                stt = 0;
+            }else {
+                stt = 1;
+            }
+            dvt.setStatus(stt);
+            dvtRepository.save(dvt);
+            modelMap.addAttribute("mess", "Chỉnh Sửa Thành Công");
+        }catch (Exception e){
+            modelMap.addAttribute("mess", "Chỉnh Sửa Thất Bại");
         }
-        dvt.setStatus(stt);
-        dvtRepository.save(dvt);
+
         return "redirect:/admin/dvt";
     }
 
