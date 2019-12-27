@@ -24,7 +24,8 @@ public class DvtController {
     DvtRepository dvtRepository;
 
     @GetMapping
-    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
+                          @RequestParam(name = "mess", required = false, defaultValue = "") String mess){
         if(page != 0 ){
             page = page -1;
         }
@@ -35,23 +36,30 @@ public class DvtController {
         modelMap.addAttribute("count", a);
         List<Dvt> dvts = page1.getContent();
         modelMap.addAttribute("dvts", dvts);
+        modelMap.addAttribute("mess", mess);
         return "admin/dvt";
     }
 
     @PostMapping()
-    public String addFood(@RequestParam("DVT_Name") String name, @RequestParam("Description") String description,
+    public String addFood(ModelMap modelMap, @RequestParam("DVT_Name") String name, @RequestParam("Description") String description,
                           @RequestParam("status") Boolean status){
-        Dvt dvt = new Dvt();
-        dvt.setName(name);
-        Integer stt;
-        dvt.setDescription(description);
-        if (status){
-            stt = 0;
-        }else {
-            stt = 1;
+        try{
+            Dvt dvt = new Dvt();
+            dvt.setName(name);
+            Integer stt;
+            dvt.setDescription(description);
+            if (status){
+                stt = 0;
+            }else {
+                stt = 1;
+            }
+            dvt.setStatus(stt);
+            dvtRepository.save(dvt);
+            modelMap.addAttribute("mess", "Thêm Thành Công");
+        }catch (Exception e){
+            modelMap.addAttribute("mess", "Thêm Thất Bại");
         }
-        dvt.setStatus(stt);
-        dvtRepository.save(dvt);
+
         return "redirect:/admin/dvt";
     }
 
@@ -93,7 +101,7 @@ public class DvtController {
         return "redirect:/admin/dvt";
     }
 
-    @PostMapping("delete")
+    @GetMapping("delete")
     public String deleteFood(CommonId dvtId){
         try{
             dvtRepository.deleteById(dvtId.getId());

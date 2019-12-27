@@ -19,7 +19,7 @@ public interface FoodRepository extends JpaRepository<Food, Integer>, JpaSpecifi
     @Query("SELECT b FROM Food b")
     Page<Food> getAllBy(Pageable pageable);
 
-    @Query(value = "SELECT * FROM food f where f.name LIKE %:searching% and f.id_Category = :id_Category or f.id_DVT = :id_DVT ",
+    @Query(value = "SELECT * FROM food f where f.name LIKE %:searching% and f.id_Category =:id_Category or f.id_DVT = :id_DVT ",
     nativeQuery = true)
     Page<Food> getSearch(Pageable pageable, @Param("searching") String searching,
                          @Param("id_Category") Integer idCategory,@Param("id_DVT") Integer idDVT );

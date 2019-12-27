@@ -20,39 +20,52 @@ public class AreaController {
     AreaService areaService;
 
     @GetMapping
-    public String getHome(ModelMap modelMap,@RequestParam(name = "page", required = false, defaultValue = "0") Integer page){
+    public String getHome(ModelMap modelMap,@RequestParam(name = "page",
+            required = false, defaultValue = "0") Integer page,
+                          @RequestParam(name = "mess", required = false, defaultValue = "") String mess){
         Page<Area> page1 = areaService.getHome(page);
         int a = page1.getTotalPages();
         modelMap.addAttribute("count", a);
         List<Area> areaList = page1.getContent();
         modelMap.addAttribute("areas", areaList);
+        modelMap.addAttribute("mess", mess);
         return "admin/area";
     }
 
     @PostMapping
-    public String addArea(@RequestParam("AreaName") String AreaName){
+    public String addArea(ModelMap modelMap, @RequestParam("AreaName") String AreaName){
         try {
             areaService.addArea(AreaName);
+            modelMap.addAttribute("mess", "Thêm Thành Công");
         }catch (Exception e){
             e.printStackTrace();
+            modelMap.addAttribute("mess", "Thêm Thất Bại");
         }
 
         return "redirect:/admin/area";
     }
 
     @PostMapping("edit")
-    public String editArea(@RequestParam("Area_id") Integer Area_id,@RequestParam("AreaName") String AreaName){
-        areaService.edit(Area_id, AreaName);
+    public String editArea(@RequestParam("Area_id") Integer Area_id,@RequestParam("AreaName") String AreaName, ModelMap modelMap){
+        try {
+
+            areaService.edit(Area_id, AreaName);
+            modelMap.addAttribute("mess", "Chỉnh Sửa Thành Công");
+        }catch (Exception e){
+            modelMap.addAttribute("mess", "Chỉnh Sửa Thất Bại");
+        }
         return "redirect:/admin/area";
     }
 
     @PostMapping("delete")
-    public String deleteArea(CommonId area){
+    @ResponseBody
+    public String deleteArea(CommonId area, ModelMap modelMap){
         try {
-           areaService.deleteArea(area.getId());
+            areaService.deleteArea(area.getId());
         }catch (Exception e){
-            e.printStackTrace();
+            modelMap.addAttribute("mess", "Xóa Thất Bại");
+            return "error";
         }
-        return "redirect:/admin/area";
+        return "success";
     }
 }

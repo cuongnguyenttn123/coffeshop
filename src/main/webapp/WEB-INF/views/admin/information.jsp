@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: cuong
@@ -150,97 +149,80 @@
     <!-- wrapper  -->
     <!-- ============================================================== -->
     <div class="dashboard-wrapper">
-        <div class="dashboard-ecommerce">
-            <div class="container-fluid dashboard-content ">
-                <!-- ============================================================== -->
-                <!-- pageheader  -->
-                <!-- ============================================================== -->
+        <div class="container emp-profile">
+            <form method="post">
                 <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="page-header">
-                            <h1 class="pageheader-title">
-                                Quản Lý Nghiệp Vụ Quán Cafe</h1>
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="<c:out value="/resources/images/${emp.getAvt()}"/>" alt=""style="width: 52%;height: 177px;">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                            <h5>
+                                ${emp.getName()}
+                            </h5>
+                            <h6>
+                                ${emp.getRoles().get(0).getName()}
+                            </h6>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="/user/profile">Edit Profile</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>UserName</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${emp.getUserName()}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${emp.getName()}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${emp.getPhone()}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Chức vụ</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${emp.getRoles().get(0).getName()}</p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- end pageheader  -->
-                <!-- ============================================================== -->
-
-
-                <div class="row">
-                    <!-- ============================================================== -->
-                    <!-- sales  -->
-                    <!-- ============================================================== -->
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                        <div class="card border-3 border-top border-top-primary">
-                            <div class="card-body">
-                                <h5 class="text-muted">Doanh thu</h5>
-                                <div class="metric-value d-inline-block">
-                                    <h1 class="mb-1">${sum}</h1>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- end sales  -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- new customer  -->
-                    <!-- ============================================================== -->
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                        <div class="card border-3 border-top border-top-primary">
-                            <div class="card-body">
-                                <h5 class="text-muted col">Quản lý</h5>
-                                <div class="metric-value d-inline-block col">
-                                    <h1 class="mb-1">1</h1>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- end new customer  -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- visitor  -->
-                    <!-- ============================================================== -->
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                        <div class="card border-3 border-top border-top-primary">
-                            <div class="card-body">
-                                <h5 class="text-muted">Nhân viên</h5>
-                                <div class="metric-value d-inline-block">
-                                    <h1 class="mb-1">2</h1>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- end visitor  -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- total orders  -->
-                    <!-- ============================================================== -->
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                        <div class="card border-3 border-top border-top-primary">
-                            <div class="card-body">
-                                <h5 class="text-muted">Tổng hóa đơn đặt hàng</h5>
-                                <div class="metric-value d-inline-block">
-                                    <h1 class="mb-1">${sumbill}</h1>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- end total orders  -->
-                    <!-- ============================================================== -->
-                </div>
-            </div>
+            </form>
         </div>
         <!-- ============================================================== -->
     </div>
@@ -281,7 +263,4 @@
 </body>
 
 </html>
-
-
-
 

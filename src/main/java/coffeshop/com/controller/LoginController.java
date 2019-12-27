@@ -48,7 +48,7 @@ public class LoginController {
         for (GrantedAuthority grantedAuthority: roles
              ) {
             if (grantedAuthority.getAuthority().equalsIgnoreCase("ROLE_ADMIN")){
-                return "redirect:/admin/generality";
+                return "redirect:/admin/information";
             }
         }
         return "redirect:/user/home";

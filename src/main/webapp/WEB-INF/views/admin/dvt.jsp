@@ -61,6 +61,16 @@
     <div class="dashboard-wrapper">
         <div class="dashboard-ecommerce">
             <div class="container-fluid dashboard-content ">
+
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h1 id="mess" class="pageheader-title">
+                                ${mess}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
                 <!-- ============================================================== -->
                 <!-- pageheader  -->
                 <!-- ============================================================== -->
@@ -229,10 +239,13 @@
                                     <button class="btnCf-yes" type="submit" onclick="dongy(idfood)" id="DeleteM">Đồng ý</button>
                                 </div>
                             </div>
-                        </div>
-                        </form>    </div>
+                        </form>
+                    </div>
                 </div>
+            </div>
+
                 <script>
+                    $('#mess').fadeToggle(3000)
                     var DvtID = 0;
                     var modal = document.getElementById('modal-wrapper');
                     window.onclick = function (event) {
@@ -249,9 +262,9 @@
                             type: 'GET',
                             dataType: 'json',
                             success: function (response) {
-                                $('#DVTName').val(response.DVT_Name);
+                                $('#DVTName').val(response.dvt_Name);
                                 $('#ckStatus').prop('checked', response.status);
-                                $('.DVT_Des').val(response.Descreption);
+                                $('.DVT_Des').val(response.descreption);
                                 DvtID = response.id;
                             },
                             error: function () {

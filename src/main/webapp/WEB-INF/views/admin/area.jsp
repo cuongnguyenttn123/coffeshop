@@ -16,7 +16,7 @@
 <head>
     <!-- Required meta tags -->
     <jsp:include page="common/header.jsp"/>
-    <title>TL Admin</title>
+    <title>TTN Admin</title>
 </head>
 <body>
 <!-- ============================================================== -->
@@ -63,6 +63,15 @@
         <div class="dashboard-ecommerce">
             <div class="container-fluid dashboard-content ">
                 <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h1 id="mess" class="pageheader-title">
+                                ${mess}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
                 <!-- pageheader  -->
                 <!-- ============================================================== -->
                 <div class="row">
@@ -178,6 +187,7 @@
                     </div>
                 </div>
                 <script>
+                    $('#mess').fadeToggle(3000)
                     function clik(id) {
                         var iddelete =
                             {
