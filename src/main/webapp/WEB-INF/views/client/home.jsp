@@ -98,9 +98,7 @@
                 <div class="scrtabs-tabs-fixed-container">
                     <div class="" ng-transclude="">
                         <ul class="nav" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active ng-binding" id="default" data-toggle="tab" href="#home">Đang mở</a>
-                            </li>
+
                             <c:forEach items="${area}" var="area">
                                 <li class="nav-item">
                                     <a class="nav-link ng-binding" data-toggle="tab" href="#${area.getId()}">${area.getName()}</a>
@@ -114,7 +112,7 @@
                                     <div class="row list_table">
                                         <c:forEach items="${area.getTablefoods()}" var="tablefoods">
                                             <div class="col-lg-2 item_table ban1" data-id="${tablefoods.getId()}"
-                                                 data-target="ban_${tablefoods.getId()}" id="ban_${tablefoods.getId()}" data-content="${tablefoods.getName()}" onclick="Bill(this,${tablefoods.getId()}, ${tablefoods.getIdBill()},${tablefoods.getId()})">
+                                                 data-target="ban_${tablefoods.getId()}" id="ban_${tablefoods.getId()}" data-content="${tablefoods.getName()}" onclick="Bill(this, ${tablefoods.getIdBill()},${tablefoods.getId()})">
                                                 <img src="/resources/Client/Image/cup-coffee.png" alt="Alternate Text" />
                                                 <p>${tablefoods.getName()}</p>
                                             </div>
@@ -161,7 +159,7 @@
     </div>
 </div>
 <div id="modal-wrapper-Del" class="modal">
-    <form action="/HomeClient/Delete" class="modal-contentDel animateDel" method="post">
+    <form action="/salesman/Delete" class="modal-contentDel animateDel" method="post">
         <div class="container-confirm">
         <div class="title-main">Xác nhận xóa</div>
         <div class="title-content">
@@ -180,7 +178,7 @@
     var idTableSelect = "";
 
     //Chọn bàn và tạo Bill
-    function Bill(element, id, bill_id, idtable) {
+    function Bill(element, bill_id, idtable) {
 
         if (idTableSelect) {
             if (id_bill > 0) {
@@ -194,27 +192,11 @@
         idTableSelect = '#' + element.id;
         id_bill = bill_id;
         id_table = idtable;
-        //Đang chờ
         $(idTableSelect).css({ 'background-color': '#97FFFF', 'border-color': '#97FFFF' });
 
 
         $('#Contenleft_danhmuc').show();
         $('.danhMuc a:first-child').click();
-        $('#Nohoadon').hide();
-
-        var iban = "#ban_" + idtable;
-        //Biến thời gian
-        var currentTime = new Date();
-        var day = currentTime.getDate();
-        var month = currentTime.getMonth() + 1;
-        var year = currentTime.getFullYear();
-        if (day < 10) {
-            day = "0" + day;
-        }
-        if (month < 10) {
-            month = "0" + month;
-        }
-        var today_date = day + "/" + month + "/" + year;
 
         if (id_bill > 0) {
             showBill(id_bill);
@@ -227,11 +209,9 @@
     }
     //Chọn món và tạo BillInfo
     function chonmon(id) {
-        var idAc = $('#navbarDropdownMenuLink').attr('data-id');
         var price = $('.chonmon').attr('data-content');
         var billin = {
             count: 1,
-            idAccount: idAc,
             idFood: id,
             Price: price,
             idBill: id_bill,
@@ -239,15 +219,14 @@
         }
         billin = JSON.stringify(billin);
         $.ajax({
-            url: '/HomeClient/Create',
+            url: '/salesman/create',
             type: 'POST',
             data: {
                 billin:billin,
                 id_table:id_table,
-                idAc:idAc,
+
             },
             success: function (d) {
-                console.log(d);
                 id_table = d.id_table;
                 id_bill = d.idBill;
                 showBill(id_bill);
@@ -264,7 +243,7 @@
         var id_bill = parseInt(id_bill);
 
         $.ajax({
-            url: '/HomeClient/GetBill',
+            url: '/salesman/getbill',
             type: 'POST',
             data: {
                 id_bill
@@ -272,6 +251,7 @@
             success: function (d) {
                 $('#TT_danhmuc').html(d);
                 $('#thanhToan').show();
+                $('#thanhtoan').show();
             }
         });
     }
@@ -279,7 +259,7 @@
     function thanhtoan(Bill_id) {
         if (confirm("Xác nhân thanh toán thành công ?")) {
             $.ajax({
-                url: '/HomeClient/ThanhToan',
+                url: '/salesman/thanhtoan',
                 type: 'POST',
                 data: {
                     id_bill
@@ -294,7 +274,6 @@
                         $(id).css({ 'background-color': '#fff', 'border-color': '#130d28' });
                         $('#thanhToan').hide();
                     })
-
 
                 }
             });
@@ -320,7 +299,7 @@
             count: Total
         };
         $.ajax({
-            url: '/HomeClient/EditBill',
+            url: '/salesman/editbill',
             type: 'POST',
             dataType: 'json',
             data: { model: JSON.stringify(data) },
@@ -340,7 +319,7 @@
 
         if (confirm("Bạn chắc chắn muốn xóa ?")) {
             $.ajax({
-                url: '/HomeClient/DeleteBill',
+                url: '/salesman/deletebill',
                 type: 'POST',
                 data: {
                     idbill:idbill,
@@ -379,7 +358,7 @@
             count: Total
         };
         $.ajax({
-            url: '/HomeClient/EditBill',
+            url: '/salesman/editbill',
             type: 'POST',
             dataType: 'json',
             data: { model: JSON.stringify(data) },
@@ -404,7 +383,7 @@
                 console.log(a+1);
                 $.ajax({
 
-                    url: '/HomeClient/Delete',
+                    url: '/salesman/delete',
                     type: 'POST',
                     datatype: 'Json',
                     data: { model: JSON.stringify(data) },
@@ -431,7 +410,7 @@
         var dinnertableid = $("#selectDINNERTABLEID").val();
 
         $.ajax({
-            url: '/HomeClient/index-changeTable',
+            url: '/salesman/index-changeTable',
             type: 'POST',
             data: {
                 dinnertableid : dinnertableid,

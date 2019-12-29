@@ -2,7 +2,7 @@ package coffeshop.com.service.impl;
 
 import coffeshop.com.DTO.reponse.BillReponse;
 import coffeshop.com.DTO.reponse.StatusFunction;
-import coffeshop.com.DTO.request.BilldetailRequest;
+import coffeshop.com.DTO.request.BillinfoRequest;
 import coffeshop.com.entity.*;
 import coffeshop.com.reponsitory.*;
 import coffeshop.com.service.BillService;
@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.xwpf.usermodel.*;
-import org.omg.CORBA.DATA_CONVERSION;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTJc;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
@@ -28,7 +27,6 @@ import java.security.Principal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 @Service
 public class BillServiceImpl implements BillService {
@@ -151,17 +149,17 @@ public class BillServiceImpl implements BillService {
         Tablefood tablefood = tablefoodRepository.findById(id_table).get();
 
         try{
-            BilldetailRequest billdetailRequest =new BilldetailRequest();
+            BillinfoRequest billinfoRequest =new BillinfoRequest();
             JsonNode jsonNode = objectMapper.readTree(billin);
 
-            billdetailRequest.setIdBill(jsonNode.get("idBill").asInt());
-            billdetailRequest.setCount(jsonNode.get("count").asInt());
-            billdetailRequest.setIdFood(jsonNode.get("idFood").asInt());
-            billdetailRequest.setIdAccount(jsonNode.get("idAccount").asInt());
-            billdetailRequest.setIdTable(jsonNode.get("idTable").asInt());
-            billdetailRequest.setPrice(jsonNode.get("Price").asInt());
+            billinfoRequest.setIdBill(jsonNode.get("idBill").asInt());
+            billinfoRequest.setCount(jsonNode.get("count").asInt());
+            billinfoRequest.setIdFood(jsonNode.get("idFood").asInt());
+            billinfoRequest.setIdAccount(employee.getId());
+            billinfoRequest.setIdTable(jsonNode.get("idTable").asInt());
+            billinfoRequest.setPrice(jsonNode.get("Price").asInt());
 
-            if (billdetailRequest.getIdBill()==0)
+            if (billinfoRequest.getIdBill()==0)
             {
                 //them
                 Bill bill = new Bill();
@@ -172,26 +170,26 @@ public class BillServiceImpl implements BillService {
                 bill.setAccount(employee);
                 bill.setTablefood(tablefood);
                 billRepository.save(bill);
-                billdetailRequest.setIdBill(bill.getId());
+                billinfoRequest.setIdBill(bill.getId());
 
             }
 
-            if (billdetailRequest.getIdBill()!=0)
+            if (billinfoRequest.getIdBill()!=0)
             {
-                Bill bill = billRepository.findById(billdetailRequest.getIdBill()).get();
+                Bill bill = billRepository.findById(billinfoRequest.getIdBill()).get();
                 List<Billinfo> billdetailList = bill.getBillinfos();
                 if(billdetailList.size()==0){
                     Billinfo billdetail = new Billinfo();
-                    billdetail.setCount(billdetailRequest.getCount());
-                    Food food = foodRepository.findById(billdetailRequest.getIdFood()).get();
+                    billdetail.setCount(billinfoRequest.getCount());
+                    Food food = foodRepository.findById(billinfoRequest.getIdFood()).get();
                     billdetail.setFood(food);
                     billdetail.setStatus(0);
-                    billdetail.setPrice(billdetailRequest.getPrice());
+                    billdetail.setPrice(billinfoRequest.getPrice());
                     billdetail.setBill(bill);
                     billdetail.setTablefood(bill.getTablefood());
                     billinfoRepository.save(billdetail);
                 }else {
-                    int i = isCheckIdBillinfo(billdetailRequest, billdetailList);
+                    int i = isCheckIdBillinfo(billinfoRequest, billdetailList);
                     if (i != -1){
                         Billinfo billinfo = billdetailList.get(i);
                         billinfo.setCount(billinfo.getCount()+1);
@@ -199,11 +197,11 @@ public class BillServiceImpl implements BillService {
                         billinfoRepository.save(billinfo);
                     }else {
                         Billinfo billdetail1 = new Billinfo();
-                        billdetail1.setCount(billdetailRequest.getCount());
-                        Food food = foodRepository.findById(billdetailRequest.getIdFood()).get();
+                        billdetail1.setCount(billinfoRequest.getCount());
+                        Food food = foodRepository.findById(billinfoRequest.getIdFood()).get();
                         billdetail1.setFood(food);
                         billdetail1.setStatus(0);
-                        billdetail1.setPrice(billdetailRequest.getPrice());
+                        billdetail1.setPrice(billinfoRequest.getPrice());
                         billdetail1.setBill(bill);
                         billinfoRepository.save(billdetail1);
                     }
@@ -213,7 +211,7 @@ public class BillServiceImpl implements BillService {
             }
             BillReponse billReponse = new BillReponse();
             billReponse.setId_table(id_table);
-            billReponse.setIdBill(billdetailRequest.getIdBill());
+            billReponse.setIdBill(billinfoRequest.getIdBill());
             return billReponse;
         }catch (Exception e){
             e.printStackTrace();
@@ -410,7 +408,7 @@ public class BillServiceImpl implements BillService {
         }
     }
 
-    private int isCheckIdBillinfo(BilldetailRequest billdetail, List<Billinfo> billdetailList) {
+    private int isCheckIdBillinfo(BillinfoRequest billdetail, List<Billinfo> billdetailList) {
         boolean bb = false;
         for (int i = 0 ;  i< billdetailList.size(); i++){
 

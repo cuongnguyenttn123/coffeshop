@@ -73,7 +73,7 @@ public class UserController {
         employee.setUserName(userName);
         employee.setPhone(Phone);
         employeeRepository.save(employee);
-        return "redirect:/user/home";
+        return "redirect:/user";
     }
     @GetMapping("food")
     public String getFood(ModelMap modelMap, @RequestParam(name = "page", required = false, defaultValue = "0") Integer page){

@@ -51,8 +51,8 @@
 <div class="splash-container">
     <div class="card ">
         <div class="card-header text-center">
-            <span class="splash-description">Hãy điền thông tin của bạn !</span>
-            <span class="splash-description">${mes}</span>
+            <h1>Login</h1>
+            <span class="splash-description">${message}</span>
         </div>
         <div class="card-body">
             <form action="/j_spring_security_login" method="post">
@@ -66,12 +66,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
             </form>
-        </div>
-        <div class="card-footer bg-white p-0  ">
-
-            <div class="card-footer-item card-footer-item-bordered col">
-                <a href="#" class="footer-link">Quên mật khẩu</a>
-            </div>
         </div>
     </div>
 </div>

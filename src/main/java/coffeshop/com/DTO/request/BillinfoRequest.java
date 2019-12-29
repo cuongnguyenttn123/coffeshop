@@ -3,7 +3,7 @@ package coffeshop.com.DTO.request;
 import lombok.Data;
 
 @Data
-public class BilldetailRequest {
+public class BillinfoRequest {
     private Integer count;
     private Integer idAccount;
     private Integer idFood;

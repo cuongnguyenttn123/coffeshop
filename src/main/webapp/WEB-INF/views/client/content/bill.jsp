@@ -130,10 +130,10 @@
         </div>
         <div class="col">
             <div class="col">
-                <button id="thanhtoan1" name="thanhToan1" type="submit" onclick="thanhtoan(${bill.getId()})">Thanh Toán</button>
+                <button id="thanhtoan" name="thanhToan" type="submit" onclick="thanhtoan(${bill.getId()})">Thanh Toán</button>
             </div>
             <div class="col">
-                <a class="export" href="/HomeClient/Reports?ReportType=Word&amp;idbill=${bill.getId()}">Export</a>
+                <a class="export" href="/salesman/Reports?ReportType=Word&amp;idbill=${bill.getId()}">Export</a>
             </div>
 
             <div class="col">
