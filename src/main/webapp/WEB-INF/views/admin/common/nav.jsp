@@ -57,8 +57,19 @@
                     <li class="nav-item" id="showthucdon">
                         <a class="nav-link" href="/admin/manager" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-diagnoses"></i>Quản lí bếp/bar</a>
                     </li>
-                    <li class="nav-item" id="showTongQuan">
-                        <a class="nav-link" href="/admin/statistical" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="far fa-chart-bar"></i>Thống kê doanh thu</a>
+
+                    <li class="nav-item " id="showthucdon">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="far fa-chart-bar"></i>Thống kê</a>
+                        <div id="submenu-5" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/admin/statistical">Thống kê doanh thu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/admin/statistical/food">Đồ uống khách hay order</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
 
                     <li class="nav-item" id="showTongQuan">

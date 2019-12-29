@@ -18,7 +18,7 @@
     <!-- Required meta tags -->
     <!-- Bootstrap CSS -->
     <jsp:include page="common/header.jsp"/>
-    <title>TL Admin</title>
+    <title>TTN Admin</title>
 </head>
 <body>
 <!-- ============================================================== -->

@@ -29,8 +29,8 @@ public interface BillRepository extends JpaRepository<Bill, Integer>, JpaSpecifi
     void deleteById(Integer id);
 
 
-    @Query("FROM Bill b WHERE b.dateCheckOut = ?1")
-    List<Bill> thongKeTheoNgay(Date date);
+    @Query(value = "select * from bill b where date (b.date_check_out) = ?1", nativeQuery = true)
+    List<Bill> thongKeTheoNgay(java.sql.Date date);
 
     @Query(value = "select * from bill b where month (b.date_check_out) = ?1", nativeQuery = true)
     List<Bill> thongKeTheoThang(int moth);

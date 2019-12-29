@@ -112,7 +112,8 @@ public class BillServiceImpl implements BillService {
     @Override
     public List<Bill> thongkeTheoNgay() {
         Date date = new Date();
-        return billRepository.thongKeTheoNgay(date);
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        return billRepository.thongKeTheoNgay(sqlDate);
     }
 
     @Override

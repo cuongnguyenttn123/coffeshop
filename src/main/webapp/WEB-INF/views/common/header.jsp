@@ -16,6 +16,6 @@
 <link rel="stylesheet" href="<c:out value="/resources/Client/css/jquery-confirm.min.css"/>"  />
 <link rel="stylesheet" href="<c:out value="/resources/Admin/libs/css/styleDelete.css"/>"  />
 <link rel="stylesheet" href="<c:out value="/resources/Client/css/scollbarcss.css"/>"  />
-<title>TL</title>
+
 
 

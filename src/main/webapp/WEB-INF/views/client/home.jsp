@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <jsp:include page="../common/header.jsp"/>
-
+    <title>TTN Admin</title>
 </head>
 <body>
 <!-- Begin Header -->
