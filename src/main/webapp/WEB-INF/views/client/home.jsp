@@ -231,7 +231,8 @@
                 id_bill = d.idBill;
                 showBill(id_bill);
                 var id = "#ban_" + id_table;
-                $(id).attr("onclick", `Bill(this,${id_table},${id_bill},${id_table})`);
+                var x = 'Bill(this,'+id_bill+','+id_table+')';
+                $(id).attr("onclick", x);
             },
             error: function () {
                 alert('error');
@@ -270,7 +271,8 @@
 
                     $('.export').click(function (id_bill) {
                         var id = "#ban_" + id_table;
-                        $(id).attr("onclick", `Bill(this,${id_table},0,${id_table})`);
+                        var x = 'Bill(this,0,'+id_table+')';
+                        $(id).attr("onclick", x);
                         $(id).css({ 'background-color': '#fff', 'border-color': '#130d28' });
                         $('#thanhToan').hide();
                     })
@@ -329,7 +331,7 @@
                     var id = "#ban_" + id_table;
                     alert("Xóa bill thành công!");
                     //var id = "#ban_" + id_table;
-                    var x = 'Bill(this,'+id_table+',0,'+id_table+')';
+                    var x = 'Bill(this,0,'+id_table+')';
                     $(id).attr("onclick", x);
                     $(id).css({ 'background-color': '#fff', 'border-color': '#130d28' });
                     $('#thanhToan').hide();
