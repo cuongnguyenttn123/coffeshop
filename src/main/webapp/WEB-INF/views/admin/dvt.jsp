@@ -159,11 +159,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <%! int i = 0; %>
+                                <%  int i = 0; %>
+
                                 <c:forEach items="${dvts}" var="dvt">
 
                                     <tr id="row_${dvt.getId()}">
-                                        <th><% i ++; %> ${i}</th>
+                                        <td>${i= i + 1}</td>
                                         <td>${dvt.getName()}</td>
                                         <td>${dvt.getDescription()}</td>
                                         <td>

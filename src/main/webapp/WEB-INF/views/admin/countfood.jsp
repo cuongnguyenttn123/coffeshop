@@ -84,6 +84,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <%  int i = 0; %>
 
                         <c:forEach items="${billinfos}" var="billinfo">
                             <tr id="row_${billinfo.getId()}">

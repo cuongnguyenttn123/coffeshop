@@ -102,10 +102,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <%  int i = 0; %>
+
 
                                 <c:forEach items="${foodcategories}" var="foodcategory">
                                     <tr id="row_${foodcategory.getId()}">
-                                        <th >1</th>
+                                        <td>${ i = i+ 1}</td>
                                         <td >${foodcategory.getName()}</td>
                                         <td >${foodcategory.getDescription()}</td>
                                         <td>

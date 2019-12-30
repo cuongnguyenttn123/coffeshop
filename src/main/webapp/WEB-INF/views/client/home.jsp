@@ -77,7 +77,7 @@
                             <c:forEach items="${cate.getFoodList()}" var="food">
 
                                 <a href="#" class="chonmon" onclick="chonmon(${food.getId()})" data-id="1" name="${food.getName()}" data-content="${food.getPrice()}">
-                                    <div>
+                                    <div style="height: 70px;">
                                             ${food.getName()}  <br /> ${food.getPrice()} đ
                                     </div>
                                 </a>
@@ -422,8 +422,8 @@
                 var id = "#ban_" + id_table;
                 var idnew = "#ban_" + response.tableidNew;
 
-                var x = "Bill(this,"+ response.tableidNew+","+response.billId+"," + response.tableidNew+")";
-                var y = 'Bill(this,'+ response.tableidOld+',0,'+response.tableidOld+')';
+                var x = "Bill(this,"+response.billId+"," + response.tableidNew+")";
+                var y = 'Bill(this,0,'+response.tableidOld+')';
                 $(id).attr("onclick", y);
                 $(idnew).attr("onclick", x);
 

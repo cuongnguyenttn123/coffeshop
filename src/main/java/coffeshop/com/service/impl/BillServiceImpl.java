@@ -185,7 +185,7 @@ public class BillServiceImpl implements BillService {
                     Food food = foodRepository.findById(billinfoRequest.getIdFood()).get();
                     billdetail.setFood(food);
                     billdetail.setStatus(0);
-                    billdetail.setPrice(billinfoRequest.getPrice());
+                    billdetail.setPrice(food.getPrice());
                     billdetail.setBill(bill);
                     billdetail.setTablefood(bill.getTablefood());
                     billinfoRepository.save(billdetail);
@@ -202,7 +202,7 @@ public class BillServiceImpl implements BillService {
                         Food food = foodRepository.findById(billinfoRequest.getIdFood()).get();
                         billdetail1.setFood(food);
                         billdetail1.setStatus(0);
-                        billdetail1.setPrice(billinfoRequest.getPrice());
+                        billdetail1.setPrice(food.getPrice());
                         billdetail1.setBill(bill);
                         billinfoRepository.save(billdetail1);
                     }

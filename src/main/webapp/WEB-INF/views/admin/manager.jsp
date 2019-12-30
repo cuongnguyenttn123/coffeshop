@@ -84,15 +84,7 @@
                         <div class="card">
                             <h4 class="card-header fas fa-coffee">&nbsp; DANH SÁCH MÓN THEO ORDER</h4>
                             <div class="card-body">
-                                <form action="/Admin/QLBepBar" method="get">                    <div class="row">
-                                    <div class="col-md-3">
-                                        <input type="text" placeholder="Tìm kiếm theo tên" class="form-control" name="seaching" style="border-radius:0.2em" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button type="submit" class="btn btn-info active btn-sm" style="border-radius:0.2em"><i class="fas fa-search"></i>&nbsp;Tìm kiếm</button>
-                                    </div>
-                                </div>
-                                </form>                <br />
+
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>

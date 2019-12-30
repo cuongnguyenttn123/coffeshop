@@ -92,18 +92,6 @@
                         <div class="card">
                             <h4 class="card-header fas fa-coffee">&nbsp; Chi tiết hóa đơn</h4>
                             <div class="card-body">
-                                <form action="/Admin/CTHD" method="get">                    <div class="row">
-                                    <div class="col-md-5">
-                                        <input type="text" placeholder="Tìm kiếm theo tên" class="form-control" name="seaching" />
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="date" name="date" id="date" class="col" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button type="submit" class="btn btn-info active btn-sm"><i class="fas fa-search"></i>&nbsp;Tìm kiếm</button>
-                                    </div>
-                                </div>
-                                </form>                <br />
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
@@ -118,16 +106,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <%  int i = 0; %>
                                     <c:forEach items="${bills}" var="bill">
                                         <tr id="row_${bill.getId()}">
-                                            <th scope="col">1</th>
+                                            <td>${ i = i+ 1}</td>
                                             <td scope="col">${bill.getId()}</td>
                                             <td scope="col">${bill.getEmployee()}</td>
                                             <td scope="col">${bill.getDate()}</td>
                                             <td scope="col">${bill.getCheckIn()}</td>
                                             <td scope="col">${bill.getCheckOut()}</td>
                                             <td>
-                                                201
+                                                    ${bill.getTablefood()}
                                             </td>
 
                                             <td>

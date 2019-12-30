@@ -85,18 +85,6 @@
                             <h3 class="card-header">Danh sách nhân viên</h3>
 
                             <div class="card-body">
-                                <form action="#" method="get">
-                                    <div class="row">
-                                    <div class="col-md-5">
-                                        <input type="text" class="form-control" name="seaching" placeholder="Tìm kiếm theo tên" />
-                                    </div>
-                                    <div class="col-md-5">
-                                        <button type="submit" class="btn btn-info active btn-sm"><i class="fas fa-search"></i>&nbsp;Tìm kiếm</button>
-                                        <a href="/admin/employee/add" type="submit" class="btn btn-primary active btn-sm"><i class="fas fa-plus"></i>&nbsp;Thêm mới</a>
-
-                                    </div>
-                                </div>
-                                </form>                <br />
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>

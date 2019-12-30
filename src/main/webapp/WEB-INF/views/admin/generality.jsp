@@ -195,7 +195,7 @@
                             <div class="card-body">
                                 <h5 class="text-muted col">Quản lý</h5>
                                 <div class="metric-value d-inline-block col">
-                                    <h1 class="mb-1">1</h1>
+                                    <h1 class="mb-1">${sumAdmin}</h1>
                                 </div>
 
 
@@ -213,7 +213,7 @@
                             <div class="card-body">
                                 <h5 class="text-muted">Nhân viên</h5>
                                 <div class="metric-value d-inline-block">
-                                    <h1 class="mb-1">2</h1>
+                                    <h1 class="mb-1">${sumEmployee}</h1>
                                 </div>
 
                             </div>
@@ -228,7 +228,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
                         <div class="card border-3 border-top border-top-primary">
                             <div class="card-body">
-                                <h5 class="text-muted">Tổng hóa đơn đặt hàng</h5>
+                                <h5 class="text-muted">Tổng số hóa đơn </h5>
                                 <div class="metric-value d-inline-block">
                                     <h1 class="mb-1">${sumbill}</h1>
                                 </div>
